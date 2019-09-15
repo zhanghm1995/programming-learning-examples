@@ -1,0 +1,3 @@
+language: c
+compiler: gcc
+script: cd make_sample; make; cd ../cmake_sample; ./start_build.sh; cd build; make
