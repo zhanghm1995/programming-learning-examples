@@ -1,0 +1,18 @@
+# config file
+blog:
+    name: csdn
+    id: fengbingchun
+    url: https://blog.csdn.net/fengbingchun
+ 
+commands:
+  version:
+  - g++ --version
+  - cmake --version
+  - git --version
+
+sensors:
+  name: [lidar, radar, camera]
+
+value1: true
+value2: false
+value3: ~
