@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 2.8.12)
+project(PCL_test)
+
+#find packages
+find_package(PCL 1.7 REQUIRED)
+add_definitions(${PCL_DEFINITIONS})
+
+#include headers
+include_directories(${PCL_INCLUDE_DIRS})
+
+#target generation
+add_executable(PCL_test main.cpp)
+
+#link libraries
+target_link_libraries(PCL_test ${PCL_LIBRARIES})
