@@ -1,5 +1,10 @@
+## This is a standard CMakeLists.txt template,including
+## how to enable C++11 compiler option and how to set 'Release'
+## target compile option
+
 cmake_minimum_required(VERSION 2.8)
-project(Homography)
+project(cmake_template)
+
 ############ enable C++11 compiler###############
 ## Method 1
 include(CheckCXXCompilerFlag)
@@ -16,15 +21,29 @@ endif()
 ## Method 2
 set(CMAKE_CXX_STANDARD 11)
 
+
+############ #enable warnings##################
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wall")
+
+
 #############设置cmake目标编译选项##############
+## Method 1
 set(CMAKE_BUILD_TYPE "Release")
-###########设置默认编译模式，并将设置结果显示在GUI界面上
+
+## Method 2 设置默认编译模式，并将设置结果显示在cmake GUI界面上
 IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING
       "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel."
       FORCE)
 ENDIF(NOT CMAKE_BUILD_TYPE)
-###########设置默认编译模式，并将设置结果显示在GUI界面上
 
-# enable warnings
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wall")
+
+##########
+##Build###
+##########
+add_library(lib hello.cpp)
+
+add_executable(main main.cpp)
+target_link_libraries(main ${LINK_LIBRARIES})
+
+
