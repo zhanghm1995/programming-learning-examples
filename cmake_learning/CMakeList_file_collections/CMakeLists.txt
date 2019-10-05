@@ -5,6 +5,9 @@
 cmake_minimum_required(VERSION 2.8)
 project(cmake_template)
 
+############# Use message function to print information ############
+message(STATUS "CMake version: ${CMAKE_VERSION}")
+
 ############ enable C++11 compiler###############
 ## Method 1
 include(CheckCXXCompilerFlag)
@@ -37,6 +40,8 @@ IF(NOT CMAKE_BUILD_TYPE)
       FORCE)
 ENDIF(NOT CMAKE_BUILD_TYPE)
 
+################## Some useful arguments ##########################
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 ##########
 ##Build###
