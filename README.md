@@ -17,6 +17,10 @@ Learning how to use helpful tools developed by Google. Thanks for Google's gener
 
 Some basic usages of `python`.
 
+## qt_learning
+
+[Qt](https://www.qt.io/) related learning resources.
+
 ## ROS
 
 Learning how to use [ROS](https://www.ros.org/) to develop **Robot** related projects.
