@@ -218,6 +218,15 @@ void test_list()
     }
 }
 
+
+void test_vector()
+{
+  std::vector<int> intVec;
+  // https://blog.csdn.net/theusProme/article/details/53420031
+  int temp = intVec.back(); // will cause undefined behavior
+  cout<<temp<<endl;
+}
+
 struct BaseTest
 {
   BaseTest(){}
@@ -263,6 +272,7 @@ vector<string> person({"person", "people", "pedestrian"});
 using namespace std;
 int main(int argc, char **argv)
 {
+  test_vector();
 
   string str("CaR"), str1("car");
 
