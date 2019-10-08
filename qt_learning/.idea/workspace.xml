@@ -32,13 +32,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/qt_image_show/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="266">
+              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
+                <element signature="e#134#194#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="qglobal.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+              <folding>
+                <element signature="e#2063#2090#0" expanded="true" />
+                <element signature="e#2144#2201#0" expanded="true" />
+                <element signature="e#2316#2353#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="helloworld.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="helloworld.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qt_image_show/helloworld.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1558">
-              <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+            <state relative-caret-position="1748">
+              <caret line="46" column="1" lean-forward="true" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -103,6 +118,7 @@
         <option value="$PROJECT_DIR$/qt_image_show/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/qt_image_show/helloworld.h" />
         <option value="$PROJECT_DIR$/qt_image_show/helloworld.cpp" />
+        <option value="$PROJECT_DIR$/qt_image_show/main.cpp" />
       </list>
     </option>
   </component>
@@ -138,6 +154,45 @@
               <item name="cmake_qt" type="b2602c69:ProjectViewProjectNode" />
               <item name="qt_learning" type="462c0819:PsiDirectoryNode" />
               <item name="qt_image_show" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cmake_qt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="cmake_qt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Header Search Paths" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="cmake_qt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Header Search Paths" type="70bed36:NamedLibraryElementNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cmake_qt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Header Search Paths" type="70bed36:NamedLibraryElementNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="x86_64-linux-gnu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cmake_qt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Header Search Paths" type="70bed36:NamedLibraryElementNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="x86_64-linux-gnu" type="462c0819:PsiDirectoryNode" />
+              <item name="qt5" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cmake_qt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Header Search Paths" type="70bed36:NamedLibraryElementNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="x86_64-linux-gnu" type="462c0819:PsiDirectoryNode" />
+              <item name="qt5" type="462c0819:PsiDirectoryNode" />
+              <item name="QtCore" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -182,12 +237,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570320707241</updated>
-      <workItem from="1570320708538" duration="8346000" />
+      <workItem from="1570320708538" duration="9936000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8346000" />
+    <option name="totallyTimeSpent" value="9936000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="130" y="-8" width="3710" height="2168" extended-state="6" />
@@ -219,16 +274,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/qt_image_show/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qt_image_show/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="880">
@@ -269,10 +314,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/qt_image_show/helloworld.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+        <state relative-caret-position="1748">
+          <caret line="46" column="1" lean-forward="true" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+          <folding>
+            <element signature="e#2063#2090#0" expanded="true" />
+            <element signature="e#2144#2201#0" expanded="true" />
+            <element signature="e#2316#2353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qt_image_show/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#134#194#0" expanded="true" />
           </folding>
         </state>
       </provider>
