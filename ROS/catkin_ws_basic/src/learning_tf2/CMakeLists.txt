@@ -56,12 +56,3 @@ target_link_libraries(turtle_tf2_broadcaster
 add_executable(turtle_tf2_listener src/turtle_tf_listener.cpp)
 target_link_libraries(turtle_tf2_listener
   ${catkin_LIBRARIES})
-#  
-#add_executable(frame_tf_broadcaster src/frame_tf_broadcaster.cpp)
-#target_link_libraries(frame_tf_broadcaster
-#  ${catkin_LIBRARIES})
-#  
-#    
-#add_executable(tf_test_node src/tf_test_node.cpp)
-#target_link_libraries(tf_test_node
-#  ${catkin_LIBRARIES})

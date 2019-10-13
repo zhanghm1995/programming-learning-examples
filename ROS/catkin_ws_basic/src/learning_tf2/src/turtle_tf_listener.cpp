@@ -4,7 +4,7 @@
 * Version  :
 * Copyright    :
 * Descriptoin  : 订阅坐标系tf消息,使第二个turtle能够跟随第一个运动
-* References   :
+* References   :http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20listener%20%28C%2B%2B%29
 ======================================================================*/
 
 #include <ros/ros.h>

@@ -13,6 +13,10 @@ Learning how to use the advanced build tool **CMake** to build our C/C++ project
 
 Learning how to use helpful tools developed by Google. Thanks for Google's generosity, let our code developing more comfortable!
 
+## opencv_learning
+
+Learning how to use [OpenCV](https://opencv.org/).
+
 ## python_learning
 
 Some basic usages of `python`.

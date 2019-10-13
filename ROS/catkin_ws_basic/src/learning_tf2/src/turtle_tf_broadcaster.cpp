@@ -4,7 +4,7 @@
 * Version  :
 * Copyright    :
 * Descriptoin  : 广播turtle的坐标系到tf中
-* References   :
+* References   :http://wiki.ros.org/tf2/Tutorials/Writing%20a%20tf2%20broadcaster%20%28C%2B%2B%29
 ======================================================================*/
 #include <ros/ros.h>
 #include <turtlesim/Pose.h>
@@ -14,7 +14,8 @@
 #include <iostream>
 std::string turtle_name;
 
-void poseCallback(const turtlesim::PoseConstPtr& msg){
+void poseCallback(const turtlesim::PoseConstPtr& msg)
+{
   static tf2_ros::TransformBroadcaster br;
   geometry_msgs::TransformStamped transformStamped;
 
@@ -34,7 +35,8 @@ void poseCallback(const turtlesim::PoseConstPtr& msg){
   br.sendTransform(transformStamped);
 }
 
-int main(int argc, char** argv){
+int main(int argc, char** argv)
+{
   ros::init(argc, argv, "my_tf2_broadcaster");
   if (argc != 2){ROS_ERROR("need turtle name as argument"); return -1;};
   turtle_name = argv[1];
