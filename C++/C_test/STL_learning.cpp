@@ -272,7 +272,7 @@ vector<string> person({"person", "people", "pedestrian"});
 using namespace std;
 int main(int argc, char **argv)
 {
-  test_vector();
+  // test_vector();
 
   string str("CaR"), str1("car");
 

@@ -34,6 +34,10 @@ target_link_libraries(c_test ${OpenCV_LIBS})
 add_executable(stl_learning STL_learning.cpp)  
 target_link_libraries(stl_learning ${OpenCV_LIBS}) 
 
+add_executable(stl_test stl_test.cpp)
+
+add_executable(stl_algorithm STL_algorithm.cpp)
+
 add_executable(data_structure data_structure.cpp)  
 target_link_libraries(data_structure ${OpenCV_LIBS} ${Boost_LIBRARIES})
 
@@ -56,8 +60,6 @@ add_executable(boost_signal boost_signal.cpp)
 target_link_libraries(boost_signal ${Boost_LIBRARIES})
 
 add_executable(function_test function_test.cpp)
-
-add_executable(stl_test stl_test.cpp)
 
 add_executable(temp_test temp_test.cpp)
 
