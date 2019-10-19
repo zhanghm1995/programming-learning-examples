@@ -27,7 +27,12 @@ endif()
 find_package(OpenCV 3 REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem thread system program_options)
-include_directories(${OPENCV_INCLUDE_DIRS} ${EIGEN3_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})  
+include_directories(${OPENCV_INCLUDE_DIRS} ${EIGEN3_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})
+
+add_subdirectory(macro_test)
+#############
+####Build####
+#############
 add_executable(c_test c_test.cpp )  
 target_link_libraries(c_test ${OpenCV_LIBS})
 
