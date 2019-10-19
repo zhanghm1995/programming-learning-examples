@@ -26,6 +26,9 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 #target generation
 add_executable(main main.cpp)
-
 #link libraries
 target_link_libraries(main ${OpenCV_LIBS} ${GTEST_MAIN_LIBRARIES} pthread)
+
+#target generation
+add_executable(example_class_test example_class_test.cpp)
+target_link_libraries(example_class_test ${GTEST_MAIN_LIBRARIES} pthread)

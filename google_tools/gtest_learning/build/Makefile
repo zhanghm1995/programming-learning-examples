@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zhanghm/Test_code/google/gtest_learning
+CMAKE_SOURCE_DIR = /home/zhanghm/Test_code/programming-learning-examples/google_tools/gtest_learning
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zhanghm/Test_code/google/gtest_learning/build
+CMAKE_BINARY_DIR = /home/zhanghm/Test_code/programming-learning-examples/google_tools/gtest_learning/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhanghm/Test_code/google/gtest_learning/build/CMakeFiles /home/zhanghm/Test_code/google/gtest_learning/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhanghm/Test_code/programming-learning-examples/google_tools/gtest_learning/build/CMakeFiles /home/zhanghm/Test_code/programming-learning-examples/google_tools/gtest_learning/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhanghm/Test_code/google/gtest_learning/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zhanghm/Test_code/programming-learning-examples/google_tools/gtest_learning/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -109,6 +109,19 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named example_class_test
+
+# Build rule for target.
+example_class_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 example_class_test
+.PHONY : example_class_test
+
+# fast build rule for target.
+example_class_test/fast:
+	$(MAKE) -f CMakeFiles/example_class_test.dir/build.make CMakeFiles/example_class_test.dir/build
+.PHONY : example_class_test/fast
 
 #=============================================================================
 # Target rules for targets named main
@@ -149,6 +162,33 @@ gtest/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
 
+example_class_test.o: example_class_test.cpp.o
+
+.PHONY : example_class_test.o
+
+# target to build an object file
+example_class_test.cpp.o:
+	$(MAKE) -f CMakeFiles/example_class_test.dir/build.make CMakeFiles/example_class_test.dir/example_class_test.cpp.o
+.PHONY : example_class_test.cpp.o
+
+example_class_test.i: example_class_test.cpp.i
+
+.PHONY : example_class_test.i
+
+# target to preprocess a source file
+example_class_test.cpp.i:
+	$(MAKE) -f CMakeFiles/example_class_test.dir/build.make CMakeFiles/example_class_test.dir/example_class_test.cpp.i
+.PHONY : example_class_test.cpp.i
+
+example_class_test.s: example_class_test.cpp.s
+
+.PHONY : example_class_test.s
+
+# target to generate assembly for a file
+example_class_test.cpp.s:
+	$(MAKE) -f CMakeFiles/example_class_test.dir/build.make CMakeFiles/example_class_test.dir/example_class_test.cpp.s
+.PHONY : example_class_test.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -183,10 +223,14 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... example_class_test"
 	@echo "... edit_cache"
 	@echo "... main"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... example_class_test.o"
+	@echo "... example_class_test.i"
+	@echo "... example_class_test.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
