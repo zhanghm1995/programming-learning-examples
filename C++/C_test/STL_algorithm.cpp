@@ -19,6 +19,22 @@ std::ostream& operator << (std::ostream& s, const std::vector<T>& vec)
 }
 
 /**
+ * http://www.java2s.com/Tutorial/Cpp/0260__template/templatefunctiontoprintelementsofanSTLcontainer.htm
+ **/ 
+template <typename T>
+void printcoll (T const& coll)
+{
+    typename T::const_iterator pos;  // iterator to iterate over coll
+    typename T::const_iterator end(coll.end());  // end position
+
+    for (pos=coll.begin(); pos!=end; ++pos) {
+        std::cout << *pos << ' ';
+    }
+    std::cout << std::endl;
+}
+
+
+/**
  * @brief std::copy and std::merge function usage
  **/ 
 void CopyFunction()
@@ -38,8 +54,15 @@ void CopyFunction()
     std::cout<<c1<<std::endl;
 }
 
+void PrintFunction()
+{
+    std::vector<float> a = {1.67, 2.0, 3.5};
+    std::cout<<a<<std::endl;
+    printcoll(a);
+}
+
 int main()
 {
     CopyFunction();
-
+    PrintFunction();
 }
