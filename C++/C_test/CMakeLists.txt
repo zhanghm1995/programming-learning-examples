@@ -51,9 +51,6 @@ add_executable(read_file read_file.cpp)
 add_executable(rectify_image rectify_image.cpp ImageRectify.cpp) 
 target_link_libraries(rectify_image ${OpenCV_LIBS})
 
-add_executable(zjc ZJC.cpp)
-target_link_libraries(zjc ${Boost_LIBRARIES} ${OpenCV_LIBS})
-
 add_executable(template_learning template_learning.cpp myfirst.cpp)
 target_link_libraries(template_learning ${Boost_LIBRARIES} ${OpenCV_LIBS})
 

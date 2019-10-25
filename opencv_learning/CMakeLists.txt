@@ -16,6 +16,9 @@ find_package(PCL 1.9 REQUIRED)
 add_definitions(${PCL_DEFINITIONS})
 include_directories(${OPENCV_INCLUDE_DIRS} ${PCL_INCLUDE_DIRS}) 
 
+add_executable(opencv_misc opencv_misc.cpp)  
+target_link_libraries(opencv_misc ${OpenCV_LIBS})
+
 add_executable(optical_flow optical_flow.cpp)  
 target_link_libraries(optical_flow ${OpenCV_LIBS})
 
