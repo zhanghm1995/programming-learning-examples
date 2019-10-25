@@ -16,9 +16,6 @@ find_package(PCL 1.9 REQUIRED)
 add_definitions(${PCL_DEFINITIONS})
 include_directories(${OPENCV_INCLUDE_DIRS} ${PCL_INCLUDE_DIRS}) 
 
-add_executable(color_space color_space.cpp)  
-target_link_libraries(color_space ${OpenCV_LIBS})  
-
 add_executable(optical_flow optical_flow.cpp)  
 target_link_libraries(optical_flow ${OpenCV_LIBS})
 
@@ -39,3 +36,5 @@ target_link_libraries(polygon_drawing ${OpenCV_LIBS} ${PCL_LIBRARIES})
 
 add_executable(color_handle color_handle.cpp)  
 target_link_libraries(color_handle ${OpenCV_LIBS})
+
+add_subdirectory(basic_drawing)
