@@ -43,6 +43,8 @@ add_executable(stl_test stl_test.cpp)
 
 add_executable(stl_algorithm STL_algorithm.cpp)
 
+add_executable(string_usages string_usages.cpp)
+
 add_executable(data_structure data_structure.cpp)  
 target_link_libraries(data_structure ${OpenCV_LIBS} ${Boost_LIBRARIES})
 
