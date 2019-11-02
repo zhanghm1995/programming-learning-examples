@@ -1,4 +1,4 @@
-## This is a standard CMakeLists.txt template,including
+## This is a standard CMakeLists.txt template, including
 ## how to enable C++11 compiler option and how to set 'Release'
 ## target compile option
 
@@ -29,11 +29,11 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wall")
 
 
-#############设置cmake目标编译选项##############
+#############Set cmake compiler options##############
 ## Method 1
 set(CMAKE_BUILD_TYPE "Release")
 
-## Method 2 设置默认编译模式，并将设置结果显示在cmake GUI界面上
+## Method 2
 IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING
       "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel."
