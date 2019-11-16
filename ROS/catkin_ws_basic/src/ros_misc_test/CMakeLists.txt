@@ -20,7 +20,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(Eigen3 REQUIRED)
-find_package(PCL 1.8 REQUIRED)
+find_package(PCL 1.9 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem thread system program_options)
 find_package(OpenCV REQUIRED)
 
@@ -49,3 +49,6 @@ include_directories(
 ###########
 add_executable(test_node src/test_node.cpp)
 target_link_libraries(test_node ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBS})
+
+add_executable(cloud_subscriber_publisher src/cloud_subscriber_publisher.cpp)
+target_link_libraries(cloud_subscriber_publisher ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBS})

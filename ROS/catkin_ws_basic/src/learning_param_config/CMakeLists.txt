@@ -25,7 +25,7 @@ generate_dynamic_reconfigure_options(
 )
 
 find_package(Eigen3 REQUIRED)
-find_package(PCL 1.8 REQUIRED)
+find_package(PCL 1.9 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem thread system program_options)
 find_package(OpenCV REQUIRED)
 
