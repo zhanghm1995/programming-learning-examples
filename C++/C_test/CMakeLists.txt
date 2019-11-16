@@ -65,7 +65,5 @@ target_link_libraries(boost_signal ${Boost_LIBRARIES})
 
 add_executable(function_test function_test.cpp)
 
-add_executable(temp_test temp_test.cpp)
-
 add_executable(shared_ptr_test shared_ptr_test.cpp)
 set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)

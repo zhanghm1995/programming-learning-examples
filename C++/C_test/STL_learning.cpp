@@ -12,6 +12,7 @@
 #include <set>
 #include <map>
 #include <list>
+#include <vector>
 #include <fstream>
 #include <string>
 #include <string.h>
@@ -23,7 +24,7 @@ using namespace std;
 /**
  * http://www.java2s.com/Tutorial/Cpp/0260__template/templatefunctiontoprintelementsofanSTLcontainer.htm
  * @brief This print function is valid for std::set, std::vector, std::list
- *        it not worked for std::map
+ *                it not worked for std::map
  **/
 template <typename T>
 void PrintSTLContainer(T const &container)
@@ -200,7 +201,7 @@ void test_list()
     cout << o << endl;
   }
   intList.remove(3);
-  cout << "=-==========" << endl;
+  cout << "===========" << endl;
   for (auto &o : intList)
   {
     cout << o << endl;
@@ -220,6 +221,6 @@ int main(int argc, char **argv)
   test_set();
   test_set_delete();
   test_map();
-  test_vector();
+  // test_vector();
   return 0;
 }

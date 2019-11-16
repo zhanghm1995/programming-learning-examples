@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <string>
 #include <map>
+#include <vector>
 #include <functional>
 using namespace std;
 
