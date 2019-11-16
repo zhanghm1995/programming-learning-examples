@@ -38,6 +38,12 @@ add_executable(base_conversion base_conversion.cpp)
 add_executable(c_test c_test.cpp )  
 target_link_libraries(c_test ${OpenCV_LIBS})
 
+add_executable(class_learning class_learning.cpp)
+
+add_executable(anonymous_namespace_test include_test/anonymous_namespace_test.cpp
+                                                                                                 include_test/test.cpp
+                                                                                                 include_test/test1.cpp)
+
 add_executable(stl_learning STL_learning.cpp)  
 target_link_libraries(stl_learning ${OpenCV_LIBS}) 
 
@@ -52,8 +58,6 @@ target_link_libraries(data_structure ${OpenCV_LIBS} ${Boost_LIBRARIES})
 
 add_executable(read_file read_file.cpp)
   
-add_executable(include_test include_test/main.cpp)
-
 add_executable(boost_signal boost_signal.cpp)
 target_link_libraries(boost_signal ${Boost_LIBRARIES})
 
