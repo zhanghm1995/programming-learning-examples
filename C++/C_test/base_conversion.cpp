@@ -3,7 +3,7 @@
 * Email    : zhanghm_1995@qq.com
 * Version  :　2019年4月1日
 * Copyright    :
-* Descriptoin  :
+* Descriptoin  : Learn the base conversion betwenn binary, oct and hex
 * References   :
 ======================================================================*/
 
@@ -12,9 +12,10 @@
 #include <iostream>
 #include <sstream>
 #include <bitset>
+
 using namespace std;
 
-//使用bitset转换二进制
+// 使用bitset转换二进制
 void BinaryBitset(short n)
 {
   cout<<bitset<sizeof(short)*8>(n)<<endl;

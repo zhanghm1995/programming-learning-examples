@@ -1,3 +1,12 @@
+/*======================================================================
+* Author   : Haiming Zhang
+* Email    : zhanghm_1995@qq.com
+* Version  :　2018年8月12日
+* Copyright    :
+* Descriptoin  : Learn how to use different function definition in C++
+* References   :
+======================================================================*/
+
 #include <iostream>
 #include <vector>
 #include <list>
@@ -7,6 +16,7 @@
 #include <algorithm>
 #include <functional>
 #include <memory>
+
 using namespace std;
 
 //声明一个模板

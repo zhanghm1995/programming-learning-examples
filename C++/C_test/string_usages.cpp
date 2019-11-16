@@ -4,7 +4,7 @@
 * Version  :　2019-10-27
 * Copyright    :
 * Descriptoin  : Learn all about the usages of string in CPP, including 
-                 std::string or the char[] and char*.
+                               std::string or the char[] and char*.
 * References   :
 ======================================================================*/
 

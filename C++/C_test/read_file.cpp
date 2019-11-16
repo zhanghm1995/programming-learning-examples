@@ -4,7 +4,7 @@
 * Version  :　2018年8月12日
 * Copyright    :
 * Descriptoin  :
-* References   :
+* References   : Learn how to do file and directory related process by using C++
 ======================================================================*/
 
 

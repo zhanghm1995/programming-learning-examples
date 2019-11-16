@@ -33,6 +33,8 @@ add_subdirectory(macro_test)
 #############
 ####Build####
 #############
+add_executable(base_conversion base_conversion.cpp)
+
 add_executable(c_test c_test.cpp )  
 target_link_libraries(c_test ${OpenCV_LIBS})
 
@@ -50,15 +52,7 @@ target_link_libraries(data_structure ${OpenCV_LIBS} ${Boost_LIBRARIES})
 
 add_executable(read_file read_file.cpp)
   
-add_executable(rectify_image rectify_image.cpp ImageRectify.cpp) 
-target_link_libraries(rectify_image ${OpenCV_LIBS})
-
-add_executable(template_learning template_learning.cpp myfirst.cpp)
-target_link_libraries(template_learning ${Boost_LIBRARIES} ${OpenCV_LIBS})
-
 add_executable(include_test include_test/main.cpp)
-
-add_executable(random_number_generator random_number_generator.cpp)
 
 add_executable(boost_signal boost_signal.cpp)
 target_link_libraries(boost_signal ${Boost_LIBRARIES})
