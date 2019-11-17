@@ -14,10 +14,9 @@
 #include <pcl_conversions/pcl_conversions.h> //  for function pcl::fromROSMsg
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
-#include <pcl_ros/point_cloud.h>
+#include <pcl_ros/point_cloud.h> // for publish cloud directly
 
 ros::Publisher g_pub_cloud;
-
 
 void PublishCloud(const sensor_msgs::PointCloud2ConstPtr& msg)
 {
@@ -37,7 +36,7 @@ void CloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg)
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "dynamicobject");
+  ros::init(argc, argv, "cloud_subsriber_publisher_node");
   ros::NodeHandle nh;
   ros::Subscriber sub_pointcloud = nh.subscribe<sensor_msgs::PointCloud2>("/kitti/velo/pointcloud", 10, CloudCallback);
   g_pub_cloud = nh.advertise<sensor_msgs::PointCloud2>("/velody_cloud", 2);

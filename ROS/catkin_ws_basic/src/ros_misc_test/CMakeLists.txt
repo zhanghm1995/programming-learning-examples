@@ -52,3 +52,7 @@ target_link_libraries(test_node ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIB
 
 add_executable(cloud_subscriber_publisher src/cloud_subscriber_publisher.cpp)
 target_link_libraries(cloud_subscriber_publisher ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBS})
+
+add_executable(image_subscriber_publisher src/image_subscriber_publisher.cpp)
+target_link_libraries(image_subscriber_publisher ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBS})
+
