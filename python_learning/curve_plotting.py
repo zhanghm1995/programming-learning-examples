@@ -1,3 +1,4 @@
+# -*- coding:utf8 -*-
 """
     Draw multiple curve plot
 """
@@ -32,6 +33,7 @@ plt.title("example",fontsize=12,fontweight='bold')        #默认字体大小为
 plt.xlabel("Data sets",fontsize=13,fontweight='bold')
 plt.ylabel("Accuracy",fontsize=13,fontweight='bold')
 plt.xlim(3,21)                  #设置x轴的范围
+
 #plt.ylim(0.5,1)
 
 #plt.legend()                   #显示各曲线的图例
@@ -40,5 +42,5 @@ leg = plt.gca().get_legend()
 ltext  = leg.get_texts()
 plt.setp(ltext, fontsize=12,fontweight='bold')  #设置图例字体的大小和粗细
 
-plt.savefig('filename.svg',format='svg')    #建议保存为svg格式，再用inkscape转为矢量图emf后插入word中
+# plt.savefig('filename.svg',format='svg')    #建议保存为svg格式，再用inkscape转为矢量图emf后插入word中
 plt.show()
