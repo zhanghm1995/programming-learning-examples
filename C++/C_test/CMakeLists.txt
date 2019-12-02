@@ -30,6 +30,7 @@ find_package(Boost REQUIRED COMPONENTS filesystem thread system program_options)
 include_directories(${OPENCV_INCLUDE_DIRS} ${EIGEN3_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})
 
 add_subdirectory(macro_test)
+add_subdirectory(file_operations_collection)
 #############
 ####Build####
 #############
