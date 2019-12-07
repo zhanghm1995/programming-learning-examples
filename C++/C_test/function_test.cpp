@@ -3,7 +3,7 @@
 * Email    : zhanghm_1995@qq.com
 * Version  :　2018年8月12日
 * Copyright    :
-* Descriptoin  : Learn how to use different function definition in C++
+* Descriptoin  : Learn how to use different function type definition in C++
 * References   :
 ======================================================================*/
 

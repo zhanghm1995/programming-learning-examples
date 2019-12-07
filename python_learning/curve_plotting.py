@@ -1,6 +1,6 @@
 # -*- coding:utf8 -*-
 """
-    Draw multiple curve plot
+    Draw multiple curves with different styles in one figure
 """
 import numpy as np
 import matplotlib.pyplot as plt

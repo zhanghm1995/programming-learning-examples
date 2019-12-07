@@ -3,7 +3,7 @@
 * Email    : zhanghm_1995@qq.com
 * Version  :　2019年12月2日
 * Copyright    :
-* Descriptoin  : Learn how to use C++ to process directory and files related demands
+* Descriptoin  : Learn how to use native C++ to process directory and files related demands
 * References   :
 ======================================================================*/
 
