@@ -31,6 +31,7 @@ include_directories(${OPENCV_INCLUDE_DIRS} ${EIGEN3_INCLUDE_DIR} ${Boost_INCLUDE
 
 add_subdirectory(macro_test)
 add_subdirectory(file_operations_collection)
+add_subdirectory(class_examples)
 #############
 ####Build####
 #############

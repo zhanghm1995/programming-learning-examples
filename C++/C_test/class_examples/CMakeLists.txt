@@ -1,0 +1,1 @@
+add_executable(class_inheritance class_inheritance.cpp)
