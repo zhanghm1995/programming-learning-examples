@@ -1,3 +1,12 @@
+/*======================================================================
+* Author   : Haiming Zhang
+* Email    : zhanghm_1995@qq.com
+* Version  :　2019年12月12日
+* Copyright    :
+* Descriptoin  : All in one the C++ class inheritance example
+* References   :
+======================================================================*/
+
 #include <iostream>
 
 using namespace std;

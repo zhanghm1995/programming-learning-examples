@@ -58,8 +58,6 @@ add_executable(string_usages string_usages.cpp)
 add_executable(data_structure data_structure.cpp)  
 target_link_libraries(data_structure ${OpenCV_LIBS} ${Boost_LIBRARIES})
 
-add_executable(read_file read_file.cpp)
-  
 add_executable(boost_signal boost_signal.cpp)
 target_link_libraries(boost_signal ${Boost_LIBRARIES})
 
