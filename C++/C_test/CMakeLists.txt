@@ -40,8 +40,6 @@ add_executable(base_conversion base_conversion.cpp)
 add_executable(c_test c_test.cpp )  
 target_link_libraries(c_test ${OpenCV_LIBS})
 
-add_executable(class_learning class_learning.cpp)
-
 add_executable(anonymous_namespace_test include_test/anonymous_namespace_test.cpp
                                                                                                  include_test/test.cpp
                                                                                                  include_test/test1.cpp)
@@ -65,3 +63,5 @@ add_executable(function_test function_test.cpp)
 
 add_executable(shared_ptr_test shared_ptr_test.cpp)
 set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
+
+add_executable(time_util time_util.cpp)
