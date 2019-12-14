@@ -71,7 +71,7 @@ int main() {
     ex.InitInternal();
 
     Component* co = &ex;
-    co->Init(); // 非虚函数重写会出现问题,结果跟随基类指针声明的类型
+    co->Init(); // 非虚函数重写会出现问题,结果跟随基类指针声明的类型, 因此禁止重写非虚函数
     co->Proc();
     return 0;
 }

@@ -1,1 +1,3 @@
 add_executable(directory_operation directory_operation.cpp)
+
+add_executable(file_util_main file_util_main.cpp file_util.cpp)
