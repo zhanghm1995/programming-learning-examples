@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.4)
+project(example)
+
+set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -O0 -g")
+set(CMAKE_BUILD_TYPE "Release")
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+if(COMPILER_SUPPORTS_CXX11)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+elseif(COMPILER_SUPPORTS_CXX0X)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+else()
+        message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+endif()
+
+set(FooBar_DIR "/home/zhanghm/Temp/foo_bar/share/cmake/FooBar")
+find_package(FooBar REQUIRED)
+
+message(STATUS "The FooBar include file is ${FOOBAR_INCLUDE_DIR}")
+message(STATUS "The FooBar library file is ${FOOBAR_LIBRARIES}")
+
+include_directories(${FOOBAR_INCLUDE_DIR})
+add_executable(example_main example_main.cpp)
+target_link_libraries(example_main ${FOOBAR_LIBRARIES})
