@@ -5,7 +5,7 @@
 
 namespace foo_bar {
 
-void PrintString(const std::string& str) {
+inline void PrintString(const std::string& str) {
   std::cout<<str<<std::endl;
 }
 

@@ -16,7 +16,14 @@ add_library(${PROJECT_NAME} SHARED
 
 set(ConfigPackageLocation "${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}")
 
-set(CONFIG_INCLUDE_DIRS "\${FooBar_CMAKE_DIR}/include")
+set(INSTALL_INCLUDE_DIR "include")
+
+file( RELATIVE_PATH REL_INCLUDE_DIR
+        "${CMAKE_INSTALL_PREFIX}/${ConfigPackageLocation}"
+        "${CMAKE_INSTALL_PREFIX}/${INSTALL_INCLUDE_DIR}"
+)
+
+set(CONFIG_INCLUDE_DIRS "\${FOOBAR_CMAKE_DIR}/${REL_INCLUDE_DIR}")
 configure_package_config_file(
     ${PROJECT_NAME}Config.cmake.in
     ${PROJECT_NAME}Config.cmake                                            
