@@ -65,6 +65,17 @@ void test_string_find(const string &str)
     }
 }
 
+/**
+ * @brief Convert the string to lower case or upper case
+ **/ 
+void ConvertStrCase() {
+    string str("AaBb");
+    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+    cout<<"Lower case string is: "<<str<<endl; // aabb
+    std:transform(str.begin(), str.end(), str.begin(), ::toupper);
+    cout<<"Upper case string is: "<<str<<endl; // AABB
+}
+
 void CompareString()
 {
     string str("CaR"), str1("car");
@@ -136,5 +147,8 @@ int main()
   } else {
     std::cout<<"No"<<std::endl;
   }
+
+  std::cout<<"=================="<<std::endl;
+  ConvertStrCase();
   return 0;
 }

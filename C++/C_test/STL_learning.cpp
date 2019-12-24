@@ -168,7 +168,7 @@ void test_map()
   it = Mymap.find("list"); //find() 查找一个元素
   if (it != Mymap.end())
   { // Must check, otherwise will cause segmentation fault
-    cout << (*it).first << " : " << (*it).second << endl;
+    cout <<  it->first << " : " << it->second << endl;
   }
 
   cout << Mymap.count("add1") << endl; //count() 返回指定元素出现的次数
