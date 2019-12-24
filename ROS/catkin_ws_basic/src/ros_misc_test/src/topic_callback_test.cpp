@@ -4,7 +4,7 @@
 * Version  :　2019年12月24日
 * Copyright    :
 * Descriptoin  :
-* References   :
+* References   : https://wiki.ros.org/roscpp_tutorials/Tutorials/UsingClassMethodsAsCallbacks
 ======================================================================*/
 
 #include <iostream>
@@ -43,8 +43,9 @@ int main(int argc, char** argv) {
 
   Example ex;
 
-  ros::Subscriber sub = nh.subscribe("/Int32_msg", 2, ex.MsgCallback, &ex);
+  ros::Subscriber sub = nh.subscribe("/Int32_msg", 2, &Example::MsgCallback, &ex);
 
+  ros::Subscriber sub2 = nh.subscribe("/Int32_msg2", 2, &Singleton::MsgCallback, instance);
   ros::spin();
 
   return 1;
