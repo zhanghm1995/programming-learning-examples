@@ -216,6 +216,111 @@ void test_vector()
   cout << temp << endl;
 }
 
+//////////////////////////////////Learn how to erase elements in STL containers///////////////////////////
+// Learn how to erase the elements in vector, the same operation for deque, string and queue
+void EraseVec() {
+  std::vector<int> vec{1,2,3,4,5,6,5,7};
+  vec.erase(std::remove(vec.begin(), vec.end(), 5), vec.end());
+}
+
+void EraseVecIf() {
+  std::vector<int> vec{1,2,3,4,5,6,5,7};
+  vec.erase(std::remove_if(vec.begin(), vec.end(), [](int elem) {
+    return elem % 2 == 0;
+  }),
+  vec.end());
+}
+
+void EraseVecLoop()
+{
+    std::vector<int> vec{ 1, 2, 3, 4, 5, 5, 6, 7 }; 
+
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); /*do nothing*/) {
+      if (*it % 2 == 0) {
+        it = vec.erase(it);
+      }
+      else {
+        it++;
+      }
+    }
+}
+
+// Learn how to erase element for std::list
+void EraseList() {
+  std::list<int> ls{ 1, 2, 3, 4, 5, 5, 6, 7 };
+
+  ls.remove(5);
+  ls.remove_if([](int elem) { return elem % 2 == 0; });
+}
+
+void EraseListLoop() {
+  std::list<int> ls{ 1, 2, 3, 4, 5, 5, 6, 7 };
+
+  for (std::list<int>::iterator it = ls.begin(); it != ls.end(); )
+  {
+    if (*it % 2 == 0) {
+      it = ls.erase(it);
+    }
+    else {
+      it++;
+    }
+  }
+}
+
+// Learn how to erase elements for std::map and std::unordered_map
+void EraseMap() {
+  std::map<int, int> m;
+  m.insert(std::make_pair(1, 1));
+  m.insert(std::make_pair(2, 2));
+  m.insert(std::make_pair(3, 3));
+  m.insert(std::make_pair(4, 4));
+  m.insert(std::make_pair(5, 5));
+  m.insert(std::make_pair(6, 6));
+  m.insert(std::make_pair(7, 7));
+  map<int,int>::iterator it = m.find(5);
+  if (it != m.end()) {
+    m.erase(it);
+  }
+}
+
+void EraseMapLoop() {
+  std::map<int, int> m;
+
+  m.insert(std::make_pair(1, 1));
+  m.insert(std::make_pair(2, 2));
+  m.insert(std::make_pair(3, 3));
+  m.insert(std::make_pair(4, 4));
+  m.insert(std::make_pair(5, 5));
+  m.insert(std::make_pair(6, 6));
+  m.insert(std::make_pair(7, 7));
+
+  //2.right
+  for (std::map<int, int>::iterator it = m.begin(); it != m.end(); ) {
+    if (it->second % 2 == 0) {
+      //it是被删除的迭代器,it++的副作用可以获得it指向的下一个元素
+      // m.erase(it++); // or use this one, both ok
+       it = m.erase(it);
+    }
+    else {
+      it++;
+    }
+  }
+}
+
+// Learn how to erase elements for std::set
+void EraseSet() {
+  std::set<int> s;
+
+  s.insert(1);
+  s.insert(2);
+  s.insert(3);
+  s.insert(4);
+  s.insert(5);
+  s.insert(6);
+
+  s.erase(5);
+}
+
 int main(int argc, char **argv)
 {
   test_set();
