@@ -217,6 +217,8 @@ void test_vector()
 }
 
 //////////////////////////////////Learn how to erase elements in STL containers///////////////////////////
+// Ref: https://blog.csdn.net/sixdaycoder/article/details/81510877
+
 // Learn how to erase the elements in vector, the same operation for deque, string and queue
 void EraseVec() {
   std::vector<int> vec{1,2,3,4,5,6,5,7};
@@ -320,9 +322,9 @@ void EraseSet() {
 
   s.erase(5);
 }
+//////////////////////////////////Learn how to erase elements in STL containers///////////////////////////
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   test_set();
   test_set_delete();
   test_map();
