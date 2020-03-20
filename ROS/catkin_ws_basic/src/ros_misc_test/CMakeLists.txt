@@ -17,6 +17,8 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   tf2
   tf2_ros
+  message_generation
+  geometry_msgs
 )
 
 find_package(Eigen3 REQUIRED)
@@ -30,10 +32,21 @@ add_definitions(${PCL_DEFINITIONS})
 ## catkin specific configuration ##
 ###################################
 
+add_message_files(
+  FILES
+  TestMsg.msg
+)
+
+#generate_messages必须在catkin_package前面
+generate_messages(
+ DEPENDENCIES
+ geometry_msgs
+)
+
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES image_handle_node
-CATKIN_DEPENDS cv_bridge image_transport roscpp sensor_msgs std_msgs
+CATKIN_DEPENDS cv_bridge image_transport roscpp sensor_msgs std_msgs message_runtime
 #  DEPENDS system_lib
 )
 
@@ -61,3 +74,6 @@ target_link_libraries(topic_callback_test ${catkin_LIBRARIES})
 
 add_executable(ros_basic_tutorial src/ros_basic_tutorial.cpp)
 target_link_libraries(ros_basic_tutorial ${catkin_LIBRARIES})
+
+add_executable(message_definition src/message_definition.cpp)
+target_link_libraries(message_definition ${catkin_LIBRARIES})

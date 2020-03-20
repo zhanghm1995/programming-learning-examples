@@ -66,6 +66,7 @@
   <depend>tf2</depend>
   <depend>tf</depend>
   <depend>tf2_ros</depend>
+  <depend>message_runtime</depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
