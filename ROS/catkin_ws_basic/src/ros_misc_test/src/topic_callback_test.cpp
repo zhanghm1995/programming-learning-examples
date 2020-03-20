@@ -3,7 +3,7 @@
 * Email    : zhanghm_1995@qq.com
 * Version  :　2019年12月24日
 * Copyright    :
-* Descriptoin  :
+* Descriptoin  : Learn different callback functions definition in ROS
 * References   : https://wiki.ros.org/roscpp_tutorials/Tutorials/UsingClassMethodsAsCallbacks
 ======================================================================*/
 

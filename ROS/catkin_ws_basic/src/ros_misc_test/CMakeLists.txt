@@ -58,3 +58,6 @@ target_link_libraries(image_subscriber_publisher ${catkin_LIBRARIES} ${Boost_LIB
 
 add_executable(topic_callback_test src/topic_callback_test.cpp)
 target_link_libraries(topic_callback_test ${catkin_LIBRARIES})
+
+add_executable(ros_basic_tutorial src/ros_basic_tutorial.cpp)
+target_link_libraries(ros_basic_tutorial ${catkin_LIBRARIES})
