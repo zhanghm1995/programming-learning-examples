@@ -3,7 +3,7 @@
 * Email    : zhanghm_1995@qq.com
 * Version  :　2020年03月20日
 * Copyright    :
-* Descriptoin  :
+* Descriptoin  : Collection of basic ROS operation
 * References   :
 ======================================================================*/
 
@@ -11,10 +11,11 @@
 #include <iostream>
 // ROS
 #include <ros/ros.h>
-#include <std_msgs/Header.h>
+#include <ros/time.h>
 
 /**
  * @brief Test the ros::Time usage
+ * @ref http://wiki.ros.org/roscpp/Overview/Time
  */ 
 void TestRosTime() {
     ros::Time header1 = ros::Time::now();
