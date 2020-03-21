@@ -43,14 +43,15 @@ set(SRC_FILES
 )
 
 set(SRC_FILES2
-  src/object_array_display.cpp
+src/my_imu_display.cpp
+src/my_imu_display.h
 )
 ## An rviz plugin is just a shared library, so here we declare the
 ## library to be called ``${PROJECT_NAME}`` (which is
 ## "rviz_plugin_tutorials", or whatever your version of this project
 ## is called) and specify the list of source files we collected above
 ## in ``${SRC_FILES}``.
-add_library(${PROJECT_NAME} ${SRC_FILES})
+add_library(${PROJECT_NAME} ${SRC_FILES2})
 
 ## Link the myviz executable with whatever Qt libraries have been defined by
 ## the ``find_package(Qt4 ...)`` line above, or by the

@@ -51,6 +51,9 @@ MyImuDisplay::MyImuDisplay()
   is_show_bboxes_ = new rviz::BoolProperty("Show BBoxes", true, 
                                                                                              "Whether or not show object bouding boxes",
                                                                                              this, SLOT(updateShowBBoxes()));
+  is_show_center_ = new rviz::BoolProperty("Show Center", true, 
+                                                                                             "Whether or not show object centers",
+                                                                                             this, SLOT(updateShowCenter()));                                                                                           
 }
 
 // After the top-level rviz::Display::initialize() does its own setup,
@@ -81,6 +84,11 @@ void MyImuDisplay::reset()
 void MyImuDisplay::updateShowBBoxes()
 {
 
+}
+
+void MyImuDisplay::updateShowCenter()
+{
+  ROS_INFO("enter in MyImuDisplay::updateShowCenter");
 }
 
 // This is our callback to handle an incoming message.

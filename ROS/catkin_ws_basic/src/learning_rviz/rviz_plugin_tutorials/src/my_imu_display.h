@@ -31,10 +31,7 @@
 #define IMU_DISPLAY_H
 
 #ifndef Q_MOC_RUN
-#include <boost/circular_buffer.hpp>
-
 #include <rviz/message_filter_display.h>
-#include <sensor_msgs/Imu.h>
 #include <rviz_msgs/ObjectArray.h>
 #include <rviz/default_plugin/marker_display.h>
 #endif
@@ -95,6 +92,7 @@ protected:
   // These Qt slots get connected to signals indicating changes in the user-editable properties.
 private Q_SLOTS:
    void updateShowBBoxes();
+   void updateShowCenter();
 
   // Function to handle an incoming ROS message.
 private:
@@ -102,6 +100,7 @@ private:
 
   // User-editable property variables.
   rviz::BoolProperty* is_show_bboxes_;
+  rviz::BoolProperty* is_show_center_;
 };
 // END_TUTORIAL
 
