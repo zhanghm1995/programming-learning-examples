@@ -26,3 +26,4 @@ while not rospy.is_shutdown():
 
     publisher.publish( object_array )
     rate.sleep()
+
