@@ -34,11 +34,9 @@
 
 #include <rviz/visualization_manager.h>
 #include <rviz/properties/color_property.h>
-#include <rviz/properties/float_property.h>
 #include <rviz/properties/int_property.h>
+#include <rviz/properties/bool_property.h>
 #include <rviz/frame_manager.h>
-
-#include "imu_visual.h"
 
 #include "my_imu_display.h"
 
@@ -50,11 +48,9 @@ namespace rviz_plugin_tutorials
 // constructor the parameters it needs to fully initialize.
 MyImuDisplay::MyImuDisplay()
 {
-  history_length_property_ = new rviz::IntProperty( "History Length", 1,
-                                                    "Number of prior measurements to display.",
-                                                    this, SLOT( updateHistoryLength() ));
-  history_length_property_->setMin( 1 );
-  history_length_property_->setMax( 100000 );
+  is_show_bboxes_ = new rviz::BoolProperty("Show BBoxes", true, 
+                                                                                             "Whether or not show object bouding boxes",
+                                                                                             this, SLOT(updateShowBBoxes()));
 }
 
 // After the top-level rviz::Display::initialize() does its own setup,
@@ -70,7 +66,6 @@ MyImuDisplay::MyImuDisplay()
 void MyImuDisplay::onInitialize()
 {
   MFDClass::onInitialize();
-  updateHistoryLength();
 }
 
 MyImuDisplay::~MyImuDisplay()
@@ -81,51 +76,16 @@ MyImuDisplay::~MyImuDisplay()
 void MyImuDisplay::reset()
 {
   MFDClass::reset();
-  visuals_.clear();
 }
 
-// Set the number of past visuals to show.
-void MyImuDisplay::updateHistoryLength()
+void MyImuDisplay::updateShowBBoxes()
 {
-  visuals_.rset_capacity(history_length_property_->getInt());
+
 }
 
 // This is our callback to handle an incoming message.
-void MyImuDisplay::processMessage( const sensor_msgs::Imu::ConstPtr& msg )
+void MyImuDisplay::processMessage( const rviz_msgs::ObjectArray::ConstPtr& msg )
 {
-  // Here we call the rviz::FrameManager to get the transform from the
-  // fixed frame to the frame in the header of this Imu message.  If
-  // it fails, we can't do anything else so we return.
-  Ogre::Quaternion orientation;
-  Ogre::Vector3 position;
-  if( !context_->getFrameManager()->getTransform( msg->header.frame_id,
-                                                  msg->header.stamp,
-                                                  position, orientation ))
-  {
-    ROS_DEBUG( "Error transforming from frame '%s' to frame '%s'",
-               msg->header.frame_id.c_str(), qPrintable( fixed_frame_ ));
-    return;
-  }
-
-  // We are keeping a circular buffer of visual pointers.  This gets
-  // the next one, or creates and stores it if the buffer is not full
-  boost::shared_ptr<ImuVisual> visual;
-  if( visuals_.full() )
-  {
-    visual = visuals_.front();
-  }
-  else
-  {
-    visual.reset(new ImuVisual( context_->getSceneManager(), scene_node_ ));
-  }
-
-  // Now set or update the contents of the chosen visual.
-  visual->setMessage( msg );
-  visual->setFramePosition( position );
-  visual->setFrameOrientation( orientation );
-
-  // And send it to the end of the circular buffer
-  visuals_.push_back(visual);
 }
 
 } // end namespace rviz_plugin_tutorials

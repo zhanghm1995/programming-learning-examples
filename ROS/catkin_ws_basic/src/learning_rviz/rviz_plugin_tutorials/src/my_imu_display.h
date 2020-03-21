@@ -35,6 +35,8 @@
 
 #include <rviz/message_filter_display.h>
 #include <sensor_msgs/Imu.h>
+#include <rviz_msgs/ObjectArray.h>
+#include <rviz/default_plugin/marker_display.h>
 #endif
 
 namespace Ogre
@@ -45,16 +47,13 @@ class SceneNode;
 namespace rviz
 {
 class ColorProperty;
-class FloatProperty;
-class IntProperty;
+class BoolProperty;
 }
 
 // All the source in this plugin is in its own namespace.  This is not
 // required but is good practice.
 namespace rviz_plugin_tutorials
 {
-
-class ImuVisual;
 
 // BEGIN_TUTORIAL
 // Here we declare our new subclass of rviz::Display.  Every display
@@ -73,7 +72,7 @@ class ImuVisual;
 // themselves are represented by a separate class, ImuVisual.  The
 // idiom for the visuals is that when the objects exist, they appear
 // in the scene, and when they are deleted, they disappear.
-class MyImuDisplay: public rviz::MessageFilterDisplay<sensor_msgs::Imu>
+class MyImuDisplay: public rviz::MessageFilterDisplay<rviz_msgs::ObjectArray>
 {
 Q_OBJECT
 public:
@@ -95,21 +94,26 @@ protected:
 
   // These Qt slots get connected to signals indicating changes in the user-editable properties.
 private Q_SLOTS:
-  void updateColorAndAlpha();
-  void updateHistoryLength();
+   void updateShowBBoxes();
 
   // Function to handle an incoming ROS message.
 private:
-  void processMessage( const sensor_msgs::Imu::ConstPtr& msg );
-
-  // Storage for the list of visuals.  It is a circular buffer where
-  // data gets popped from the front (oldest) and pushed to the back (newest)
-  boost::circular_buffer<boost::shared_ptr<ImuVisual> > visuals_;
+  void processMessage( const rviz_msgs::ObjectArray::ConstPtr& msg );
 
   // User-editable property variables.
-  rviz::IntProperty* history_length_property_;
+  rviz::BoolProperty* is_show_bboxes_;
 };
 // END_TUTORIAL
+
+class ObjectArrayMarkerDisplay : public rviz::MarkerDisplay {
+public:
+    ObjectArrayMarkerDisplay();
+
+protected:
+    virtual void subsribe();
+
+    virtual void unsubscribe();
+};
 
 } // end namespace rviz_plugin_tutorials
 
