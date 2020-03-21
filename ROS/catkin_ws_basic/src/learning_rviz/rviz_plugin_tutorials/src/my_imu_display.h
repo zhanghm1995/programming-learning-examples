@@ -102,7 +102,7 @@ private:
   // User-editable property variables.
   rviz::BoolProperty* is_show_bboxes_;
   rviz::BoolProperty* is_show_center_;
-  // ObjectArrayMarkerDisplay* object_array_marker_display_;
+  ObjectArrayMarkerDisplay* object_array_marker_display_;
 };
 // END_TUTORIAL
 
