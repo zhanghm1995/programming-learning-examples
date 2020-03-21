@@ -88,7 +88,7 @@ void MyImuDisplay::updateShowBBoxes()
 
 void MyImuDisplay::updateShowCenter()
 {
-  ROS_INFO("enter in MyImuDisplay::updateShowCenter");
+  ROS_INFO("enter in MyImuDisplay::updateShowCenter2");
 }
 
 // This is our callback to handle an incoming message.

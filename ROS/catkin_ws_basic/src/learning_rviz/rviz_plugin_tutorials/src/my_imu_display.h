@@ -52,6 +52,7 @@ class BoolProperty;
 namespace rviz_plugin_tutorials
 {
 
+class ObjectArrayMarkerDisplay;
 // BEGIN_TUTORIAL
 // Here we declare our new subclass of rviz::Display.  Every display
 // which can be listed in the "Displays" panel is a subclass of
@@ -106,7 +107,17 @@ private:
 
 class ObjectArrayMarkerDisplay : public rviz::MarkerDisplay {
 public:
-    ObjectArrayMarkerDisplay();
+    ObjectArrayMarkerDisplay() : rviz::MarkerDisplay()
+    {
+
+    }
+
+    void addMarkerArrayMsg(const visualization_msgs::MarkerArray::ConstPtr& array)
+    {
+      ObjectArrayMarkerDisplay::incomingMarkerArray(array);
+      float wall_dt, ros_dt;
+      update(wall_dt, ros_dt);
+    }
 
 protected:
     virtual void subsribe();
