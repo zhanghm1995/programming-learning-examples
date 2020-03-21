@@ -31,6 +31,11 @@ endif()
 ## etc because they can conflict with boost signals, so define QT_NO_KEYWORDS here.
 add_definitions(-DQT_NO_KEYWORDS)
 
+QT5_WRAP_CPP(MOC_FILES
+  src/my_imu_display.h
+  OPTIONS -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED -DBOOST_LEXICAL_CAST_INCLUDED 
+)
+
 ## Here we specify the list of source files.
 ## The generated MOC files are included automatically as headers.
 set(SRC_FILES
@@ -44,7 +49,7 @@ set(SRC_FILES
 
 set(SRC_FILES2
 src/my_imu_display.cpp
-src/my_imu_display.h
+${MOC_FILES} 
 )
 ## An rviz plugin is just a shared library, so here we declare the
 ## library to be called ``${PROJECT_NAME}`` (which is

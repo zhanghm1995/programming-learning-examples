@@ -53,7 +53,8 @@ MyImuDisplay::MyImuDisplay()
                                                                                              this, SLOT(updateShowBBoxes()));
   is_show_center_ = new rviz::BoolProperty("Show Center", true, 
                                                                                              "Whether or not show object centers",
-                                                                                             this, SLOT(updateShowCenter()));                                                                                           
+                                                                                             this, SLOT(updateShowCenter()));
+  // object_array_marker_display_ = new ObjectArrayMarkerDisplay();                                                                                                                                                             
 }
 
 // After the top-level rviz::Display::initialize() does its own setup,
@@ -96,10 +97,25 @@ void MyImuDisplay::processMessage( const rviz_msgs::ObjectArray::ConstPtr& msg )
 {
 }
 
+ObjectArrayMarkerDisplay::ObjectArrayMarkerDisplay() :
+  rviz::MarkerDisplay()
+{
+
+}
+
+void ObjectArrayMarkerDisplay::addMarkerArrayMsg(const visualization_msgs::MarkerArray::ConstPtr& array)
+{
+  ObjectArrayMarkerDisplay::incomingMarkerArray(array);
+  float wall_dt, ros_dt;
+  update(wall_dt, ros_dt);
+}
+
+
 } // end namespace rviz_plugin_tutorials
 
 // Tell pluginlib about this class.  It is important to do this in
 // global scope, outside our package's namespace.
 #include <pluginlib/class_list_macros.h>
 PLUGINLIB_EXPORT_CLASS(rviz_plugin_tutorials::MyImuDisplay,rviz::Display )
+// PLUGINLIB_EXPORT_CLASS(rviz_plugin_tutorials::ObjectArrayMarkerDisplay,rviz::Display )
 // END_TUTORIAL

@@ -102,27 +102,15 @@ private:
   // User-editable property variables.
   rviz::BoolProperty* is_show_bboxes_;
   rviz::BoolProperty* is_show_center_;
+  // ObjectArrayMarkerDisplay* object_array_marker_display_;
 };
 // END_TUTORIAL
 
 class ObjectArrayMarkerDisplay : public rviz::MarkerDisplay {
 public:
-    ObjectArrayMarkerDisplay() : rviz::MarkerDisplay()
-    {
+    ObjectArrayMarkerDisplay();
 
-    }
-
-    void addMarkerArrayMsg(const visualization_msgs::MarkerArray::ConstPtr& array)
-    {
-      ObjectArrayMarkerDisplay::incomingMarkerArray(array);
-      float wall_dt, ros_dt;
-      update(wall_dt, ros_dt);
-    }
-
-protected:
-    virtual void subsribe();
-
-    virtual void unsubscribe();
+    void addMarkerArrayMsg(const visualization_msgs::MarkerArray::ConstPtr& array);
 };
 
 } // end namespace rviz_plugin_tutorials
