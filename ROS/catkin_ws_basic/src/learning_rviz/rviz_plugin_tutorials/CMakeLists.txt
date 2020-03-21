@@ -5,7 +5,7 @@
 ## First start with some standard catkin stuff.
 cmake_minimum_required(VERSION 2.8.3)
 project(rviz_plugin_tutorials)
-find_package(catkin REQUIRED COMPONENTS rviz)
+find_package(catkin REQUIRED COMPONENTS rviz rviz_msgs)
 catkin_package()
 include_directories(${catkin_INCLUDE_DIRS})
 link_directories(${catkin_LIBRARY_DIRS})
@@ -35,12 +35,16 @@ add_definitions(-DQT_NO_KEYWORDS)
 ## The generated MOC files are included automatically as headers.
 set(SRC_FILES
   src/drive_widget.cpp
-  src/imu_display.cpp
+  # src/imu_display.cpp
   src/imu_visual.cpp
   src/plant_flag_tool.cpp
   src/teleop_panel.cpp
+  src/my_imu_display.cpp
 )
 
+set(SRC_FILES2
+  src/object_array_display.cpp
+)
 ## An rviz plugin is just a shared library, so here we declare the
 ## library to be called ``${PROJECT_NAME}`` (which is
 ## "rviz_plugin_tutorials", or whatever your version of this project
@@ -61,6 +65,8 @@ add_library(${PROJECT_NAME} ${SRC_FILES})
 target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} ${catkin_LIBRARIES})
 ## END_TUTORIAL
 
+# add_library(object_array_display ${SRC_FILES2})
+# target_link_libraries(object_array_display ${QT_LIBRARIES} ${catkin_LIBRARIES})
 ## Install rules
 
 install(TARGETS

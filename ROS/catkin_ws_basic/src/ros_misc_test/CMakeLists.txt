@@ -35,7 +35,7 @@ add_definitions(${PCL_DEFINITIONS})
 add_message_files(
   FILES
   TestMsg.msg
-)
+)  
 
 #generate_messages必须在catkin_package前面
 generate_messages(
