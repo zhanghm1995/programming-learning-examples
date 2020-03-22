@@ -70,6 +70,7 @@ MyImuDisplay::MyImuDisplay()
 void MyImuDisplay::onInitialize()
 {
   MFDClass::onInitialize();
+  object_array_marker_display_->onInitialize();
 }
 
 MyImuDisplay::~MyImuDisplay()
@@ -136,6 +137,11 @@ ObjectArrayMarkerDisplay::ObjectArrayMarkerDisplay() :
   rviz::MarkerDisplay()
 {
 
+}
+
+void ObjectArrayMarkerDisplay::onInitialize()
+{
+  rviz::MarkerDisplay::onInitialize();
 }
 
 void ObjectArrayMarkerDisplay::addMarkerArrayMsg(const visualization_msgs::MarkerArray::ConstPtr& array)

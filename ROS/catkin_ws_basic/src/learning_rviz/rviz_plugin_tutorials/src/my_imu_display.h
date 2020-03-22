@@ -110,6 +110,8 @@ class ObjectArrayMarkerDisplay : public rviz::MarkerDisplay {
 public:
     ObjectArrayMarkerDisplay();
 
+    void onInitialize() override;
+
     void addMarkerArrayMsg(const visualization_msgs::MarkerArray::ConstPtr& array);
 };
 
