@@ -96,7 +96,6 @@ void MyImuDisplay::updateShowCenter()
 // This is our callback to handle an incoming message.
 void MyImuDisplay::processMessage( const rviz_msgs::ObjectArray::ConstPtr& msg )
 {
-  ROS_WARN("Enter in MyImuDisplay::processMessage function...");
   // 1) From rviz_msgs::ObjectArray message to visualization_msgs::MarkerArray message
   visualization_msgs::Marker centers;
   centers.header.frame_id = "base_link";

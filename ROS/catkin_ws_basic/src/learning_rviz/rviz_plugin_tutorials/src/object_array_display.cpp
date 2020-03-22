@@ -102,6 +102,41 @@ void ObjectArrayDisplay::subscribe()
 void ObjectArrayDisplay::handleObjectArrayMessage(const rviz_msgs::ObjectArray::ConstPtr& msg)
 {
   ROS_WARN("Enter in handleObjectArrayMessage");
+  ROS_WARN("Enter in MyImuDisplay::processMessage function...");
+  // 1) From rviz_msgs::ObjectArray message to visualization_msgs::MarkerArray message
+  visualization_msgs::Marker centers;
+  centers.header.frame_id = "base_link";
+  centers.header.stamp = msg->header.stamp;
+  centers.ns = "prefusion";
+  centers.action = visualization_msgs::Marker::ADD;
+  centers.pose.orientation.w = 1.0;
+  centers.id = 0;
+  centers.type = visualization_msgs::Marker::POINTS;
+  centers.scale.x = 0.2;
+  centers.scale.y = 0.2;
+  centers.scale.z = 0.2;
+  // Points are green
+  centers.color.g = 1.0f;
+  centers.color.a = 1.0;
+  // Create the vertices for the centers
+  static float f = 0.0;
+  for (uint32_t i = 0; i < 100; ++i)
+  {
+    float y = 5 * sin(f + i / 100.0f * 2 * M_PI);
+    float z = 5 * cos(f + i / 100.0f * 2 * M_PI);
+
+    geometry_msgs::Point p;
+    p.x = (int32_t)i - 50;
+    p.y = y;
+    p.z = z;
+
+    centers.points.push_back(p);
+  }
+  f += 0.04;
+  visualization_msgs::MarkerArray::Ptr marker_array_ptr(new visualization_msgs::MarkerArray());
+  marker_array_ptr->markers.push_back(centers);
+  // 2) Use the ObjectArrayDisplay to show the markers
+  rviz::MarkerDisplay::incomingMarkerArray(marker_array_ptr);
 }
 
 void ObjectArrayDisplay::unsubscribe()
