@@ -32,31 +32,10 @@ endif()
 add_definitions(-DQT_NO_KEYWORDS)
 
 QT5_WRAP_CPP(MOC_FILES
-  src/my_imu_display.h
-  OPTIONS -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED -DBOOST_LEXICAL_CAST_INCLUDED 
-)
-
-## Here we specify the list of source files.
-## The generated MOC files are included automatically as headers.
-set(SRC_FILES
-  src/drive_widget.cpp
-  # src/imu_display.cpp
-  src/imu_visual.cpp
-  src/plant_flag_tool.cpp
-  src/teleop_panel.cpp
-  src/my_imu_display.cpp
-)
-
-set(SRC_FILES2
-src/my_imu_display.cpp
-${MOC_FILES} 
-)
-
-QT5_WRAP_CPP(MOC_FILES3
   src/object_array_display.h
   OPTIONS -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED -DBOOST_LEXICAL_CAST_INCLUDED 
 )
-set(SRC_FILES3
+set(SRC_FILES
 src/object_array_display.cpp
 ${MOC_FILES} 
 )
@@ -65,7 +44,7 @@ ${MOC_FILES}
 ## "rviz_plugin_tutorials", or whatever your version of this project
 ## is called) and specify the list of source files we collected above
 ## in ``${SRC_FILES}``.
-add_library(${PROJECT_NAME} ${SRC_FILES3})
+add_library(${PROJECT_NAME} SHARED ${SRC_FILES})
 
 ## Link the myviz executable with whatever Qt libraries have been defined by
 ## the ``find_package(Qt4 ...)`` line above, or by the

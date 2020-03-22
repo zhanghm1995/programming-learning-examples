@@ -70,7 +70,7 @@ MyImuDisplay::MyImuDisplay()
 void MyImuDisplay::onInitialize()
 {
   MFDClass::onInitialize();
-  object_array_marker_display_->onInitialize();
+  // object_array_marker_display_->onInitialize();
 }
 
 MyImuDisplay::~MyImuDisplay()

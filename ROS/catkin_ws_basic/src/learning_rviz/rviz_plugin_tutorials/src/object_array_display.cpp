@@ -7,8 +7,6 @@
 * References   :  http://docs.ros.org/kinetic/api/rviz_plugin_tutorials/html/display_plugin_tutorial.html
 ======================================================================*/
 
-#include <tf/transform_listener.h>
-
 #include <rviz/visualization_manager.h>
 #include <rviz/frame_manager.h>
 
