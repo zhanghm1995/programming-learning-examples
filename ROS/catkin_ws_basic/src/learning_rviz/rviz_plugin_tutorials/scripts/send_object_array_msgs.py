@@ -5,7 +5,7 @@ import rospy
 from math import cos, sin
 import tf
 
-topic = 'test_object_array'
+topic = 'object_array_message'
 publisher = rospy.Publisher( topic, ObjectArray, queue_size=10 )
 
 rospy.init_node( 'test_object_array' )
@@ -26,3 +26,4 @@ while not rospy.is_shutdown():
 
     publisher.publish( object_array )
     rate.sleep()
+

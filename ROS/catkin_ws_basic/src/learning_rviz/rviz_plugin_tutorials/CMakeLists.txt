@@ -5,7 +5,7 @@
 ## First start with some standard catkin stuff.
 cmake_minimum_required(VERSION 2.8.3)
 project(rviz_plugin_tutorials)
-find_package(catkin REQUIRED COMPONENTS rviz)
+find_package(catkin REQUIRED COMPONENTS rospy rviz rviz_msgs)
 catkin_package()
 include_directories(${catkin_INCLUDE_DIRS})
 link_directories(${catkin_LIBRARY_DIRS})
@@ -31,22 +31,20 @@ endif()
 ## etc because they can conflict with boost signals, so define QT_NO_KEYWORDS here.
 add_definitions(-DQT_NO_KEYWORDS)
 
-## Here we specify the list of source files.
-## The generated MOC files are included automatically as headers.
-set(SRC_FILES
-  src/drive_widget.cpp
-  src/imu_display.cpp
-  src/imu_visual.cpp
-  src/plant_flag_tool.cpp
-  src/teleop_panel.cpp
+QT5_WRAP_CPP(MOC_FILES
+  src/object_array_display.h
+  OPTIONS -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED -DBOOST_LEXICAL_CAST_INCLUDED 
 )
-
+set(SRC_FILES
+src/object_array_display.cpp
+${MOC_FILES} 
+)
 ## An rviz plugin is just a shared library, so here we declare the
 ## library to be called ``${PROJECT_NAME}`` (which is
 ## "rviz_plugin_tutorials", or whatever your version of this project
 ## is called) and specify the list of source files we collected above
 ## in ``${SRC_FILES}``.
-add_library(${PROJECT_NAME} ${SRC_FILES})
+add_library(${PROJECT_NAME} SHARED ${SRC_FILES})
 
 ## Link the myviz executable with whatever Qt libraries have been defined by
 ## the ``find_package(Qt4 ...)`` line above, or by the
@@ -61,6 +59,8 @@ add_library(${PROJECT_NAME} ${SRC_FILES})
 target_link_libraries(${PROJECT_NAME} ${QT_LIBRARIES} ${catkin_LIBRARIES})
 ## END_TUTORIAL
 
+# add_library(object_array_display ${SRC_FILES2})
+# target_link_libraries(object_array_display ${QT_LIBRARIES} ${catkin_LIBRARIES})
 ## Install rules
 
 install(TARGETS
