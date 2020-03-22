@@ -7,13 +7,9 @@
 * References   :  http://docs.ros.org/kinetic/api/rviz_plugin_tutorials/html/display_plugin_tutorial.html
 ======================================================================*/
 
-#include <OGRE/OgreSceneNode.h>
-#include <OGRE/OgreSceneManager.h>
-
 #include <tf/transform_listener.h>
 
 #include <rviz/visualization_manager.h>
-#include <rviz/properties/color_property.h>
 #include <rviz/frame_manager.h>
 
 #include "object_array_display.h"
@@ -25,10 +21,15 @@ namespace rviz_plugin_tutorials
 // The constructor must have no arguments, so we can't give the
 // constructor the parameters it needs to fully initialize.
 ObjectArrayDisplay::ObjectArrayDisplay()
+  : rviz::MarkerDisplay()
 {
-  color_property_ = new rviz::ColorProperty( "Color", QColor( 204, 51, 204 ),
-                                             "Color to draw the acceleration arrows.",
-                                             this, SLOT( updateColorAndAlpha() ));
+  marker_topic_property_->setName("ObjectArray Topic");
+  marker_topic_property_->setMessageType(QString::fromStdString(ros::message_traits::datatype<rviz_msgs::ObjectArray>()));
+  marker_topic_property_->setDescription("rviz_msgs::ObjectArray topic to subscribe to.");
+
+  is_show_center_ = new rviz::BoolProperty("Show Center", true, 
+                                                                                             "Whether or not show object centers",
+                                                                                             this, SLOT(updateShowCenter()));
   is_show_bboxes_ = new rviz::BoolProperty("Show BBoxes", false, 
                                                                                               "Whether or not show object bounding box", this, SLOT(updateShowBBoxes));
 }
@@ -45,32 +46,76 @@ ObjectArrayDisplay::ObjectArrayDisplay()
 // superclass.
 void ObjectArrayDisplay::onInitialize()
 {
-  MFDClass::onInitialize();
+  rviz::MarkerDisplay::onInitialize();
 }
 
-void updateShowBBoxes()
+void ObjectArrayDisplay::updateTopic()
+{
+  unsubscribe();
+  reset();
+  subscribe();
+  // context_->queueRender();
+}
+
+void ObjectArrayDisplay::updateShowBBoxes()
 {
   
 }
 
+void ObjectArrayDisplay::updateShowCenter()
+{
+}
+
+
 ObjectArrayDisplay::~ObjectArrayDisplay()
 {
+  unsubscribe();
 }
 
-// Clear the visuals by deleting their objects.
-void ObjectArrayDisplay::reset()
+void ObjectArrayDisplay::subscribe()
 {
-  MFDClass::reset();
+  if (!isEnabled())
+  {
+    return;
+  }
+
+  try
+  {
+    unsubscribe();
+
+    const std::string& topicStr = marker_topic_property_->getStdString();
+
+    if (!topicStr.empty())
+    {
+
+      sub_.reset(new message_filters::Subscriber<rviz_msgs::ObjectArray>());
+
+      sub_->subscribe(threaded_nh_, topicStr, 10);
+      sub_->registerCallback(boost::bind(&ObjectArrayDisplay::handleObjectArrayMessage, this, _1));
+    }
+  }
+  catch (ros::Exception& e)
+  {
+    setStatus(rviz::StatusProperty::Error, "Topic", (std::string("Error subscribing: ") + e.what()).c_str());
+  }
 }
 
-// Set the current color and alpha values for each visual.
-void ObjectArrayDisplay::updateColorAndAlpha()
+void ObjectArrayDisplay::handleObjectArrayMessage(const rviz_msgs::ObjectArray::ConstPtr& msg)
 {
+  ROS_WARN("Enter in handleObjectArrayMessage");
 }
 
-// This is our callback to handle an incoming message.
-void ObjectArrayDisplay::processMessage( const rviz_msgs::ObjectArray::ConstPtr& msg )
+void ObjectArrayDisplay::unsubscribe()
 {
+  try
+  {
+    // reset filters
+    sub_.reset();
+  }
+  catch (ros::Exception& e)
+  {
+    setStatus(rviz::StatusProperty::Error, "Topic", (std::string("Error unsubscribing: ") + e.what()).c_str());
+  }
 }
 
 } // end namespace rviz_plugin_tutorials

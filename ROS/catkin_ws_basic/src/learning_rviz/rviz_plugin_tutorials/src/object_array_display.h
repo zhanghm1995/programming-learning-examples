@@ -24,7 +24,6 @@ class SceneNode;
 
 namespace rviz
 {
-class ColorProperty;
 class BoolProperty;
 }
 
@@ -50,7 +49,7 @@ namespace rviz_plugin_tutorials
 // themselves are represented by a separate class, ImuVisual.  The
 // idiom for the visuals is that when the objects exist, they appear
 // in the scene, and when they are deleted, they disappear.
-class ObjectArrayDisplay: public rviz::MessageFilterDisplay<rviz_msgs::ObjectArray>
+class ObjectArrayDisplay: public rviz::MarkerDisplay 
 {
 Q_OBJECT
 public:
@@ -66,36 +65,27 @@ public:
   // and broken.
 protected:
   virtual void onInitialize();
+  virtual void subscribe();
+  virtual void unsubscribe();
 
-  // A helper to clear this display back to the initial state.
-  virtual void reset();
+  boost::shared_ptr<message_filters::Subscriber<rviz_msgs::ObjectArray> > sub_;
 
-  virtual void onEnable();
+  void handleObjectArrayMessage(const rviz_msgs::ObjectArray::ConstPtr& msg);
+
 
   // These Qt slots get connected to signals indicating changes in the user-editable properties.
 private Q_SLOTS:
-  void updateColorAndAlpha();
+  void updateTopic();
+  void updateShowCenter();
   void updateShowBBoxes();
 
   // Function to handle an incoming ROS message.
 private:
-  void processMessage( const rviz_msgs::ObjectArray::ConstPtr& msg );
-
   // User-editable property variables.
-  rviz::ColorProperty* color_property_;
+  rviz::BoolProperty* is_show_center_;
   rviz::BoolProperty* is_show_bboxes_;
 };
 // END_TUTORIAL
-
-class ObjectArrayMarkerDisplay : public rviz::MarkerDisplay {
-public:
-    ObjectArrayMarkerDisplay();
-
-protected:
-    virtual void subsribe();
-
-    virtual void unsubscribe();
-};
 
 } // end namespace rviz_plugin_tutorials
 

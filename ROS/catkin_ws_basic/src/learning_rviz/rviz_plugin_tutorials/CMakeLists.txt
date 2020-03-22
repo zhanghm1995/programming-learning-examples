@@ -51,12 +51,21 @@ set(SRC_FILES2
 src/my_imu_display.cpp
 ${MOC_FILES} 
 )
+
+QT5_WRAP_CPP(MOC_FILES3
+  src/object_array_display.h
+  OPTIONS -DBOOST_TT_HAS_OPERATOR_HPP_INCLUDED -DBOOST_LEXICAL_CAST_INCLUDED 
+)
+set(SRC_FILES3
+src/object_array_display.cpp
+${MOC_FILES} 
+)
 ## An rviz plugin is just a shared library, so here we declare the
 ## library to be called ``${PROJECT_NAME}`` (which is
 ## "rviz_plugin_tutorials", or whatever your version of this project
 ## is called) and specify the list of source files we collected above
 ## in ``${SRC_FILES}``.
-add_library(${PROJECT_NAME} ${SRC_FILES2})
+add_library(${PROJECT_NAME} ${SRC_FILES3})
 
 ## Link the myviz executable with whatever Qt libraries have been defined by
 ## the ``find_package(Qt4 ...)`` line above, or by the
