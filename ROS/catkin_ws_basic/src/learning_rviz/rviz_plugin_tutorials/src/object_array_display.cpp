@@ -21,7 +21,8 @@ namespace rviz_plugin_tutorials
 ObjectArrayDisplay::ObjectArrayDisplay()
   : rviz::MarkerDisplay()
 {
-  marker_topic_property_->setName("ObjectArray Topic");
+  marker_topic_property_->setName("Topic");
+  marker_topic_property_->setValue( "object_array_message" );
   marker_topic_property_->setMessageType(QString::fromStdString(ros::message_traits::datatype<rviz_msgs::ObjectArray>()));
   marker_topic_property_->setDescription("rviz_msgs::ObjectArray topic to subscribe to.");
 
@@ -29,7 +30,7 @@ ObjectArrayDisplay::ObjectArrayDisplay()
                                                                                              "Whether or not show object centers",
                                                                                              this, SLOT(updateShowCenter()));
   is_show_bboxes_ = new rviz::BoolProperty("Show BBoxes", false, 
-                                                                                              "Whether or not show object bounding box", this, SLOT(updateShowBBoxes));
+                                                                                              "Whether or not show object bounding box", this, SLOT(updateShowBBoxes()));
 }
 
 // After the top-level rviz::Display::initialize() does its own setup,
