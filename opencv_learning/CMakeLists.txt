@@ -12,11 +12,12 @@ endif()
 set(CMAKE_BUILD_TYPE "Release")
 
 find_package(OpenCV 3 REQUIRED)
-find_package(PCL 1.9 REQUIRED)
-add_definitions(${PCL_DEFINITIONS})
-include_directories(${OPENCV_INCLUDE_DIRS} ${PCL_INCLUDE_DIRS}) 
+message(STATUS "OpenCV_DIR = ${OpenCV_DIR}")
+message(STATUS "OpenCV_INCLUDE_DIRS = ${OpenCV_INCLUDE_DIRS}")
 
-add_executable(opencv_misc opencv_misc.cpp)  
+include_directories(${OPENCV_INCLUDE_DIRS}) 
+
+add_executable(opencv_misc opencv_misc.cpp)
 target_link_libraries(opencv_misc ${OpenCV_LIBS})
 
 add_executable(optical_flow optical_flow.cpp)  
@@ -25,17 +26,14 @@ target_link_libraries(optical_flow ${OpenCV_LIBS})
 add_executable(LK_track LK_track.cpp)  
 target_link_libraries(LK_track ${OpenCV_LIBS})
 
-add_executable(min_area_rect min_area_rect.cpp)  
-target_link_libraries(min_area_rect ${OpenCV_LIBS} ${PCL_LIBRARIES})
-
 add_executable(invisible_cloak invisible_cloak.cpp)  
-target_link_libraries(invisible_cloak ${OpenCV_LIBS} ${PCL_LIBRARIES})
+target_link_libraries(invisible_cloak ${OpenCV_LIBS})
 
 add_executable(image_mask_test image_mask_test.cpp)  
-target_link_libraries(image_mask_test ${OpenCV_LIBS} ${PCL_LIBRARIES})
+target_link_libraries(image_mask_test ${OpenCV_LIBS})
 
 add_executable(polygon_drawing polygon_drawing.cpp)  
-target_link_libraries(polygon_drawing ${OpenCV_LIBS} ${PCL_LIBRARIES})
+target_link_libraries(polygon_drawing ${OpenCV_LIBS})
 
 add_executable(color_handle color_handle.cpp)  
 target_link_libraries(color_handle ${OpenCV_LIBS})
