@@ -53,12 +53,31 @@ double GetCurrentTime() {
   return timestamp / 1000000;
 }
 
+/**
+ * @brief Get date time according to specified format
+ * @param format Time represenstation format
+ */ 
+std::string GetDateTime(const std::string& format) {
+  time_t curr_time;
+  time(&curr_time);
+  tm* curr_tm = localtime(&curr_time);
+
+  char buffer[50];
+  std::strftime(buffer, sizeof(buffer), format.c_str(), curr_tm);
+  return buffer;
+}
+
 
 int main(int argc, char **argv) {
   std::cout<<GetCurrentTime()<<std::endl;
 
   std::cout<<"================"<<std::endl;
   TestElapsedTime();
+
+  std::cout<<"=================="<<std::endl;
+  std::string format("%Y-%m-%d-%H-%M-%S");
+  std::string date_time = GetDateTime(format);
+  std::cout<<date_time<<std::endl;
 
   return 0;
 }

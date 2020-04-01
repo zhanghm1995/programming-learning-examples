@@ -24,10 +24,9 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}
 endif()
 
 # set(OpenCV_DIR "/usr/local/opencv3/share/OpenCV")
-find_package(OpenCV 3 REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem thread system program_options)
-include_directories(${OPENCV_INCLUDE_DIRS} ${EIGEN3_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})
+include_directories(${EIGEN3_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})
 
 add_subdirectory(argument_parse)
 add_subdirectory(macro_test)
@@ -39,15 +38,14 @@ add_subdirectory(class_examples)
 #############
 add_executable(base_conversion base_conversion.cpp)
 
-add_executable(c_test c_test.cpp )  
-target_link_libraries(c_test ${OpenCV_LIBS})
+# add_executable(c_test c_test.cpp )  
+# target_link_libraries(c_test ${OpenCV_LIBS})
 
 add_executable(anonymous_namespace_test include_test/anonymous_namespace_test.cpp
                                                                                                  include_test/test.cpp
                                                                                                  include_test/test1.cpp)
 
 add_executable(stl_learning STL_learning.cpp)  
-target_link_libraries(stl_learning ${OpenCV_LIBS}) 
 
 add_executable(stl_test stl_test.cpp)
 
@@ -56,7 +54,7 @@ add_executable(stl_algorithm STL_algorithm.cpp)
 add_executable(string_usages string_usages.cpp)
 
 add_executable(data_structure data_structure.cpp)  
-target_link_libraries(data_structure ${OpenCV_LIBS} ${Boost_LIBRARIES})
+target_link_libraries(data_structure ${Boost_LIBRARIES})
 
 add_executable(boost_signal boost_signal.cpp)
 target_link_libraries(boost_signal ${Boost_LIBRARIES})
