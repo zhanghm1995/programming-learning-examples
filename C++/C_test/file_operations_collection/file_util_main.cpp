@@ -9,8 +9,13 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include <map>
+
+#include <Eigen/Dense>
 
 #include "file_util.h"
+#include "utils/string_utils.h"
 
 /**
  * @brief Get the system environment variable
@@ -24,6 +29,30 @@ inline std::string GetEnv(const std::string& var_name,
     return default_value;
   }
   return std::string(var);
+}
+
+void LoadFile2Map(const std::string& calib_file_path) {
+    std::ifstream file(calib_file_path);
+    std::string line;
+
+    std::map<std::string, std::vector<std::string> > calib_content;
+    while (std::getline(file, line)) {
+        std::cout<<line<<std::endl;
+        std::vector<std::string> line_content;
+        Split(rtrim(line), line_content, " ");
+        std::cout<<line_content.size()<<std::endl;
+        std::vector<std::string> calib_param(line_content.begin() + 1, line_content.end());
+        calib_content[line_content[0]] = calib_param;
+    }
+
+    auto P2_temp = calib_content["P2:"];
+    std::vector<float> P2(P2_temp.size());
+    std::transform(P2_temp.begin(), P2_temp.end(), P2.begin(), [](const std::string& val) {
+      return std::atof(val.c_str()); });
+
+    
+    Eigen::MatrixXf P2_ = Eigen::Map<const Eigen::Matrix<float, 3, 4, Eigen::RowMajor> >(P2.data());
+    std::cout<<P2_<<std::endl;
 }
 
 int main(int argc, char **argv)
@@ -47,6 +76,10 @@ int main(int argc, char **argv)
     } else {
         std::cout<<"Directory not exists"<<std::endl;
     }
+
+    std::cout<<"===================="<<std::endl;
+    std::string calib_file_path = "../data/0000.txt";
+    LoadFile2Map(calib_file_path);
 
     return 0;
 }
