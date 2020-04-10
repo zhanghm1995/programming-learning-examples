@@ -1,3 +1,11 @@
+/*
+ * @Author: Haiming Zhang
+ * @Email: zhanghm_1995@qq.com
+ * @Date: 2020-03-31 22:39:19
+ * @LastEditTime: 2020-04-10 22:54:04
+ * @References: 
+ * @Description: 
+ */
 /*======================================================================
 * Author   : Haiming Zhang
 * Email    : zhanghm_1995@qq.com
@@ -15,6 +23,8 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+
+#include "utils/string_utils.h"
 
 using namespace std;
 
@@ -67,67 +77,36 @@ void test_string_find(const string &str)
 
 /**
  * @brief Convert the string to lower case or upper case
- **/ 
-void ConvertStrCase() {
-    string str("AaBb");
-    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
-    cout<<"Lower case string is: "<<str<<endl; // aabb
-    std:transform(str.begin(), str.end(), str.begin(), ::toupper);
-    cout<<"Upper case string is: "<<str<<endl; // AABB
-}
-
-void CompareString()
-{
-    string str("CaR"), str1("car");
-    // strcasecmp is defined in <cstring>
-    // it can compare string without case sensitivity
-    // References: http://c.biancheng.net/cpp/html/159.html
-    if (!strcasecmp(str.c_str(), str1.c_str()))
-        cout << "Two string is equal" << endl;
-    else
-        cout << "Two string is not equal" << endl;
-
-    vector<string> person({"person", "people", "pedestrian"});
-    string input("Pedestrian");
-    auto it = std::find_if(person.begin(), person.end(), [&](string &obj) {
-        return !strcasecmp(obj.c_str(), input.c_str());
-    });
-    if (it != person.end())
-        cout << "is person" << endl;
-    else
-        std::cout << "not person" << std::endl;
-}
-
-/**
- * @brief split string by one character
- * @param [in]: the string you want to split
- * @param [in]: the character
- * @param [out]: result strings after exploded by character
- * @return: the number of elements splitted in the given str
  **/
-int SplitString(const std::string& str, char ch, std::vector<std::string>* result) {
-    std::stringstream ss(str);
-    std::string segment;
-    int count = 0;
-    while (std::getline(ss, segment, ch)) {
-    result->push_back(segment);
-    ++count;
-    }
-    return count;
+void ConvertStrCase() {
+  std::string str("AaBb");
+  std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+  std::cout << "Lower case string is: " << str << std::endl;  // aabb
+  std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+  std::cout << "Upper case string is: " << str << std::endl;  // AABB
 }
 
-/**
- * @brief Check if a string ends with a pattern.
- * @param ori The original string. To see if it ends with a specified pattern.
- * @param pat The target pattern. To see if the original string ends with it.
- * @return Whether the original string ends with the specified pattern.
- */
-inline bool EndWith(const std::string& ori, const std::string& pat) {
-  return std::equal(pat.rbegin(), pat.rend(), ori.rbegin());
+void CompareString() {
+  std::string str("CaR"),  str1("car");
+  // strcasecmp is defined in <cstring>
+  // it can compare string without case sensitivity
+  // References: http://c.biancheng.net/cpp/html/159.html
+  if (!strcasecmp(str.c_str(), str1.c_str()))
+    std::cout << "Two string is equal" << std::endl;
+  else
+    std::cout << "Two string is not equal" << std::endl;
+
+  std::vector<std::string> person({"person", "people", "pedestrian"});
+  std::string input("Pedestrian");
+  auto it = std::find_if(person.begin(), person.end(), [&](std::string& obj) {
+    return !strcasecmp(obj.c_str(), input.c_str());
+  });
+  if (it != person.end())
+   std:: cout << "is person" << std::endl;
+  else
+    std::cout << "not person" << std::endl;
 }
-inline bool StartWith(const std::string& ori, const std::string& pat) {
-  return std::equal(pat.begin(), pat.end(), ori.begin());
-}
+
 
 int main()
 {
@@ -150,5 +129,12 @@ int main()
 
   std::cout<<"=================="<<std::endl;
   ConvertStrCase();
+
+  std::cout<<"=================="<<std::endl;
+  str = "    zhanghai ming \n";
+  std::string str_trim = ltrim(str);
+  std::cout<<str_trim<<std::endl;
+  str_trim = rtrim(str);
+  std::cout<<str_trim<<std::endl;
   return 0;
 }

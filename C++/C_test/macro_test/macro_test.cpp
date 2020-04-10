@@ -9,6 +9,7 @@ using namespace std;
 #define AINFO(format, ...) printf("[INFO] " format "\n", ##__VA_ARGS__)
 #define AWARN(format, ...) printf("\033[1;33m[WARN] " format "\033[0m\n", ##__VA_ARGS__)
 #define AERROR(format, ...) printf("\033[1;31m[ERROR] " format "\033[0m\n", ##__VA_ARGS__)
+
 void PrintInfoWithColor() {
     printf("\033[1;33mHello, world!\033[0m\n"); // yellow
 
