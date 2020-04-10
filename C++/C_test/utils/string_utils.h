@@ -2,7 +2,7 @@
  * @Author: Haiming Zhang
  * @Email: zhanghm_1995@qq.com
  * @Date: 2020-04-10 22:29:01
- * @LastEditTime: 2020-04-10 22:56:27
+ * @LastEditTime: 2020-04-10 23:00:51
  * @References: 
  * @Description: Collect all string related operations for handy usages
  */
@@ -64,6 +64,16 @@ inline std::string& trim(std::string& str, const std::string& chars = "\t\n\v\f\
 }
 
 /**
+ * @brief Check if a string starts with a pattern.
+ * @param ori The original string. To see if it starts with a specified pattern.
+ * @param pat The target pattern. To see if the original string starts with it.
+ * @return Whether the original string starts with the specified pattern.
+ */
+inline bool StartWith(const std::string& ori, const std::string& pat) {
+  return std::equal(pat.begin(), pat.end(), ori.begin());
+}
+
+/**
  * @brief Check if a string ends with a pattern.
  * @param ori The original string. To see if it ends with a specified pattern.
  * @param pat The target pattern. To see if the original string ends with it.
@@ -71,8 +81,4 @@ inline std::string& trim(std::string& str, const std::string& chars = "\t\n\v\f\
  */
 inline bool EndWith(const std::string& ori, const std::string& pat) {
   return std::equal(pat.rbegin(), pat.rend(), ori.rbegin());
-}
-
-inline bool StartWith(const std::string& ori, const std::string& pat) {
-  return std::equal(pat.begin(), pat.end(), ori.begin());
 }
