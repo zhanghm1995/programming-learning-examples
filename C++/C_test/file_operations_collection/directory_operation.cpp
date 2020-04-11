@@ -14,11 +14,10 @@
 #include <algorithm>
 
 /**
- * @brief Assume no subdirectory in dir_name folder
- * 
+ * @brief This function will find all files in specified directories, including hidden files
+ *                Assume no subdirectory in dir_name folder
  **/  
-void ListFilesInDirectory(const std::string& dir_name)
-{
+int ListFilesInDirectory(const std::string& dir_name) {
     DIR* dir;
     struct dirent* ent;
 
@@ -38,8 +37,9 @@ void ListFilesInDirectory(const std::string& dir_name)
     } else {
         // cannot open the directory
         perror("Failed to open directory");
-        return;
+        return -1;
     }
+    return total_files;
 }
 
 void CountImageNumInDirectory(const std::string& dir_name)
@@ -75,7 +75,10 @@ void CountImageNumInDirectory(const std::string& dir_name)
 
 int main(int argc, char **argv)
 {
-    // ListFilesInDirectory("/home/zhanghm/Test");
+    int files_num = ListFilesInDirectory("/home/zhanghm/Temp/test");
+    std::cout<<"There are "<<files_num<<" files"<<std::endl;
+
+    std::cout<<"===================="<<std::endl;
     CountImageNumInDirectory("/home/zhanghm/Test");
 
     return 0;

@@ -35,24 +35,25 @@ void LoadFile2Map(const std::string& calib_file_path) {
     std::ifstream file(calib_file_path);
     std::string line;
 
-    std::map<std::string, std::vector<std::string> > calib_content;
+    std::map<std::string, std::vector<float> > calib_content;
     while (std::getline(file, line)) {
         std::cout<<line<<std::endl;
         std::vector<std::string> line_content;
         Split(rtrim(line), line_content, " ");
-        std::cout<<line_content.size()<<std::endl;
-        std::vector<std::string> calib_param(line_content.begin() + 1, line_content.end());
+        std::vector<std::string> calib_param_string(line_content.begin() + 1, line_content.end());
+        std::vector<float> calib_param(calib_param_string.size());
+        std::transform(calib_param_string.begin(), calib_param_string.end(), calib_param.begin(), [](const std::string& val) {
+            return std::atof(val.c_str()); });
         calib_content[line_content[0]] = calib_param;
     }
 
     auto P2_temp = calib_content["P2:"];
-    std::vector<float> P2(P2_temp.size());
-    std::transform(P2_temp.begin(), P2_temp.end(), P2.begin(), [](const std::string& val) {
-      return std::atof(val.c_str()); });
+    Eigen::MatrixXf P2 = Eigen::Map<const Eigen::Matrix<float, 3, 4, Eigen::RowMajor> >(P2_temp.data());
+    std::cout<<P2<<std::endl;
 
-    
-    Eigen::MatrixXf P2_ = Eigen::Map<const Eigen::Matrix<float, 3, 4, Eigen::RowMajor> >(P2.data());
-    std::cout<<P2_<<std::endl;
+    auto R0_Rect_temp = calib_content["R_rect"];
+    Eigen::MatrixXf R0_Rect = Eigen::Map<const Eigen::Matrix<float, 3, 3, Eigen::RowMajor> >(R0_Rect_temp.data());
+    std::cout<<R0_Rect<<std::endl;
 }
 
 int main(int argc, char **argv)
