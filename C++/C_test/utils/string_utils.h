@@ -2,7 +2,7 @@
  * @Author: Haiming Zhang
  * @Email: zhanghm_1995@qq.com
  * @Date: 2020-04-10 22:29:01
- * @LastEditTime: 2020-04-10 23:00:51
+ * @LastEditTime: 2020-04-12 21:10:59
  * @References: 
  * @Description: Collect all string related operations for handy usages
  */
@@ -48,6 +48,7 @@ inline void Split(const std::string& input_str, std::vector<std::string>& output
 
 /**
  * @brief Trim the left whitespace, \n and so on charactors in a string
+ * @ref http://www.martinbroadhurst.com/how-to-trim-a-stdstring.html
  */
 inline std::string& ltrim(std::string& str, const std::string& chars = "\t\n\v\f\r ") {
   str.erase(0, str.find_first_not_of(chars));

@@ -65,3 +65,5 @@ add_executable(shared_ptr_test shared_ptr_test.cpp)
 set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
 
 add_executable(time_util time_util.cpp)
+
+add_executable(misc_learning misc_learning.cpp)
