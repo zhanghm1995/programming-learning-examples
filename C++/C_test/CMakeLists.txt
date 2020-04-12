@@ -30,7 +30,7 @@ include_directories(${PROJECT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIR} ${Boost_INCLUDE_
 
 add_subdirectory(argument_parse)
 add_subdirectory(macro_test)
-add_subdirectory(file_operations_collection)
+add_subdirectory(input_output_operations)
 add_subdirectory(class_examples)
 
 #############
