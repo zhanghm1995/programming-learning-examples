@@ -8,6 +8,7 @@ elseif (MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc /W4 -DGTL_STATIC" CACHE STRING COMPILE_FLAGS FORCE)
 endif()
 #set(OpenCV_DIR "/usr/local/opencv3/share/OpenCV")
+set(OpenCV_DIR "/usr/share/OpenCV")
 
 set(CMAKE_BUILD_TYPE "Release")
 

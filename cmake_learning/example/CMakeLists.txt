@@ -16,10 +16,14 @@ else()
 endif()
 
 set(FooBar_DIR "/home/zhanghm/Temp/foo_bar/share/cmake/FooBar")
-find_package(FooBar REQUIRED)
+# find_package(FooBar REQUIRED)
 
 message(STATUS "The FooBar include file is ${FOOBAR_INCLUDE_DIR}")
 message(STATUS "The FooBar library file is ${FOOBAR_LIBRARIES}")
+message(STATUS "The CMAKE_VERSION  path is ${CMAKE_VERSION}")
+message(STATUS "The PROJECT_SOURCE_DIR path is ${PROJECT_SOURCE_DIR}")
+message(STATUS "The CMAKE_BUILD_TYPE is ${CMAKE_BUILD_TYPE}")
+# message(STATUS "The FooBar library file is ${PROJECT_SOURCE_DIR}")
 
 include_directories(${FOOBAR_INCLUDE_DIR})
 add_executable(example_main example_main.cpp)
