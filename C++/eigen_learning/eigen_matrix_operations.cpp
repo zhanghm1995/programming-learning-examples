@@ -2,12 +2,13 @@
  * @Author: Haiming Zhang
  * @Email: zhanghm_1995@qq.com
  * @Date: 2020-04-11 08:34:02
- * @LastEditTime: 2020-04-11 16:20:25
+ * @LastEditTime: 2020-04-12 21:00:02
  * @References: 
  * @Description: 
  */
 // C++
 #include <iostream>
+#include <vector>
 // Eigen
 #include <Eigen/Dense>
 
@@ -38,6 +39,7 @@ void StackTwoMatrix() {
  * @ref https://eigen.tuxfamily.org/dox/group__TutorialReshapeSlicing.html
  */ 
 Eigen::MatrixXf ReshapeMatrix() {
+  /// 将矩阵转为向量
   Eigen::MatrixXf M1(3, 3); // Column major storage
   M1 << 1, 2, 3,
                4, 5, 6,
@@ -61,7 +63,7 @@ Eigen::MatrixXf ReshapeMatrix() {
 }
 
 void OperateMatrixRowsAndCols() {
-  /// 1) 矩阵每一行除以最后一行
+  /// 1) 矩阵每一行除以最后一行操作
   Eigen::MatrixXf M1(3, 3); // Column major storage
   M1 << 4, 5, 6,
                7, 8, 9,
@@ -86,6 +88,43 @@ void OperateBlock() {
   cout<<temp2<<endl;
 }
 
+/**
+ * @brief Learn how to copy matrix deeply or shallow
+ * @ref https://stackoverflow.com/questions/29231798/eigen-how-to-make-a-deep-copy-of-a-matrix?rq=1
+ *            https://stackoverflow.com/questions/51018326/an-error-occured-using-eigenmap-after-pass-by-const-reference
+ */ 
+void DeepCopyMatrix() {
+  using namespace Eigen;
+  /// 尽量不要使用auto来进行赋值,可能会出现浅拷贝问题
+  typedef Matrix<double,Dynamic,Dynamic,RowMajor> MyMatrix;
+  double a[] = {1,2,3,4};
+  auto M = Map<MyMatrix>(a, 2, 2);
+  auto G = M;
+  MatrixXd g = M; // 不用auto是深拷贝
+  G(0,0) = 0;
+  std::cout << M << "\n" << std::endl;
+  std::cout << G << "\n" << std::endl;
+  std::cout << g << "\n" << std::endl;
+
+  /// Map的不同使用方式会出现内存共享的问题
+  double my_floats[] = { 32,71,12,45,26,80,53,33 };
+  std::vector<double> myvector(my_floats, my_floats + 8); // 深拷贝,myvector和数组无关
+  Map<MyMatrix> MyM1(myvector.data(), 2, 4); // 浅拷贝,改变myvector会影响到MyM1矩阵
+  cout<<"MyM1 = \n"<<MyM1<<endl;
+  myvector[0] = 10;
+  cout<<"MyM1 = \n"<<MyM1<<endl;
+
+  Eigen::MatrixXd MyM2 = Map<MyMatrix>(myvector.data(), 2, 4); // 深拷贝,改变myvector不会影响到MyM2矩阵
+  cout<<"MyM2 = \n"<<MyM2<<endl;
+  myvector[1] = 30;
+  cout<<"MyM2 = \n"<<MyM2<<endl;
+
+  Eigen::MatrixXd MyM3 = MyMatrix::Map(myvector.data(), 2, 4); // 深拷贝,改变myvector不会影响到MyM3矩阵
+  cout<<"MyM3 = \n"<<MyM3<<endl;
+  myvector[2] = 50;
+  cout<<"MyM3 = \n"<<MyM3<<endl;
+}
+
 int main() {
   cout<<"====================="<<endl;
   StackTwoMatrix();
@@ -96,5 +135,7 @@ int main() {
   OperateMatrixRowsAndCols();
   cout<<"====================="<<endl;
   OperateBlock();
+  cout<<"====================="<<endl;
+  DeepCopyMatrix();
   return 0;
 }
