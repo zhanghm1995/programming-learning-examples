@@ -67,4 +67,3 @@ install(
   DESTINATION
     ${ConfigPackageLocation}
 )
-

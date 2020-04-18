@@ -16,6 +16,11 @@ else()
 endif()
 
 find_package(yaml-cpp REQUIRED)
+message(STATUS "yaml-cpp ===============${yaml-cpp_DIR}")
+message(STATUS "yaml-cpp ===============${yaml-cpp_VERSION}")
+message(STATUS "yaml-cpp ===============${YAML_CPP_INCLUDE_DIR}")
+message(STATUS "yaml-cpp ===============${YAML_CPP_LIBRARIES}")
+
 include_directories(${YAML_CPP_INCLUDE_DIR})  
 add_executable(yaml_cpp_test yaml_cpp_test.cpp )  
 target_link_libraries(yaml_cpp_test ${YAML_CPP_LIBRARIES})
