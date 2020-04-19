@@ -39,4 +39,7 @@ target_link_libraries(polygon_drawing ${OpenCV_LIBS})
 add_executable(color_handle color_handle.cpp)  
 target_link_libraries(color_handle ${OpenCV_LIBS})
 
+add_executable(image_operations image_operations.cpp)  
+target_link_libraries(image_operations ${OpenCV_LIBS})
+
 add_subdirectory(basic_drawing)
