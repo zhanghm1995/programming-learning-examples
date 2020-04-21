@@ -2,7 +2,7 @@
  * @Author: Haiming Zhang
  * @Email: zhanghm_1995@qq.com
  * @Date: 2020-04-11 08:34:02
- * @LastEditTime: 2020-04-12 21:13:15
+ * @LastEditTime: 2020-04-21 21:31:26
  * @References: 
  * @Description: 
  */
@@ -126,19 +126,17 @@ void DeepCopyMatrix() {
 }
 
 int main() {
-  cout<<"====================="<<endl;
+  cout<<"=========StackTwoMatrix============"<<endl;
   StackTwoMatrix();
-  cout<<"====================="<<endl;
+  cout<<"=========ReshapeMatrix============"<<endl;
   Eigen::MatrixXf matrix = ReshapeMatrix();
   cout<<"matrix = "<<matrix<<endl;
-  cout<<"====================="<<endl;
+  cout<<"=========OperateMatrixRowsAndCols============"<<endl;
   OperateMatrixRowsAndCols();
-  cout<<"====================="<<endl;
+  cout<<"=========OperateBlock============"<<endl;
   OperateBlock();
-  cout<<"====================="<<endl;
+  cout<<"=========DeepCopyMatrix============"<<endl;
   DeepCopyMatrix();
   cout<<"====================="<<endl;
-  std::string str("\rzhanghaiming\v");
-  cout<<str<<endl;
   return 0;
 }
