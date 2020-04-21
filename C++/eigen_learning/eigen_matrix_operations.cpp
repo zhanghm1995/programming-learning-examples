@@ -2,7 +2,7 @@
  * @Author: Haiming Zhang
  * @Email: zhanghm_1995@qq.com
  * @Date: 2020-04-11 08:34:02
- * @LastEditTime: 2020-04-21 21:31:26
+ * @LastEditTime: 2020-04-21 21:34:54
  * @References: 
  * @Description: 
  */
@@ -12,7 +12,8 @@
 // Eigen
 #include <Eigen/Dense>
 
-using std::cout, std::endl;
+using std::cout;
+using std::endl;
 
 /**
  * @brief Using << to stack two matrix, note that the VectorXf is column vector by default
