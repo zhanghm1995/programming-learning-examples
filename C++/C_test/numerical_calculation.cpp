@@ -14,6 +14,11 @@
 using std::cout;
 using std::endl;
 
+/**
+ * @brief Test the nan in C++
+ * @ref https://blog.csdn.net/wokaowokaowokao12345/article/details/72846436
+ *           https://zh.cppreference.com/w/cpp/numeric/math/isnormal
+ */ 
 void TestNaN() {
     float a = NAN;
     cout<< a <<endl;
