@@ -77,3 +77,6 @@ target_link_libraries(ros_basic_tutorial ${catkin_LIBRARIES})
 
 add_executable(message_definition src/message_definition.cpp)
 target_link_libraries(message_definition ${catkin_LIBRARIES})
+
+add_executable(occupancy_grid_map src/occupancy_grid_map.cpp)
+target_link_libraries(occupancy_grid_map ${catkin_LIBRARIES})
