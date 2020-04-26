@@ -69,3 +69,5 @@ add_executable(time_utils_test time_utils_test.cpp)
 add_executable(misc_learning misc_learning.cpp)
 
 add_executable(numerical_calculation numerical_calculation.cpp)
+
+add_executable(math_test math_test.cpp)
