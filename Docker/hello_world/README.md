@@ -20,4 +20,5 @@ docker run hello
 standard_init_linux.go:211: exec user process caused "no such file or directory"
 ```
 原因：
+https://stackoverflow.com/questions/56832363/docker-standard-init-linux-go211-exec-user-process-caused-no-such-file-or-di
 由于该应用从scratch基础镜像构建而来，而scratch镜像中不包含任何程序运行需要的动态链接库，可以从ubuntu镜像作为base image来构建，就没问题
