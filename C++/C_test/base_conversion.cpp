@@ -3,7 +3,7 @@
 * Email    : zhanghm_1995@qq.com
 * Version  :　2019年4月1日
 * Copyright    :
-* Descriptoin  : Learn the base conversion betwenn binary, oct and hex
+* Descriptoin  : Learn the base conversion between binary, oct and hex
 * References   :
 ======================================================================*/
 

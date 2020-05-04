@@ -1,3 +1,11 @@
+/*
+ * @Author: Haiming Zhang
+ * @Email: zhanghm_1995@qq.com
+ * @Date: 2020-05-04 20:56:39
+ * @References: 
+ * @Description: Learn how to set MouseCallback in OpenCV
+ */
+
 #include <opencv2/opencv.hpp>
 
 using namespace cv;
