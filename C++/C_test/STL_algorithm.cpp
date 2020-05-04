@@ -83,8 +83,53 @@ void MaxMinFunction() {
   cout << "=========End test MaxMinFunction=========" << endl;
 }
 
+struct Object {
+    Object(int id, std::string name) :
+    id(id), name(name) {}
+
+    int id;
+    std::string name;
+};
+
+/**
+ * @brief Test the find algorithm in STL
+ */ 
+void FindFunction() {
+    cout<<"*************test find***********************"<<endl;
+    std::vector<int> int_vec;
+    int_vec.push_back(1);
+    int_vec.push_back(3);
+    int_vec.push_back(10);
+
+    auto int_it = std::find(int_vec.begin(), int_vec.end(), 31);
+    if (int_it != int_vec.end()) {
+        cout<<"Find value in int_vec"<<endl;
+    } else {
+        cout<<"Cann't find value in int_vec"<<endl;
+    }
+
+    cout<<"*************test find_if***********************"<<endl;
+    std::vector<Object> obj_vec;
+    Object obj1(10, "car"), obj2(20, "people");
+    obj_vec.push_back(obj1);
+    obj_vec.push_back(obj2);
+
+    int need_id = 10;
+    auto it = std::find_if(obj_vec.begin(), obj_vec.end(), [&](Object obj) {
+        return (obj.id == need_id);
+    });
+    if (it != obj_vec.end()) {
+        cout<<"Find object in vector"<<endl;
+    } else {
+        cout<<"Cann't find object in vector"<<endl;
+    }
+}
+
 int main() {
   CopyFunction();
   PrintFunction();
   MaxMinFunction();
+
+  cout<<"================FindFunction==================="<<endl;
+  FindFunction();
 }
