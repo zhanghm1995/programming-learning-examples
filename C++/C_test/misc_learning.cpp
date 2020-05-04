@@ -2,7 +2,7 @@
  * @Author: Haiming Zhang
  * @Email: zhanghm_1995@qq.com
  * @Date: 2020-04-12 21:34:01
- * @LastEditTime: 2020-04-21 21:21:43
+ * @LastEditTime: 2020-05-04 21:10:25
  * @References: 
  * @Description: 
  */
@@ -48,7 +48,9 @@ void FillArray() {
 }
 
 int main() {
+  cout<<"============CustomDefinedCout=================="<<endl;
   CustomDefinedCout();
+  cout<<"============FillArray=================="<<endl;
   FillArray();
   return 0;
 }
