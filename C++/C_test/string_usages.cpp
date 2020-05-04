@@ -12,60 +12,15 @@
 #include <string>
 #include <cstring>
 #include <sstream>
+#include <cctype> // toupper, tolower
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
 
 #include "utils/string_utils.h"
 
-using namespace std;
-
-void test_string_find(const string &str)
-{
-    unordered_map<char, int> len_count_map;
-    char current_char = 'a';
-    int current_pos = 0;
-    int len = str.length();
-
-    while (current_pos < len)
-    {
-        current_char = str[current_pos];
-        int next_pos = str.find_first_not_of(current_char, current_pos);
-        if (next_pos == -1)
-        {
-            break;
-        }
-
-        int substr_len = next_pos - current_pos;
-        if (!len_count_map[current_char])
-        {
-            len_count_map[current_char] = substr_len;
-        }
-        else
-        {
-            len_count_map[current_char] = max(len_count_map[current_char], substr_len);
-        }
-        cout << "current_char " << current_char << " " << substr_len << endl;
-        current_pos = next_pos;
-    }
-    //最后一段单独判断
-    int substr_len = len - current_pos;
-    cout << "substr_len " << substr_len << endl;
-    if (!len_count_map[current_char])
-    {
-        len_count_map[current_char] = substr_len;
-    }
-    else
-    {
-        len_count_map[current_char] = max(len_count_map[current_char], substr_len);
-    }
-
-    cout << "len_count_map " << len_count_map.size() << endl;
-    for (auto m : len_count_map)
-    {
-        cout << m.first << " " << m.second << endl;
-    }
-}
+using std::cout;
+using std::endl;
 
 /**
  * @brief Convert the string to lower case or upper case
@@ -76,6 +31,20 @@ void ConvertStrCase() {
   std::cout << "Lower case string is: " << str << std::endl;  // aabb
   std::transform(str.begin(), str.end(), str.begin(), ::toupper);
   std::cout << "Upper case string is: " << str << std::endl;  // AABB
+}
+
+char InvertCase(char c) {
+  return std::islower(c) ? std::toupper(c) : std::tolower(c);
+}
+
+/**
+ * @brief Invert charactor case, that is from uppercase to lowercase and vice versa
+ * @ref https://stackoverflow.com/questions/7426049/converting-from-upper-to-lower-case-and-vice-versa
+ */ 
+void InvertStrCase() {
+  std::string str("AaBb"), result;
+  std::transform(str.begin(), str.end(), std::back_inserter(result), InvertCase);
+  cout<<result<<endl;
 }
 
 void CompareString() {
@@ -102,9 +71,6 @@ void CompareString() {
 
 int main()
 {
-  string str("zhanghaiming");
-  test_string_find(str);
-
   std::cout<<"=================="<<std::endl;
   std::vector<std::string> result;
   SplitString("zhang hai ming", ' ', &result);
@@ -119,11 +85,17 @@ int main()
     std::cout<<"No"<<std::endl;
   }
 
-  std::cout<<"=================="<<std::endl;
+  std::cout<<"========ConvertStrCase=========="<<std::endl;
   ConvertStrCase();
 
+  std::cout<<"========InvertStrCase=========="<<std::endl;
+  InvertStrCase();
+
+  std::cout<<"========CompareString=========="<<std::endl;
+  CompareString();
+
   std::cout<<"=================="<<std::endl;
-  str = "    zhanghai ming \n";
+  std::string str = "    zhanghai ming \n";
   std::string str_trim = ltrim(str);
   std::cout<<str_trim<<std::endl;
   str_trim = rtrim(str);
