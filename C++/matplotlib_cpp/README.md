@@ -3,6 +3,12 @@ matplotlib-cpp
 
 Reference: https://github.com/lava/matplotlib-cpp
 
+Sources:
+
+http://lovelybuggies.com.cn/2020/03/08/mplC++/
+
+https://readthedocs.org/projects/matplotlib-cpp/downloads/pdf/latest/
+
 Welcome to matplotlib-cpp, possibly the simplest C++ plotting library.
 It is built to resemble the plotting API used by Matlab and matplotlib.
 
