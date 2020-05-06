@@ -66,7 +66,7 @@ inline double GetCurrentTime() {
 
 /**
  * @brief Get date time according to specified format
- * @param format Time represenstation format
+ * @param format Time representation format
  */ 
 inline std::string GetDateTime(const std::string& format) {
   time_t curr_time;
