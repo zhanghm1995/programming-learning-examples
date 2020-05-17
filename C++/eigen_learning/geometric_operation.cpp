@@ -4,7 +4,7 @@
 * Version  :　2019年8月11日
 * Copyright    :
 * Descriptoin  : Geometric operations in Eigen
-* References   :
+* References   : http://eigen.tuxfamily.org/dox/group__Geometry__Module.html#ga1f220045efa302626c287088b63b6ba9
 ======================================================================*/
 
 #include <iostream>
