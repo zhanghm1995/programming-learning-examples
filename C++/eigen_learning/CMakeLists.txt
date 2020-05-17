@@ -18,8 +18,8 @@ endif()
 find_package(Eigen3 REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})
 
-add_executable(eigen_test eigen_test.cpp)
-
 add_executable(eigen_matrix_operations eigen_matrix_operations.cpp)
 
 add_executable(eigen_basic eigen_basic.cpp)
+
+add_executable(geometric_operation geometric_operation.cpp)

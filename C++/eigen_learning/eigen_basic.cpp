@@ -2,7 +2,7 @@
  * @Author: Haiming Zhang
  * @Email: zhanghm_1995@qq.com
  * @Date: 2020-04-21 21:33:06
- * @LastEditTime: 2020-04-21 22:32:06
+ * @LastEditTime: 2020-05-17 15:35:48
  * @References: 
  * @Description: Learn Eigen basic usages
  */
@@ -13,7 +13,9 @@
 using std::cout;
 using std::endl;
 
-
+/**
+ * @brief The basic matrix and vector data structure and definition
+ */ 
 void BasicDataType() {
   /// Default vector is a column vector, use Eigen::RowVectorXf if you want row vector
   Eigen::VectorXf v1(3);
