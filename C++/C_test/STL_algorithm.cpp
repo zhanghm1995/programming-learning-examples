@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+#include <list>
 
 using namespace std;
 
@@ -37,6 +38,16 @@ void PrintSTLContainer(T const &container) {
   std::cout << std::endl;
 }
 
+void ForEachFunction() {
+  cout << "=========Begin test ForEachFunction=========" << endl;
+  std::vector<int> numbers = {1,2,3,4,5};
+  std::for_each(std::begin(numbers), std::end(numbers), [](int& number) {
+    ++number;
+  });
+  PrintSTLContainer(numbers);
+  cout << "=========End test ForEachFunction=========" << endl;
+}
+
 /**
  * @brief std::copy and std::merge function usage
  **/
@@ -59,6 +70,31 @@ void CopyFunction() {
   cout << "=========End test CopyFunction=========" << endl;
 }
 
+/**
+ * @brief std::transform函数能够在复制容器元素同时进行变换
+ **/
+void TransformFunction() {
+   cout << "=========Begin test TransformFunction=========" << endl;
+  auto increase = [](int score) -> int {
+    if (score > 30 && score < 60) {
+      score = 60;
+    }
+    return score;
+  };
+
+  std::vector<int> score_vec = {45, 34, 79, 59, 93};
+  std::transform(score_vec.begin(), score_vec.end(), score_vec.begin(), increase);
+  cout<<"score_vec: "<<endl;
+  PrintSTLContainer(score_vec);
+
+  // 如果用另一个向量存储结果,最好配合std::back_inserter使用,否则需要事先分配该向量的大小
+  std::vector<int> score_vec2;
+  std::transform(score_vec.begin(), score_vec.end(), std::back_inserter(score_vec2), increase);
+  cout<<"score_vec2: "<<endl;
+  PrintSTLContainer(score_vec);
+  cout << "=========End test TransformFunction=========" << endl;
+}
+
 void PrintFunction() {
   std::vector<float> a = {1.67, 2.0, 3.5};
   std::cout << a << std::endl;
@@ -71,6 +107,31 @@ struct Object {
   int id;
   std::string name;
 };
+
+void SortFunction() {
+  cout << "=========Begin test SortFunction=========" << endl;
+  /// ------------------------------字符串默认排序
+  std::vector<std::string> str_vec = {"Jiawei", "Zhanghaiming", "Chensisi", "Lifei", "Wangchao"};
+  std::sort(str_vec.begin(), str_vec.end());
+  PrintSTLContainer(str_vec);
+
+  /// -------------------------------数值默认排序
+  std::vector<float> float_vec = {10.2, 3.2, 49.1, 38, 1.9};
+  std::sort(float_vec.begin(), float_vec.end());
+  std::reverse(float_vec.begin(), float_vec.end());
+  PrintSTLContainer(float_vec);
+
+  /// -----------------------------指定排序规则
+  Object obj1(10, "zhang san"), obj2(27, "li si"), obj3(8, "wang wu");
+  std::vector<Object> obj_vec = {obj1, obj2, obj3};
+  std::sort(obj_vec.begin(), obj_vec.end(), [](const Object& obj1, const Object& obj2) {
+    return obj1.id > obj2.id;
+  });
+  for (const auto& obj : obj_vec) {
+    cout<<obj.name<<" "<<obj.id<<endl;
+  }
+  cout << "=========End test SortFunction=========" << endl;
+}
 
 void MaxMinFunction() {
   cout << "=========Begin test MaxMinFunction=========" << endl;
@@ -117,15 +178,17 @@ void FindFunction() {
   int_vec.push_back(1);
   int_vec.push_back(3);
   int_vec.push_back(10);
+  int_vec.push_back(3);
 
-  // 查找具体的值
+  // -------------------------查找具体的值
   auto int_it = std::find(int_vec.begin(), int_vec.end(), 3);
   if (int_it != int_vec.end()) {
-    cout<<"Find "<< *int_it<<" in int_vec"<<endl;
+    cout<<"Find "<< *int_it<<" in int_vec index: "<<std::distance(int_vec.begin(), int_it)<<endl;
   } else {
     cout<<"Cann't find value in int_vec"<<endl;
   }
 
+  // -------------------------查找满足条件的元素
   cout<<"*************test find_if***********************"<<endl;
   std::vector<Object> obj_vec;
   Object obj1(10, "car"), obj2(20, "people");
@@ -141,13 +204,78 @@ void FindFunction() {
   } else {
     cout<<"Cann't find object in vector"<<endl;
   }
+
+  // -------------------------查找所有满足条件的元素
+  auto isPass = [](int n) -> bool {
+    return n >= 60;
+  };
+
+  vector<int> vecScore = {72, 54, 87};
+  vector<int>::iterator it2 = vecScore.begin();
+  do {
+    it2 = std::find_if(it2, vecScore.end(), isPass);
+    if (vecScore.end() != it2) {
+      cout<<"find pass "<<*it2<<endl;
+      ++it2;
+    } else {
+      break;
+    }
+  } while(true);
+
+  // 或者使用以下方法
+  // it = vecScore.begin();
+  // while (it != vecScore.end()) {
+  //   it = find_if(it, vecScore.end(), isPass);
+  //   cout<<"find pass "<<*it<<endl;
+  //   ++it;
+  // }
+
   cout << "=========Begin test FindFunction=========" << endl;
 }
 
+/**
+ * @brief 利用迭代器定义能够接受不同类型容器的函数进行处理
+ */ 
+template <typename InputIterator>
+void ProcessContainer(InputIterator first, InputIterator end) {
+  for (auto i = first; i != end; ++i) {
+    ++i->id;
+  }
+}
+
+void TestProcessContainerFunction() {
+  cout << "=========Begin test TestProcessContainerFunction=========" << endl;
+  Object obj1(10, "zhang san"), obj2(27, "li si"), obj3(8, "wang wu");
+  std::vector<Object> obj_vec = {obj1, obj2, obj3};
+  std::list<Object> obj_list = {obj1, obj2, obj3};
+
+  ProcessContainer(obj_vec.begin(), obj_vec.end());
+  cout<<"obj_vec is "<<endl;
+  for (const auto& obj : obj_vec) {
+    cout<<obj.name<<" "<<obj.id<<std::endl;
+  }
+
+  cout<<endl;
+  ProcessContainer(obj_list.begin(), obj_list.end());
+  cout<<"obj_list is "<<endl;
+  for (const auto& obj : obj_list) {
+    cout<<obj.name<<" "<<obj.id<<std::endl;
+  }
+  cout << "=========End test TestProcessContainerFunction=========" << endl;
+}
+
 int main() {
+  ForEachFunction();
+
   CopyFunction();
+  TransformFunction();
+
+  SortFunction();
+
   PrintFunction();
   MaxMinFunction();
 
   FindFunction();
+
+  TestProcessContainerFunction();
 }
