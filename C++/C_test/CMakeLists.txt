@@ -71,3 +71,5 @@ add_executable(misc_learning misc_learning.cpp)
 add_executable(numerical_calculation numerical_calculation.cpp)
 
 add_executable(math_test math_test.cpp)
+
+add_executable(basic_data_type basic_data_type.cpp)
