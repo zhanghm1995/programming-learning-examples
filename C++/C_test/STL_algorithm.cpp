@@ -1,5 +1,7 @@
 /**
  * The usage of STL algorithm to process the STL containers
+ * Refrences:
+ * https://blog.csdn.net/Robin__Chou/article/details/53204970
  * 
  **/
 
@@ -38,6 +40,9 @@ void PrintSTLContainer(T const &container) {
   std::cout << std::endl;
 }
 
+/**
+ * @ref https://www.fluentcpp.com/2018/03/30/is-stdfor_each-obsolete/
+ */ 
 void ForEachFunction() {
   cout << "=========Begin test ForEachFunction=========" << endl;
   std::vector<int> numbers = {1,2,3,4,5};
@@ -233,6 +238,14 @@ void FindFunction() {
   cout << "=========Begin test FindFunction=========" << endl;
 }
 
+void CountFunction() {
+  cout << "=========Begin test CountFunction=========" << endl;
+  std::vector<int> int_vec = {10, 12, 34, 10, 2, 3, 10, 22, 10};
+  int count_num = std::count(int_vec.begin(), int_vec.end(), 10);
+  cout<<"count_num: "<<count_num<<endl;
+  cout << "=========End test CountFunction=========" << endl;
+}
+
 /**
  * @brief 利用迭代器定义能够接受不同类型容器的函数进行处理
  */ 
@@ -276,6 +289,8 @@ int main() {
   MaxMinFunction();
 
   FindFunction();
+
+  CountFunction();
 
   TestProcessContainerFunction();
 }
