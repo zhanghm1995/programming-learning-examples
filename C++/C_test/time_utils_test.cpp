@@ -32,5 +32,8 @@ int main(int argc, char **argv) {
   std::string date_time = GetDateTime(format);
   std::cout<<date_time<<std::endl;
 
+  std::cout<<"=======ComputeTime==========="<<std::endl;
+  ComputeTime();
+
   return 0;
 }
