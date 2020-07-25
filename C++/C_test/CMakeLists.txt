@@ -53,9 +53,6 @@ add_executable(stl_algorithm STL_algorithm.cpp)
 
 add_executable(string_usages string_usages.cpp)
 
-add_executable(data_structure data_structure.cpp)  
-target_link_libraries(data_structure ${Boost_LIBRARIES})
-
 add_executable(boost_signal boost_signal.cpp)
 target_link_libraries(boost_signal ${Boost_LIBRARIES})
 
@@ -73,3 +70,5 @@ add_executable(numerical_calculation numerical_calculation.cpp)
 add_executable(math_test math_test.cpp)
 
 add_executable(basic_data_type basic_data_type.cpp)
+
+add_executable(c++11_test c++11_test.cpp)
