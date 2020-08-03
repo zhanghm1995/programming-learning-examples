@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <numeric> // std::accumulate
 
 using namespace std;
 
@@ -277,6 +278,20 @@ void TestProcessContainerFunction() {
   cout << "=========End test TestProcessContainerFunction=========" << endl;
 }
 
+void AccumulateFunction() {
+  cout << "=========End test AccumulateFunction=========" << endl;
+  std::vector<Object> obj_vec = {Object(1, "zhang san"), Object(2, "Li si"), Object(4, "Wang chao")};
+
+  // 需要包含头文件numeric
+  // 从0开始累加
+  int id_sum = std::accumulate(obj_vec.begin(), obj_vec.end(), 0, [](int a, const Object& b) {
+    return a + b.id;
+  });
+
+  cout<<"id sum is: "<<id_sum<<endl;
+  cout << "=========End test AccumulateFunction=========" << endl;
+}
+
 int main() {
   ForEachFunction();
 
@@ -293,4 +308,6 @@ int main() {
   CountFunction();
 
   TestProcessContainerFunction();
+
+  AccumulateFunction();
 }
