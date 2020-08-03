@@ -244,6 +244,16 @@ void CountFunction() {
   std::vector<int> int_vec = {10, 12, 34, 10, 2, 3, 10, 22, 10};
   int count_num = std::count(int_vec.begin(), int_vec.end(), 10);
   cout<<"count_num: "<<count_num<<endl;
+
+  // Test std::count_if
+  Object obj1(10, "zhang san"), obj2(27, "li si"), obj3(8, "wang wu"), obj4(10, "wang wu");
+  std::vector<Object> obj_vec = {obj1, obj2, obj3, obj4};
+
+  int count_num2 = std::count_if(obj_vec.begin(), obj_vec.end(), [](const Object& obj) {
+    return obj.id == 10;
+  });
+  cout<<"count_num2: "<<count_num2<<endl;
+
   cout << "=========End test CountFunction=========" << endl;
 }
 
