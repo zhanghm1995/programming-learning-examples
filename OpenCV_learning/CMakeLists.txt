@@ -43,3 +43,4 @@ add_executable(image_operations image_operations.cpp)
 target_link_libraries(image_operations ${OpenCV_LIBS})
 
 add_subdirectory(basic_drawing)
+add_subdirectory(utils)
