@@ -1,7 +1,8 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include <cmath>
-
+//https://www.tutorialspoint.com/checking-if-a-double-or-float-is-nan-in-cplusplus
+//http://www.cplusplus.com/reference/cmath/isnormal/
 using std::cout;
 using std::endl;
 
