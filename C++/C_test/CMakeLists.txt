@@ -33,6 +33,7 @@ add_subdirectory(macro_test)
 add_subdirectory(input_output_operations)
 add_subdirectory(class_examples)
 add_subdirectory(c++11)
+add_subdirectory(utils)
 
 #############
 ####Build####
@@ -71,3 +72,5 @@ add_executable(numerical_calculation numerical_calculation.cpp)
 add_executable(math_test math_test.cpp)
 
 add_executable(basic_data_type basic_data_type.cpp)
+
+add_executable(exception_learning exception_learning.cpp)

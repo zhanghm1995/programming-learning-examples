@@ -10,6 +10,7 @@
 #include <vector>
 #include <list>
 #include <numeric> // std::accumulate
+#include <iterator> // std::ostream_iterator
 
 using namespace std;
 
@@ -72,6 +73,12 @@ void CopyFunction() {
   std::vector<int> c1(a.size() + b.size());
   std::merge(a.begin(), a.end(), b.begin(), b.end(), c1.begin());
   std::cout << c1 << std::endl;
+
+  // 使用std::copy实现快速打印
+  int arr[10];
+  std::fill(arr, arr+10, 6);
+  std::copy(arr, arr+10, std::ostream_iterator<int>(std::cout, " "));
+  cout<<endl;
 
   cout << "=========End test CopyFunction=========" << endl;
 }

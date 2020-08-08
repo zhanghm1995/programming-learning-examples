@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
 #include <vector>
 
 using std::cout;
@@ -47,10 +48,32 @@ void FillArray() {
   }
 }
 
+// https://stackoverflow.com/questions/16691207/c-c-nan-constant-literal
+void TestNaN() {
+   cout<<"============TestNaN=================="<<endl;
+  std::vector<double> vec = {NAN, INFINITY, 10};
+  for (const auto& v : vec) {
+    cout<<"this is "<<v<<endl;
+    if (std::isnan(v)) {
+    cout<<"Is NaN"<<endl;
+    } else {
+      cout<<"Not NaN"<<endl;
+    }
+    if (std::isnormal(v)) {
+      cout<<"isnormal"<<endl;
+    }
+  }
+
+  /////////////
+  cout<<std::sqrt(-30)<<endl;
+}
+
 int main() {
   cout<<"============CustomDefinedCout=================="<<endl;
   CustomDefinedCout();
   cout<<"============FillArray=================="<<endl;
   FillArray();
+
+  TestNaN();
   return 0;
 }

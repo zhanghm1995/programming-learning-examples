@@ -13,20 +13,17 @@ double Divide() {
 }
 
 int main() {
-    std::vector<double> coefs = {1, 0, 0};
+    std::vector<double> coefs = {1, 0, 1};
     std::vector<double> coefs1 = {1, 5, 4};
     std::vector<double> coefs2 = {0, 0, 4};
     std::vector<double> coefs3 = {0, 0, 0};
     std::vector<double> roots;
     cv::Mat rots;
-    auto ret = cv::solvePoly(coefs3, rots);
+    auto ret = cv::solvePoly(coefs, rots);
     cout<<rots.type()<<" "<<CV_64FC1<<endl;
     cout<<ret<<endl;
 
     cout<<rots<<endl;
 
-    auto ret2 = Divide();
-    auto ret3 = NAN;
-    cout<<ret2<<endl;
     return 0;
 }
