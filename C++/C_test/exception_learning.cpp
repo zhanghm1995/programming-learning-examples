@@ -8,22 +8,25 @@
 ======================================================================*/
 
 #include <iostream>
+// #undef NDEBUG
+#include <cassert>
 
 using std::cout;
 using std::endl;
 
 int main() {
-    int a = 10;
+    int a = 1;
     int b = 0;
     int c;
 
-    throw std::logic_error("fffffffffffffff");
     try {
         // c = a / b;
         throw std::logic_error("fffffffffffffff");
     } catch(...) {
         cout<<"Not valid"<<endl;
     }
+
+    assert(a == 10);
     
     // cout<<c<<endl;
 }

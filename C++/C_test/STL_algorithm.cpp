@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+#include <array>
 #include <list>
 #include <numeric> // std::accumulate
 #include <iterator> // std::ostream_iterator
@@ -309,6 +310,41 @@ void AccumulateFunction() {
   cout << "=========End test AccumulateFunction=========" << endl;
 }
 
+void TestContainerCondition() {
+  cout << "=========Begin test TestContainerCondition=========" << endl;
+  // ---------------------------- std::all_of------------------------------------
+  // 所有元素都满足指定条件为真
+  // http://www.cplusplus.com/reference/algorithm/all_of/
+  std::vector<int> vec_int = {3,5,7,11,13,17,19,23};
+  if (std::all_of(vec_int.begin(), vec_int.end(), [](int i) { return i % 2 ; })) {
+    cout<<"All the elements are odd numbers."<<endl;
+  }
+
+  // !!容器元素为空时,默认返回真,注意!
+  std::vector<int> vec_int2;
+  if (std::all_of(vec_int2.begin(), vec_int2.end(), [](int i) { return i % 2 ; })) {
+    cout<<"All the elements are odd numbers."<<endl;
+  }
+
+  // ---------------------------std::none_of--------------------------------
+  // 所有元素都不满足指定条件为真
+  // http://www.cplusplus.com/reference/algorithm/none_of/
+  std::array<int, 8> foo = {1,2,4,8,16,32,64,128};
+  if (std::none_of(foo.begin(), foo.end(), [](int i){return i<0;})) {
+    std::cout << "There are no negative elements in the range.\n";
+  }
+
+  // ------------------------std::any_of-------------------------------------
+  // 只要有一个元素满足指定条件为真
+  // http://www.cplusplus.com/reference/algorithm/any_of/
+  std::array<int,7> foo2 = {0,1,-1,3,-3,5,-5};
+  if ( std::any_of(foo2.begin(), foo2.end(), [](int i){return i<0;}) ) {
+    std::cout << "There are negative elements in the range.\n";
+  }
+
+  cout << "=========End test TestContainerCondition=========" << endl;
+}
+
 int main() {
   ForEachFunction();
 
@@ -318,6 +354,7 @@ int main() {
   SortFunction();
 
   PrintFunction();
+
   MaxMinFunction();
 
   FindFunction();
@@ -327,4 +364,6 @@ int main() {
   TestProcessContainerFunction();
 
   AccumulateFunction();
+
+  TestContainerCondition();
 }
