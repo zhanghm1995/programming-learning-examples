@@ -74,3 +74,5 @@ add_executable(math_test math_test.cpp)
 add_executable(basic_data_type basic_data_type.cpp)
 
 add_executable(exception_learning exception_learning.cpp)
+
+add_executable(random_generator random_generator.cpp)
