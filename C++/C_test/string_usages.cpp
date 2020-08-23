@@ -69,8 +69,7 @@ void CompareString() {
 }
 
 
-int main()
-{
+int main() {
   std::cout<<"=================="<<std::endl;
   std::vector<std::string> result;
   SplitString("zhang hai ming", ' ', &result);

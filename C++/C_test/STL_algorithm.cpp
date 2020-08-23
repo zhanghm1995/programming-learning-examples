@@ -310,6 +310,9 @@ void AccumulateFunction() {
   cout << "=========End test AccumulateFunction=========" << endl;
 }
 
+/**
+ * @brief 测试容器中元素是否满足某些条件
+ */ 
 void TestContainerCondition() {
   cout << "=========Begin test TestContainerCondition=========" << endl;
   // ---------------------------- std::all_of------------------------------------
@@ -320,7 +323,7 @@ void TestContainerCondition() {
     cout<<"All the elements are odd numbers."<<endl;
   }
 
-  // !!容器元素为空时,默认返回真,注意!
+  // !!容器元素为空时,默认返回真,注意
   std::vector<int> vec_int2;
   if (std::all_of(vec_int2.begin(), vec_int2.end(), [](int i) { return i % 2 ; })) {
     cout<<"All the elements are odd numbers."<<endl;
@@ -342,6 +345,19 @@ void TestContainerCondition() {
     std::cout << "There are negative elements in the range.\n";
   }
 
+  // -----------------------std::is_sorted--------------------------------
+  // 容器元素升序排列,则为true,否则为false,元素个数少于2,也为true, 可以通过指定判断条件判断其他排序要求
+  // http://www.cplusplus.com/reference/algorithm/is_sorted/
+  // std::array<int,4> foo3 = {2,4,1,3};
+  // std::vector<int> foo3 = {1, 2, 3, 4};
+  std::vector<int> foo3 = {4, 3, 2, 1};
+  if (std::is_sorted(foo3.begin(), foo3.end(), [](int a, int b) {
+    return a > b;
+  })) {
+    cout<<"Array is sorted!"<<endl;
+  } else {
+    cout<<"Array is not sorted"<<endl;
+  }
   cout << "=========End test TestContainerCondition=========" << endl;
 }
 
