@@ -29,10 +29,22 @@ private:
     std::vector<T> vec;
 };
 
+void GetInput(std::initializer_list<int> int_type) {
+    cout<<"=========Begin GetInput=========="<<endl;
+    cout<<int_type.size()<<endl;
+    cout<<typeid(int_type).name()<<endl;
+    for (const auto& item : int_type)    {
+        cout<<item<<endl;
+    }
+    cout<<"=========End GetInput=========="<<endl;
+}
+
 int main()
 {
     foo<int> f = {1, 2, 3, 4, 5};
     f.print();
+
+    GetInput({1, 2, 3, 4, 5});
 
     return 0;
 }

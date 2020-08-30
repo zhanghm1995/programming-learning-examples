@@ -92,26 +92,24 @@ struct President
 
 int main()
 {
-  vector<int> ddd;
-  ddd.push_back(10);
-    std::vector<President> elections;
-    std::cout << "emplace_back:\n";
-    elections.emplace_back("Nelson Mandela", "South Africa", 1994); //没有类的创建
+  std::vector<President> elections;
+  std::cout << "emplace_back:\n";
+  elections.emplace_back("Nelson Mandela", "South Africa", 1994); //没有类的创建
 
-    std::vector<President> reElections;
-    std::cout << "\npush_back:\n";
-    reElections.push_back(President("Franklin Delano Roosevelt", "the USA", 1936));
+  std::vector<President> reElections;
+  std::cout << "\npush_back:\n";
+  reElections.push_back(President("Franklin Delano Roosevelt", "the USA", 1936));
 
-    std::vector<President> anotherElections;
-    std::cout << "\nanother push_back:\n";
-    President Frank("Franklin Delano Roosevelt", "the USA", 1937);
-    anotherElections.push_back(Frank);
+  std::vector<President> anotherElections;
+  std::cout << "\nanother push_back:\n";
+  President Frank("Franklin Delano Roosevelt", "the USA", 1937);
+  anotherElections.push_back(Frank);
 
-    std::vector<President> Elections3;
-    std::cout << "\nanother push_back 3:\n";
-    President Frank3("Franklin Delano Roosevelt", "the USA", 1937);
-    Elections3.push_back(std::move(Frank));
-    cout<<endl;
+  std::vector<President> Elections3;
+  std::cout << "\nanother push_back 3:\n";
+  President Frank3("Franklin Delano Roosevelt", "the USA", 1937);
+  Elections3.push_back(std::move(Frank));
+  cout<<endl;
 }
 
 #if 0
