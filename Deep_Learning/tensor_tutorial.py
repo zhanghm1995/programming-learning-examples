@@ -44,7 +44,7 @@ def numpy_bridge():
     print(a)
 
     a = np.ones(5)
-    b = torch.from_numpy(a)
+    b = torch.from_numpy(a).clone()
     np.add(a, 1, out=a)
     print(a)
     print(b)
