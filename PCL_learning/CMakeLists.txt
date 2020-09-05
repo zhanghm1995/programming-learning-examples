@@ -35,3 +35,5 @@ target_link_libraries(cloud_extraction ${PCL_LIBRARIES})
 
 add_executable(pcl_template pcl_template.cpp)
 target_link_libraries(pcl_template ${PCL_LIBRARIES})
+
+add_subdirectory(customized_point_type)

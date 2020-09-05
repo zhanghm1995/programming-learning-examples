@@ -1,0 +1,2 @@
+add_executable(point_type_define_main main.cpp)
+target_link_libraries(point_type_define_main ${PCL_LIBRARIES})
