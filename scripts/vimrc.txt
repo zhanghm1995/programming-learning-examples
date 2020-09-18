@@ -1,0 +1,9 @@
+# vim常用配置选项,放置在~/.vimrc下,没有扩展名
+
+set mouse=a
+set number
+set showcmd
+" 自动缩进
+set autoindent
+set smartindent
+filetype on
