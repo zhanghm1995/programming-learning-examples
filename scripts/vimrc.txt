@@ -7,3 +7,7 @@ set showcmd
 set autoindent
 set smartindent
 filetype on
+
+" 快捷键设置
+" 设置Ctrl+A为全选
+nnoremap <C-A> ggVG
