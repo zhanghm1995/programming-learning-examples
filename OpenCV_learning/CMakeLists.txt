@@ -44,4 +44,3 @@ target_link_libraries(image_operations ${OpenCV_LIBS})
 
 add_subdirectory(basic_drawing)
 add_subdirectory(utils)
-add_subdirectory(algorithm)
