@@ -16,6 +16,7 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <iomanip> // std::setw, std::setfill
 
 #include "utils/string_utils.h"
 
@@ -68,6 +69,13 @@ void CompareString() {
     std::cout << "not person" << std::endl;
 }
 
+template <typename DataType>
+std::string FillFrontZero(const DataType input, const int num)
+{
+  std::stringstream ss;
+  ss<<std::setw(num)<<std::setfill('0')<<input;
+  return ss.str();
+}
 
 int main() {
   std::cout<<"=================="<<std::endl;
@@ -99,5 +107,12 @@ int main() {
   std::cout<<str_trim<<std::endl;
   str_trim = rtrim(str);
   std::cout<<str_trim<<std::endl;
+
+  std::cout<<"============ExpandString=============="<<std::endl;
+  std::string out = FillFrontZero(10, 4);
+  std::cout<<out<<std::endl;
+  out = FillFrontZero("100", 4);
+  std::cout<<out<<std::endl;
+
   return 0;
 }
