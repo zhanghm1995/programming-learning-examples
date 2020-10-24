@@ -14,6 +14,7 @@ using std::endl;
 
 /**
  * @brief Print output in terminal with color
+ * @ref https://stackoverflow.com/questions/3585846/color-text-in-terminal-applications-in-unix/23657072
  */ 
 void PrintWithColor() {
   #define KNRM  "\x1B[0m"

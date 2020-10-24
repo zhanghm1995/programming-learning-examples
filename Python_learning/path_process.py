@@ -42,7 +42,7 @@ def process_dir():
 
 def process_file_path():
     print("process_file_path")
-    path = os.path.join("/home/z00520770/Deep_Learning/P2B_Project/votenet/sunrgbd/sunrgbd_pc_bbox_votes_50k_v1_train/005051") + '_bbox.npy'
+    path = os.path.join("/home/zhanghm/Deep_Learning/P2B_Project/votenet/sunrgbd/sunrgbd_pc_bbox_votes_50k_v1_train/005051") + '_bbox.npy'
     print(path)
 
 if __name__=='__main__':
