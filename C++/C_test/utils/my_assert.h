@@ -3,7 +3,7 @@
 #include <cstdarg>
 #include <sstream>
 
-namespace noah {
+namespace utils {
 
 using String = std::string;
 
@@ -207,9 +207,9 @@ void error( const Exception& exc )
 
 void error(int _code, const String& _err, const char* _func, const char* _file, int _line)
 {
-    error(noah::Exception(_code, _err, _func, _file, _line));
+    error(utils::Exception(_code, _err, _func, _file, _line));
 }
 
 }
 
-#define Noah_Assert( expr ) do { if(!!(expr)) ; else noah::error( noah::Error::CV_StsAssert, #expr, __func__, __FILE__, __LINE__ ); } while(0)
+#define Assert( expr ) do { if(!!(expr)) ; else utils::error( utils::Error::CV_StsAssert, #expr, __func__, __FILE__, __LINE__ ); } while(0)

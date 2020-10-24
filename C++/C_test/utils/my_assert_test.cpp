@@ -10,6 +10,6 @@ terminate called after throwing an instance of 'cv::Exception'
 #include "my_assert.h"
 
 int main() {
-    int a = 10;
-    Noah_Assert(a == 0);
+  int a = 10;
+  Assert(a == 0);
 }

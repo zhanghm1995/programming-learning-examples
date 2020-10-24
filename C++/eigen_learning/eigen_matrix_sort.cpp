@@ -4,6 +4,7 @@
  * @Date: 2020-10-24
  * @References: Sequence operation in Eigen
  * @Description: Learn how to sort matrix in Eigen
+ *                               对eigen矩阵进行排序，得到排序后的索引；
  */
 
 #include <iostream>
