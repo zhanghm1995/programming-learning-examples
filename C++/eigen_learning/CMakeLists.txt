@@ -23,3 +23,5 @@ add_executable(eigen_matrix_operations eigen_matrix_operations.cpp)
 add_executable(eigen_basic eigen_basic.cpp)
 
 add_executable(geometric_operation geometric_operation.cpp)
+
+add_executable(eigen_matrix_sort eigen_matrix_sort.cpp)

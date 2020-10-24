@@ -42,5 +42,11 @@ target_link_libraries(color_handle ${OpenCV_LIBS})
 add_executable(image_operations image_operations.cpp)  
 target_link_libraries(image_operations ${OpenCV_LIBS})
 
+add_executable(mat_learning mat_learning.cpp)  
+target_link_libraries(mat_learning ${OpenCV_LIBS})
+
+add_executable(color_manager color_manager.cpp)  
+target_link_libraries(color_manager ${OpenCV_LIBS})
+
 add_subdirectory(basic_drawing)
 add_subdirectory(utils)
