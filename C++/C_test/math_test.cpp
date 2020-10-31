@@ -16,6 +16,12 @@ double rad2deg(double rad) {
     return rad * 180.0 / M_PI;
 }
 
+template <typename DataType>
+DataType deg2rad(const DataType degree)
+{
+    return degree * static_cast<DataType>(3.1415926535897932384 / 180.0);
+}
+
 /**
  * @brief Determine two angle direction by calculate the cross product
  */ 
@@ -43,4 +49,8 @@ double SortTheta() {
 
 int main() {
     SortTheta();
+
+    double angle = 90.0;
+    double angle_rad = deg2rad(angle);
+    cout<<"angle_rad "<<angle_rad<<endl;
 }
