@@ -53,8 +53,6 @@ add_executable(stl_test stl_test.cpp)
 
 add_executable(stl_algorithm STL_algorithm.cpp)
 
-add_executable(string_usages string_usages.cpp)
-
 add_executable(boost_signal boost_signal.cpp)
 target_link_libraries(boost_signal ${Boost_LIBRARIES})
 

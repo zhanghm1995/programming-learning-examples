@@ -1,10 +1,11 @@
 /*======================================================================
 * Author   : Haiming Zhang
 * Email    : zhanghm_1995@qq.com
-* Version  :　2018年7月6日
+* Version  :　2020年7月6日
 * Copyright    :
 * Descriptoin : Learn how to use yaml-cpp library to parse your customized yaml type
 * References  : https://github.com/jbeder/yaml-cpp/wiki/Tutorial
+                              https://yaml-cpp.docsforge.com/
 ======================================================================*/
 
 // C++

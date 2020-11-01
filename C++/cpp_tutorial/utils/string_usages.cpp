@@ -18,7 +18,7 @@
 #include <algorithm>
 #include <iomanip> // std::setw, std::setfill
 
-#include "utils/string_utils.h"
+#include "string_utils.h"
 
 using std::cout;
 using std::endl;
@@ -75,6 +75,14 @@ std::string FillFrontZero(const DataType input, const int num)
   std::stringstream ss;
   ss<<std::setw(num)<<std::setfill('0')<<input;
   return ss.str();
+}
+
+/**
+ * @brief Convert string to other data and vice versa
+ */ 
+void ConvertStringData()
+{
+  
 }
 
 int main() {
