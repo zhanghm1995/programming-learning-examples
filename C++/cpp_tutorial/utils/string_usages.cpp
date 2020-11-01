@@ -5,7 +5,7 @@
 * Copyright    :
 * Descriptoin  : Learn all about the usages of string in CPP, including 
                                std::string or the char[] and char*.
-* References   :
+* References   : https://www.geeksforgeeks.org/program-generate-random-alphabets/
 ======================================================================*/
 
 #include <iostream>

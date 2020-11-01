@@ -33,6 +33,7 @@ add_subdirectory(macro_test)
 add_subdirectory(input_output_operations)
 add_subdirectory(class_examples)
 add_subdirectory(c++11)
+add_subdirectory(stl)
 add_subdirectory(utils)
 
 #############
@@ -46,12 +47,6 @@ add_executable(base_conversion base_conversion.cpp)
 add_executable(anonymous_namespace_test include_test/anonymous_namespace_test.cpp
                                                                                                  include_test/test.cpp
                                                                                                  include_test/test1.cpp)
-
-add_executable(stl_learning STL_learning.cpp)  
-
-add_executable(stl_test stl_test.cpp)
-
-add_executable(stl_algorithm STL_algorithm.cpp)
 
 add_executable(boost_signal boost_signal.cpp)
 target_link_libraries(boost_signal ${Boost_LIBRARIES})
