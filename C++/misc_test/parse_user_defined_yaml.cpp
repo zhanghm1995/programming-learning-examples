@@ -81,6 +81,7 @@ int main(int argc, char** argv)
     // 2) Subscribe topic and callback
     std::vector<VisualizerProcessPtr> visualizer_process_vec;
 
+    // 3) 根据yaml文件进行动态配置,构造对应的实例,方便进行配置
     for (const auto& option : display_options_vec) {
         if (option.is_display) {
             visualizer_process_vec.emplace_back(new VisualizerProcess(option));
