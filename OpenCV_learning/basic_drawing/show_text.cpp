@@ -75,14 +75,17 @@ void ShowMultiLineText()
 {
     std::stringstream sstr;
     sstr<<"This is a long long str, so we want to split it in multiple lines. This is a long long str,  so we want to split it in multiple lines.";
-    int idx = -1;
-    auto text_str = WrapText(sstr.str(), 20);
+    std::string str = sstr.str();
+
     int baseline = 0;
     cv::Size text_size = cv::getTextSize(sstr.str(), FONT_HERSHEY_COMPLEX, 0.7, 1, &baseline);
     cout<<text_size<<endl;
 
-    cv::Mat img(800, 800, CV_8UC3, cv::Scalar(0));
+    cv::Mat img(800, 800, CV_8UC3, cv::Scalar::all(0));
 
+    int split_length = std::floor((str.length() * 1.0 / text_size.width) * img.cols) - 1;
+    cout<<str.length()<<" "<<str.size()<<" "<<split_length<<endl;
+    auto text_str = WrapText(sstr.str(), split_length);
     for (size_t line = 0; line < text_str.size(); ++line) {
         int y = text_size.height + line * (text_size.height + 5);
         cv::putText(img, text_str[line], cv::Point(5, y), FONT_HERSHEY_COMPLEX, 0.7, cv::Scalar(255,0,0));
