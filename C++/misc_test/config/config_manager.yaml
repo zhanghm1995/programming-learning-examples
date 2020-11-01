@@ -1,0 +1,9 @@
+Object_Display_Node:
+    - sub_object_array_topic: /kitti/pointrcnn/object_array
+      is_display: true
+      pub_vis_marker_topic: /viz/pointrcnn_object_visualizer
+      is_show_hollow_bbox: true
+    - sub_object_array_topic: /kitti/ground_truth/object_array
+      is_display: false
+      pub_vis_marker_topic: /viz/gt_object_visualizer
+      is_show_hollow_bbox: true

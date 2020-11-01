@@ -24,3 +24,6 @@ message(STATUS "yaml-cpp ===============${YAML_CPP_LIBRARIES}")
 include_directories(${YAML_CPP_INCLUDE_DIR})  
 add_executable(yaml_cpp_test yaml_cpp_test.cpp )  
 target_link_libraries(yaml_cpp_test ${YAML_CPP_LIBRARIES})
+
+add_executable(parse_user_defined_yaml parse_user_defined_yaml.cpp )  
+target_link_libraries(parse_user_defined_yaml ${YAML_CPP_LIBRARIES})
