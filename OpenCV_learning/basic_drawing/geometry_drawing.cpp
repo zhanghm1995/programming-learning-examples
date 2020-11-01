@@ -22,11 +22,19 @@ void DrawRotatedRect(cv::Mat &img)
         cv::line(img, vertices[i], vertices[(i + 1) % 4], Scalar(0, 255, 0));
 }
 
+void DrawPolygon(cv::Mat& img)
+{
+    std::vector<cv::Point> vertexes = {cv::Point(205, 145), cv::Point(260, 150), cv::Point(245, 205), cv::Point(236, 150)};
+    cv::fillConvexPoly(img, vertexes, cv::Scalar::all(255));
+}
+
 int main(int argc, char **argv)
 {
     cv::Mat img_src(800, 800, CV_8UC3, cv::Scalar(0));
 
     DrawRotatedRect(img_src);
+
+    DrawPolygon(img_src);
 
     cv::namedWindow("img_src", CV_WINDOW_NORMAL);
     imshow("img_src", img_src);

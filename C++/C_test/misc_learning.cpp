@@ -68,6 +68,49 @@ void TestNaN() {
   cout<<std::sqrt(-30)<<endl;
 }
 
+/**
+ * @brief Wrap a long text to multi lines string
+ */ 
+std::string WrapText(const std::string& str_input, const int length)
+{
+    if (str_input.size() <= length) {
+        return str_input;
+    }
+
+    std::string ret;
+    int pos = 0;
+    while (pos < (str_input.size() - length)) {
+        ret += str_input.substr(pos, length);
+        ret += "\n";
+        pos += length;
+    }
+
+    ret += str_input.substr(pos);
+    
+    return ret;
+}
+
+std::vector<std::string> WrapText2(const std::string& str_input, const int length)
+{
+    std::vector<std::string> ret;
+    if (str_input.size() <= length) {
+        ret.push_back(str_input);
+        return ret;
+    }
+
+    std::string str;
+    int pos = 0;
+    const int temp_length = static_cast<int>(str_input.size()) - length;
+    while (pos < temp_length) {
+        ret.push_back(str_input.substr(pos, length));
+        pos += length;
+    }
+
+    ret.push_back(str_input.substr(pos));
+
+    return ret;
+}
+
 int main() {
   cout<<"============CustomDefinedCout=================="<<endl;
   CustomDefinedCout();
@@ -75,5 +118,8 @@ int main() {
   FillArray();
 
   TestNaN();
+
+  const int LENGTH = 10;
+  cout<<std::abs(-19.34)<<endl;
   return 0;
 }
