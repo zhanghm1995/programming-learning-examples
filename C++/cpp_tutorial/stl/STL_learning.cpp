@@ -127,7 +127,7 @@ void test_set_delete()
 void test_map()
 {
   cout << "=========Begin test std::map=========" << endl;
-  map<string, int> Mymap;
+  std::map<string, int> Mymap;
   cout << "Test insert(), size(), begin() , clear( ):" << endl;
   // The elements in map will be sorted automaticly
   Mymap.insert(std::make_pair("vector", 1)); //插入 key-value
@@ -137,7 +137,7 @@ void test_map()
   Mymap["add"] = 11;
 
   cout << "Mymap size is " << Mymap.size() << endl;
-  map<string, int>::const_iterator it;
+  std::map<string, int>::const_iterator it;
   for (it = Mymap.begin(); it != Mymap.end(); ++it) {
     cout << it->first << "~~" << it->second << endl;
   }
@@ -202,31 +202,30 @@ void test_vector()
 // Ref: https://blog.csdn.net/sixdaycoder/article/details/81510877
 
 // Learn how to erase the elements in vector, the same operation for deque, string and queue
-void EraseVec() {
+void EraseVec()
+{
   std::vector<int> vec{1,2,3,4,5,6,5,7};
   vec.erase(std::remove(vec.begin(), vec.end(), 5), vec.end());
 }
 
-void EraseVecIf() {
+void EraseVecIf()
+{
   std::vector<int> vec{1,2,3,4,5,6,5,7};
   vec.erase(std::remove_if(vec.begin(), vec.end(), [](int elem) {
-    return elem % 2 == 0;
-  }),
-  vec.end());
+    return elem % 2 == 0; }), vec.end());
 }
 
 void EraseVecLoop()
 {
-    std::vector<int> vec{ 1, 2, 3, 4, 5, 5, 6, 7 }; 
+  std::vector<int> vec{ 1, 2, 3, 4, 5, 5, 6, 7 }; 
 
-    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); /*do nothing*/) {
-      if (*it % 2 == 0) {
-        it = vec.erase(it);
-      }
-      else {
-        it++;
-      }
+  for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); /*do nothing*/) {
+    if (*it % 2 == 0) {
+      it = vec.erase(it);
+    } else {
+      it++;
     }
+  }
 }
 
 // Learn how to erase element for std::list
@@ -252,7 +251,8 @@ void EraseListLoop()
 }
 
 // Learn how to erase elements for std::map and std::unordered_map
-void EraseMap() {
+void EraseMap()
+{
   std::map<int, int> m;
   m.insert(std::make_pair(1, 1));
   m.insert(std::make_pair(2, 2));
@@ -267,7 +267,8 @@ void EraseMap() {
   }
 }
 
-void EraseMapLoop() {
+void EraseMapLoop()
+{
   std::map<int, int> m;
 
   m.insert(std::make_pair(1, 1));
@@ -284,15 +285,15 @@ void EraseMapLoop() {
       //it是被删除的迭代器,it++的副作用可以获得it指向的下一个元素
       // m.erase(it++); // or use this one, both ok
        it = m.erase(it);
-    }
-    else {
+    } else {
       it++;
     }
   }
 }
 
 // Learn how to erase elements for std::set
-void EraseSet() {
+void EraseSet()
+{
   std::set<int> s;
 
   s.insert(1);
