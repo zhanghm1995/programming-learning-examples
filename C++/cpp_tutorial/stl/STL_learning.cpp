@@ -46,8 +46,7 @@ void PrintSTLContainer(T const &container)
 void test_set()
 {
   cout << "=========Begin test std::set=========*" << endl;
-  set<int> Myset;
-  set<int>::iterator it;
+  std::set<int> Myset;
   cout << "Test insert() size() iterator functions:" << endl;
   Myset.insert(5);
   Myset.insert(3);
@@ -55,8 +54,9 @@ void test_set()
   Myset.insert(7);
   Myset.insert(3);
   cout << Myset.size() << endl;
-  for (it = Myset.begin(); it != Myset.end(); ++it)
-  {
+
+  std::set<int>::iterator it;
+  for (it = Myset.begin(); it != Myset.end(); ++it) {
     cout << *it << " ";
   }
   cout << endl;
@@ -67,16 +67,12 @@ void test_set()
   PrintSTLContainer(Myset);
 
   cout << "Use find or count function to check the element existence:" << endl;
-  if (Myset.find(5) == Myset.end())
-  {
+  if (Myset.find(5) == Myset.end()) {
     cout << "Cann't find specific element in set" << endl;
-  }
-  else
-  {
+  } else {
     cout << "We find specific element in set" << endl;
   }
-  if (Myset.count(3))
-  {
+  if (Myset.count(3)) {
     cout << "We find specific element in set" << endl;
   }
 
@@ -95,14 +91,10 @@ void test_set_delete()
 
   cout << "Method 1:" << endl;
   set<int> SetCase1 = Myset;
-  for (auto i = SetCase1.begin(); i != SetCase1.end();)
-  {
-    if (badValue(*i))
-    {
+  for (auto i = SetCase1.begin(); i != SetCase1.end();) {
+    if (badValue(*i)) {
       i = SetCase1.erase(i);
-    }
-    else
-    {
+    } else {
       ++i;
     }
   }
@@ -112,10 +104,8 @@ void test_set_delete()
   //       but I don't know why the result is right!
   cout << "Method 2:" << endl;
   set<int> SetCase2 = Myset;
-  for (auto it = SetCase2.begin(); it != SetCase2.end(); ++it)
-  {
-    if (badValue(*it))
-    {
+  for (auto it = SetCase2.begin(); it != SetCase2.end(); ++it) {
+    if (badValue(*it)) {
       SetCase2.erase(it);
     }
   }
@@ -125,11 +115,9 @@ void test_set_delete()
   cout << "Method 3:" << endl;
   set<int> SetCase3 = Myset;
   auto it_case3 = SetCase3.begin();
-  while (it_case3 != SetCase3.end())
-  {
+  while (it_case3 != SetCase3.end()) {
     auto curr_it = it_case3++;
-    if (badValue(*curr_it))
-    {
+    if (badValue(*curr_it)) {
       SetCase3.erase(curr_it);
     }
   }
@@ -150,8 +138,7 @@ void test_map()
 
   cout << "Mymap size is " << Mymap.size() << endl;
   map<string, int>::const_iterator it;
-  for (it = Mymap.begin(); it != Mymap.end(); ++it)
-  {
+  for (it = Mymap.begin(); it != Mymap.end(); ++it) {
     cout << it->first << "~~" << it->second << endl;
   }
 
@@ -159,15 +146,13 @@ void test_map()
   cout << Mymap["map"] << endl;
   cout << "add new element " << Mymap["map2"] << endl; //这样会自动加入一个map2
   Mymap["map3"] = 10;
-  for (it = Mymap.begin(); it != Mymap.end(); ++it)
-  {
+  for (it = Mymap.begin(); it != Mymap.end(); ++it) {
     cout << it->first << "~~" << it->second << endl;
   }
 
   cout << endl;
   it = Mymap.find("list"); //find() 查找一个元素
-  if (it != Mymap.end())
-  { // Must check, otherwise will cause segmentation fault
+  if (it != Mymap.end()) { // Must check, otherwise will cause segmentation fault
     cout <<  it->first << " : " << it->second << endl;
   }
 
@@ -175,8 +160,7 @@ void test_map()
 
   cout << "Test erase():" << endl;
   Mymap.erase("vector");
-  for (it = Mymap.begin(); it != Mymap.end(); ++it)
-  {
+  for (it = Mymap.begin(); it != Mymap.end(); ++it) {
     cout << it->first << "~~" << it->second << endl;
   }
   Mymap.clear();
@@ -196,14 +180,12 @@ void test_unordered_map()
 void test_list()
 {
   std::list<int> intList = {2, 3, 1, 5, 7, 3};
-  for (auto &o : intList)
-  {
+  for (auto &o : intList) {
     cout << o << endl;
   }
   intList.remove(3);
   cout << "===========" << endl;
-  for (auto &o : intList)
-  {
+  for (auto &o : intList) {
     cout << o << endl;
   }
 }
@@ -248,22 +230,22 @@ void EraseVecLoop()
 }
 
 // Learn how to erase element for std::list
-void EraseList() {
+void EraseList()
+{
   std::list<int> ls{ 1, 2, 3, 4, 5, 5, 6, 7 };
 
   ls.remove(5);
   ls.remove_if([](int elem) { return elem % 2 == 0; });
 }
 
-void EraseListLoop() {
+void EraseListLoop()
+{
   std::list<int> ls{ 1, 2, 3, 4, 5, 5, 6, 7 };
 
-  for (std::list<int>::iterator it = ls.begin(); it != ls.end(); )
-  {
+  for (std::list<int>::iterator it = ls.begin(); it != ls.end(); ) {
     if (*it % 2 == 0) {
       it = ls.erase(it);
-    }
-    else {
+    } else {
       it++;
     }
   }
