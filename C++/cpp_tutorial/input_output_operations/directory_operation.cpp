@@ -73,6 +73,29 @@ void CountImageNumInDirectory(const std::string& dir_name)
     }
 }
 
+#include <sys/stat.h> 
+#include <sys/types.h>
+/**
+ * @brief
+ * @ref https://www.geeksforgeeks.org/create-directoryfolder-cc-program/
+ */ 
+bool CreateDir()
+{
+    std::cout<<"==========CreateDir=========="<<std::endl;
+    /// ---Method 1
+    std::string plot_dir = "plot";
+    system(("mkdir " + plot_dir).c_str());
+
+    /// --- Method 2
+    // Creating a directory 
+    if (mkdir("plot2", 0777) == -1) {
+        std::cerr << "Error :  " << strerror(errno) << std::endl; 
+    } else {
+        std::cout << "Directory created"<<std::endl; 
+    }
+    return true;
+}
+
 int main(int argc, char **argv)
 {
     int files_num = ListFilesInDirectory("/home/zhanghm/Temp/test");
