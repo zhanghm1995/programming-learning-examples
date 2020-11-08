@@ -57,7 +57,7 @@ int main(int argc, char** argv)
     return 0;
 }
 
-#ifdef 0
+#ifdef false
 // ROS
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>

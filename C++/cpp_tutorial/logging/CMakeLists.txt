@@ -1,0 +1,1 @@
+add_executable(logging_main logging_main.cpp)

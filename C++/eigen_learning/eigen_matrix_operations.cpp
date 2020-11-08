@@ -71,6 +71,15 @@ void OperateMatrixRowsAndCols() {
                1, 2, 3;
   M1.array().rowwise() /= M1.row(2).array();
   cout<<M1.topRows(2)<<endl;
+
+  /// 2) 矩阵统一加上某个向量值(broadcasting操作)
+  cout<<"-----"<<endl;
+  cout<<M1<<endl;
+  Eigen::VectorXf tr(3);//此处必须是Vector类型
+  tr << 1, 3, 5;
+
+  Eigen::MatrixXf temp = M1.colwise() + tr;
+  cout<<temp<<endl;
 }
 
 /**
