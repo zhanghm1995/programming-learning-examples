@@ -45,3 +45,6 @@ include_directories(
 ###########
 # add_executable(test_node src/test_node.cpp)
 # target_link_libraries(test_node ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${PCL_LIBRARIES} ${OpenCV_LIBS})
+
+catkin_install_python(PROGRAMS scripts/python_publisher.py
+                                              DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

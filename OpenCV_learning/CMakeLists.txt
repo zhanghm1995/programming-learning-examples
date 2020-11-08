@@ -48,5 +48,11 @@ target_link_libraries(mat_learning ${OpenCV_LIBS})
 add_executable(color_manager color_manager.cpp)  
 target_link_libraries(color_manager ${OpenCV_LIBS})
 
+add_executable(tracker_bar tracker_bar.cpp)  
+target_link_libraries(tracker_bar ${OpenCV_LIBS})
+
+add_executable(tracker_bar2 tracker_bar2.cpp)  
+target_link_libraries(tracker_bar2 ${OpenCV_LIBS})
+
 add_subdirectory(basic_drawing)
 add_subdirectory(utils)
