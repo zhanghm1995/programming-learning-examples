@@ -18,6 +18,7 @@
 #include <string.h>
 #include <algorithm>
 #include <Eigen/Dense>
+
 using namespace Eigen;
 using namespace std;
 
@@ -32,8 +33,7 @@ void PrintSTLContainer(T const &container)
   typename T::const_iterator pos;                  // iterator to iterate over coll
   typename T::const_iterator end(container.end()); // end position
 
-  for (pos = container.begin(); pos != end; ++pos)
-  {
+  for (pos = container.begin(); pos != end; ++pos) {
     std::cout << *pos << ' ';
   }
   std::cout << std::endl;
@@ -87,10 +87,10 @@ bool badValue(int a)
 
 void test_set_delete()
 {
-  set<int> Myset = {1, 2, 3, 4, 5, 6, 7, 8};
+  std::set<int> Myset = {1, 2, 3, 4, 5, 6, 7, 8};
 
   cout << "Method 1:" << endl;
-  set<int> SetCase1 = Myset;
+  std::set<int> SetCase1 = Myset;
   for (auto i = SetCase1.begin(); i != SetCase1.end();) {
     if (badValue(*i)) {
       i = SetCase1.erase(i);
@@ -103,7 +103,7 @@ void test_set_delete()
   // Note: this method may incorrect,
   //       but I don't know why the result is right!
   cout << "Method 2:" << endl;
-  set<int> SetCase2 = Myset;
+  std::set<int> SetCase2 = Myset;
   for (auto it = SetCase2.begin(); it != SetCase2.end(); ++it) {
     if (badValue(*it)) {
       SetCase2.erase(it);
@@ -113,7 +113,7 @@ void test_set_delete()
 
   // https://stackoverflow.com/questions/2874441/deleting-elements-from-stl-set-while-iterating
   cout << "Method 3:" << endl;
-  set<int> SetCase3 = Myset;
+  std::set<int> SetCase3 = Myset;
   auto it_case3 = SetCase3.begin();
   while (it_case3 != SetCase3.end()) {
     auto curr_it = it_case3++;
@@ -261,7 +261,7 @@ void EraseMap()
   m.insert(std::make_pair(5, 5));
   m.insert(std::make_pair(6, 6));
   m.insert(std::make_pair(7, 7));
-  map<int,int>::iterator it = m.find(5);
+  std::map<int,int>::iterator it = m.find(5);
   if (it != m.end()) {
     m.erase(it);
   }
