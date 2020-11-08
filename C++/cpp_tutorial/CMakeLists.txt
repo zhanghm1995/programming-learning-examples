@@ -35,6 +35,7 @@ add_subdirectory(class_examples)
 add_subdirectory(c++11)
 add_subdirectory(stl)
 add_subdirectory(utils)
+add_subdirectory(logging)
 
 #############
 ####Build####
