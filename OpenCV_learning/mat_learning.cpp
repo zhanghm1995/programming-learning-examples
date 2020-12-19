@@ -27,6 +27,26 @@ void ProcessMat(const cv::Mat& coefs) {
     }
 }
 
+/**
+ * @brief Learn how to use rowRange and colRange function to extract the mask of Mat
+ * @ref https://blog.csdn.net/jpc20144055069/article/details/102800181
+ */ 
+void UseRowColRangeMask() {
+    cv::Mat Test = (cv::Mat_<double>(3, 3) << 0, 1, 2, 3, 4, 5, 6, 7, 8);
+	cout << "Total matrix:" << endl;
+	cout << Test << endl << endl;
+
+	cv::Mat testrow = Test.rowRange(0, 2).clone();   // 包括左边界，但不包括右边界
+	cout << "Row range:" << endl;
+	cout << testrow << endl;
+	cout << "Test 1 row:" << endl;
+	cout << Test.row(0) << endl << endl;
+
+	cv::Mat testcol = Test.colRange(0, 2).clone();   // 包括左边界，但不包括右边界
+	cout << "Col range:" << endl;
+	cout << testcol << endl;
+}
+
 // TODO: how to get the cv::Mat data type and access it by choosing correct method
 
 int main() {

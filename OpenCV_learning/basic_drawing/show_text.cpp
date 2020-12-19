@@ -50,6 +50,10 @@ void DrawTextBox()
     waitKey(0);
 }
 
+/**
+ * @brief Wrap text with \n according to the maximum length so we can display them in different rows
+ * @ref https://stackoverflow.com/questions/28394017/how-to-insert-multiple-lines-of-text-into-frame-image/54234703#54234703
+ */ 
 std::vector<std::string> WrapText(const std::string& str_input, const int length)
 {
     std::vector<std::string> ret;
