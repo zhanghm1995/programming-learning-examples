@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(ros_misc_test)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -O1 -std=gnu++0x")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -O1 -std=c++11")
 set(CMAKE_BUILD_TYPE "Release")
 
 ## Find catkin macros and libraries
@@ -86,3 +86,6 @@ target_link_libraries(customized_point_cloud_operation ${catkin_LIBRARIES})
 
 add_executable(point_cloud_reader src/point_cloud_reader.cpp)
 target_link_libraries(point_cloud_reader ${catkin_LIBRARIES})
+
+add_executable(point_cloud_subscriber src/point_cloud_subscriber.cpp)
+target_link_libraries(point_cloud_subscriber ${catkin_LIBRARIES} ${PCL_LIBRARIES})

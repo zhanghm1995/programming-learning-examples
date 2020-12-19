@@ -1,3 +1,12 @@
+/*======================================================================
+* Author   : Haiming Zhang
+* Email    : zhanghm_1995@qq.com
+* Version  :　2020年11月16日
+* Copyright    :
+* Descriptoin  : Learn how to read binary format, ie. *.bin, point cloud and publish them
+                               to sensor_msgs::PointCloud2.
+* References   :
+======================================================================*/
 #include <sstream>
 #include <algorithm>
 #include <ros/ros.h>
