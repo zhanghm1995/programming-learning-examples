@@ -83,3 +83,6 @@ target_link_libraries(occupancy_grid_map ${catkin_LIBRARIES})
 
 add_executable(customized_point_cloud_operation src/customized_point_cloud_operation.cpp)
 target_link_libraries(customized_point_cloud_operation ${catkin_LIBRARIES})
+
+add_executable(point_cloud_reader src/point_cloud_reader.cpp)
+target_link_libraries(point_cloud_reader ${catkin_LIBRARIES})
