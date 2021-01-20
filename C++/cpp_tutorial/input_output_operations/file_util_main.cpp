@@ -16,6 +16,7 @@
 
 #include "file_util.h"
 #include "utils/string_utils.h"
+#include "utils/strnatcomp.h"
 
 /**
  * @brief Get the system environment variable
@@ -56,13 +57,40 @@ void LoadFile2Map(const std::string& calib_file_path) {
     std::cout<<R0_Rect<<std::endl;
 }
 
+/**
+ * @brief
+ * @ref https://github.com/Amerge/natsort
+ */ 
 void TestListSubPaths()
 {
     std::cout<<"=============TestListSubPaths==============="<<std::endl;
-    std::string dir_path = "/media/zhanghm/Data/Datasets/KITTI/tracking/training/oxts";
+    // std::string dir_path = "/media/zhanghm/Data/Datasets/KITTI/tracking/training/oxts";
+    std::string dir_path = "/media/zhanghm/Data/Datasets/KITTI/tracking/training/velodyne/0000";
+
     const auto name_vec = file_util::ListSubPaths(dir_path);
 
     for (const auto& name : name_vec) {
+        std::cout<<name<<std::endl;
+    }
+
+    /// 如果需要对文件名进行排序
+    std::cout<<"-------------------------只对不带后缀的数字文件名排序-------------------------"<<std::endl;
+    const auto file_name_str_vec = file_util::ListSubPaths(dir_path, true);
+    std::vector<int64_t> file_name_vec;
+    std::transform(file_name_str_vec.begin(), file_name_str_vec.end(),
+                                    std::back_inserter(file_name_vec), [](const std::string& str) { return std::stol(str); });
+
+    std::sort(file_name_vec.begin(), file_name_vec.end());
+
+    for (const auto& name : file_name_vec) {
+        std::cout<<name<<std::endl;
+    }
+
+    std::cout<<"-------------------------对常规文件名自然排序-------------------------"<<std::endl;
+    auto name_vec2 = file_util::ListSubPaths(dir_path);
+    std::sort(name_vec2.begin(), name_vec2.end(), cpp_common::compareNat);
+
+    for (const auto& name : name_vec2) {
         std::cout<<name<<std::endl;
     }
 }
