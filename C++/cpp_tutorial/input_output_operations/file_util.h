@@ -37,5 +37,7 @@ bool PathExists(const std::string &path);
  */
 bool DirectoryExists(const std::string &directory_path);
 
+std::vector<std::string> ListSubPaths(const std::string &directory_path,
+                                                                                const bool remove_extension = false);
 
 }
