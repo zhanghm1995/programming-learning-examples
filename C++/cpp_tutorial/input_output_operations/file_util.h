@@ -22,20 +22,22 @@
 namespace file_util {
 
 /**
- * @brief Check if the path exists.
- * @param path a file name, such as /a/b/c.txt
+ * @brief Check if the path exists, including file path and directory path
+ * @param path a file name, such as /a/b/c.txt, this function can also check a directory path exist or not
  * @return If the path exists.
  */
 bool PathExists(const std::string &path);
 
 /**
  * @brief Check if the directory specified by directory_path exists
- *        and is indeed a directory.
+ *               and is indeed a directory. If it is not a directory, although it exist, it will return false
  * @param directory_path Directory path.
  * @return If the directory specified by directory_path exists
  *         and is indeed a directory.
  */
 bool DirectoryExists(const std::string &directory_path);
 
+std::vector<std::string> ListSubPaths(const std::string &directory_path,
+                                                                                const bool remove_extension = false);
 
-}
+} // namespace file_util

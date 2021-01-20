@@ -16,6 +16,7 @@
 
 #include "file_util.h"
 #include "utils/string_utils.h"
+#include "utils/strnatcomp.h"
 
 /**
  * @brief Get the system environment variable
@@ -56,6 +57,44 @@ void LoadFile2Map(const std::string& calib_file_path) {
     std::cout<<R0_Rect<<std::endl;
 }
 
+/**
+ * @brief
+ * @ref https://github.com/Amerge/natsort
+ */ 
+void TestListSubPaths()
+{
+    std::cout<<"=============TestListSubPaths==============="<<std::endl;
+    // std::string dir_path = "/media/zhanghm/Data/Datasets/KITTI/tracking/training/oxts";
+    std::string dir_path = "/media/zhanghm/Data/Datasets/KITTI/tracking/training/velodyne/0000";
+
+    const auto name_vec = file_util::ListSubPaths(dir_path);
+
+    for (const auto& name : name_vec) {
+        std::cout<<name<<std::endl;
+    }
+
+    /// 如果需要对文件名进行排序
+    std::cout<<"-------------------------只对不带后缀的数字文件名排序-------------------------"<<std::endl;
+    const auto file_name_str_vec = file_util::ListSubPaths(dir_path, true);
+    std::vector<int64_t> file_name_vec;
+    std::transform(file_name_str_vec.begin(), file_name_str_vec.end(),
+                                    std::back_inserter(file_name_vec), [](const std::string& str) { return std::stol(str); });
+
+    std::sort(file_name_vec.begin(), file_name_vec.end());
+
+    for (const auto& name : file_name_vec) {
+        std::cout<<name<<std::endl;
+    }
+
+    std::cout<<"-------------------------对常规文件名自然排序-------------------------"<<std::endl;
+    auto name_vec2 = file_util::ListSubPaths(dir_path);
+    std::sort(name_vec2.begin(), name_vec2.end(), cpp_common::compareNat);
+
+    for (const auto& name : name_vec2) {
+        std::cout<<name<<std::endl;
+    }
+}
+
 int main(int argc, char **argv)
 {
     std::string env_name = GetEnv("HOME");
@@ -65,22 +104,29 @@ int main(int argc, char **argv)
     std::cout<<env_name<<std::endl;
 
     std::cout<<"===================="<<std::endl;
-    if (file_util::PathExists("/home/zhanghm/readme.txt")) {
-        std::cout<<"Path exists"<<std::endl;
+    // std::string file_path = "/home/zhanghm/readme.txt";
+    std::string file_path = "/home/zhanghm/Temp/0000.txt";
+    // std::string file_path = "/home/zhanghm";
+    if (file_util::PathExists(file_path)) {
+        std::cout<<"file_path "<<file_path<<" exists"<<std::endl;
     } else {
-        std::cout<<"Path not exists"<<std::endl;
+        std::cout<<"file_path "<<file_path<<" not exists"<<std::endl;
     }
 
     std::cout<<"===================="<<std::endl;
-    if (file_util::DirectoryExists("/home/zhanghm/Coding")) {
-        std::cout<<"Directory exists"<<std::endl;
+    // std::string dir_path = "/home/zhanghm/Coding";
+    std::string dir_path = "/home/zhanghm/Temp/0000.txt";
+    if (file_util::DirectoryExists(dir_path)) {
+        std::cout<<"dir_path "<<dir_path<<"  exists"<<std::endl;
     } else {
-        std::cout<<"Directory not exists"<<std::endl;
+        std::cout<<"dir_path "<<dir_path<<" not exists"<<std::endl;
     }
 
     std::cout<<"===================="<<std::endl;
     std::string calib_file_path = "../data/0000.txt";
     LoadFile2Map(calib_file_path);
+
+    TestListSubPaths();
 
     return 0;
 }
