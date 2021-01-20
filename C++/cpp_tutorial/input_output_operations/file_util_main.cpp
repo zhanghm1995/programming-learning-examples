@@ -95,6 +95,15 @@ void TestListSubPaths()
     }
 }
 
+void TestJoinPath()
+{
+    std::cout<<"=============TestJoinPath==============="<<std::endl;
+    std::string path1("/home/zhanghm");
+    std::string path2("/dataset");
+    auto path = file_util::JoinPath(path1, path2);
+    std::cout << path<<std::endl;
+}
+
 int main(int argc, char **argv)
 {
     std::string env_name = GetEnv("HOME");
@@ -127,6 +136,8 @@ int main(int argc, char **argv)
     LoadFile2Map(calib_file_path);
 
     TestListSubPaths();
+
+    TestJoinPath();
 
     return 0;
 }
