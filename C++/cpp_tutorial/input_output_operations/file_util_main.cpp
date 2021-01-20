@@ -56,6 +56,17 @@ void LoadFile2Map(const std::string& calib_file_path) {
     std::cout<<R0_Rect<<std::endl;
 }
 
+void TestListSubPaths()
+{
+    std::cout<<"=============TestListSubPaths==============="<<std::endl;
+    std::string dir_path = "/media/zhanghm/Data/Datasets/KITTI/tracking/training/oxts";
+    const auto name_vec = file_util::ListSubPaths(dir_path);
+
+    for (const auto& name : name_vec) {
+        std::cout<<name<<std::endl;
+    }
+}
+
 int main(int argc, char **argv)
 {
     std::string env_name = GetEnv("HOME");
@@ -86,6 +97,8 @@ int main(int argc, char **argv)
     std::cout<<"===================="<<std::endl;
     std::string calib_file_path = "../data/0000.txt";
     LoadFile2Map(calib_file_path);
+
+    TestListSubPaths();
 
     return 0;
 }
