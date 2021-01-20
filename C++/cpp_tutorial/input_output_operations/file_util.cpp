@@ -4,6 +4,13 @@
 
 namespace file_util {
 
+std::string JoinPath(const std::string& path1, const std::string& path2) {
+    if (path1.empty() || path2.empty()) return path1 + path2;
+    std::string path1_temp = (*(path1.end() - 1) != '/' ? path1 : path1.substr(0, path1.size() - 1));
+    std::string path2_temp = (*path2.begin() == '/' ? path2 : path2.substr(1, path1.size() - 1));
+    return path1_temp + path2_temp;
+}
+
 bool PathExists(const std::string &path) {
   struct stat info;
   return stat(path.c_str(), &info) == 0;

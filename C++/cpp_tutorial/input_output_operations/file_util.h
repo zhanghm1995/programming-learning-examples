@@ -21,6 +21,8 @@
 
 namespace file_util {
 
+std::string JoinPath(const std::string& path1, const std::string& path2);
+
 /**
  * @brief Check if the path exists, including file path and directory path
  * @param path a file name, such as /a/b/c.txt, this function can also check a directory path exist or not
