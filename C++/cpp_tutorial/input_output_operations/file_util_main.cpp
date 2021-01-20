@@ -65,17 +65,22 @@ int main(int argc, char **argv)
     std::cout<<env_name<<std::endl;
 
     std::cout<<"===================="<<std::endl;
-    if (file_util::PathExists("/home/zhanghm/readme.txt")) {
-        std::cout<<"Path exists"<<std::endl;
+    // std::string file_path = "/home/zhanghm/readme.txt";
+    std::string file_path = "/home/zhanghm/Temp/0000.txt";
+    // std::string file_path = "/home/zhanghm";
+    if (file_util::PathExists(file_path)) {
+        std::cout<<"file_path "<<file_path<<" exists"<<std::endl;
     } else {
-        std::cout<<"Path not exists"<<std::endl;
+        std::cout<<"file_path "<<file_path<<" not exists"<<std::endl;
     }
 
     std::cout<<"===================="<<std::endl;
-    if (file_util::DirectoryExists("/home/zhanghm/Coding")) {
-        std::cout<<"Directory exists"<<std::endl;
+    // std::string dir_path = "/home/zhanghm/Coding";
+    std::string dir_path = "/home/zhanghm/Temp/0000.txt";
+    if (file_util::DirectoryExists(dir_path)) {
+        std::cout<<"dir_path "<<dir_path<<"  exists"<<std::endl;
     } else {
-        std::cout<<"Directory not exists"<<std::endl;
+        std::cout<<"dir_path "<<dir_path<<" not exists"<<std::endl;
     }
 
     std::cout<<"===================="<<std::endl;
