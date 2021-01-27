@@ -150,7 +150,11 @@ int main() {
   out = FillFrontZero("100", 4);
   std::cout<<out<<std::endl;
 
+<<<<<<< HEAD
   cout<<"===================ConcatStrVec===================="<<endl;
+=======
+  cout<<"======================================="<<endl;
+>>>>>>> 1544d8d9ceb012c53462ea6c084f2c1100618e3b
   std::vector<std::string> str_vec = {"zhang", "hai", "ming"};
   std::string str_joined = ConcatStrVec(str_vec, "_");
   cout<<str_joined<<endl;
