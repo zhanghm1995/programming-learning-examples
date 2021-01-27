@@ -111,6 +111,21 @@ std::vector<std::string> WrapText2(const std::string& str_input, const int lengt
     return ret;
 }
 
+void TestPrintf()
+{
+  // print multiple \\ characters
+  printf("50 \\\\\n\\hline\n");
+
+  // more flexible one
+  char buf[1024]; 
+  sprintf(buf, "%d score and %d years ago", 4, 7);
+  std::string str(buf);
+  sprintf(buf, " It's will increase to %d", 10);
+  str += std::string(buf);
+
+  cout << str<<" "<<str.length() <<endl;
+}
+
 int main() {
   cout<<"============CustomDefinedCout=================="<<endl;
   CustomDefinedCout();
@@ -121,5 +136,7 @@ int main() {
 
   const int LENGTH = 10;
   cout<<std::abs(-19.34)<<endl;
+
+  TestPrintf();
   return 0;
 }
