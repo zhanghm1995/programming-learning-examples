@@ -1,1 +1,0 @@
-add_executable(macro_test macro_test.cpp class_define.cpp)
