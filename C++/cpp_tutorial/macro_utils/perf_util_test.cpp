@@ -4,7 +4,6 @@
 
 int main()
 {
-
     std::string indicator = "perf_util_test";
     PERF_BLOCK_START();
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
