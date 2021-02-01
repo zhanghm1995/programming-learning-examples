@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+
+<package format="2">
+  <name>iv_object_msgs</name>
+  <version>0.2.0</version>
+  <description>
+    ROS messages for the iv_object_msgs package.
+  </description>
+  <maintainer email="zhanghm1995@gmail.com">
+    Zhang Haiming
+  </maintainer>
+  <license>Apache 2.0</license>
+
+  <url>https://github.com/zhanghming/programming-learning-examples/tree/master/ROS</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  
+  <build_depend>message_generation</build_depend>
+</package>
