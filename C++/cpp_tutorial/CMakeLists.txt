@@ -29,7 +29,7 @@ find_package(Boost REQUIRED COMPONENTS filesystem thread system program_options)
 include_directories(${PROJECT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})
 
 add_subdirectory(argument_parse)
-add_subdirectory(macro_test)
+add_subdirectory(macro_utils)
 add_subdirectory(input_output_operations)
 add_subdirectory(class_examples)
 add_subdirectory(c++11)
