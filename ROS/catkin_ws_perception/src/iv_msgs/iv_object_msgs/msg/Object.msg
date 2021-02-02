@@ -1,19 +1,31 @@
-int32 id
+std_msgs/Header header
+
+int32 id # track id or detection sequence id
+
+# existence confidence
 float32 confidence
-string class_name
 
-geometry_msgs/PointStamped velo_pose
-geometry_msgs/PointStamped world_pose
-geometry_msgs/PointStamped cam_pose
+# object classification type, Car, Pedestrian, etc.
+string type
+uint8 type_id
+# type probability
+float32 type_prob
 
-float32 heading
-float32 velocity
-
-float32 length
-float32 width
-float32 height
+### Object properties
+#object bounding box center [cx,cy,cz]
+geometry_msgs/Vector3 center
+# object bounding box size information [length, width, height]
+geometry_msgs/Vector3 size
+# object yaw angle [rad]
 float32 orientation
 
-uint32 r
-uint32 g
-uint32 b
+### velocity information
+# composite linear speed sqrt(x^2 + y^2 + z^2)
+float32 speed
+# velocity vector
+geometry_msgs/Vector3 velocity
+geometry_msgs/Vector3 absolute_velocity
+
+
+# polygon points
+geometry_msgs/Polygon polygon
