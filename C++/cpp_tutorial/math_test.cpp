@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 using std::cout;
 using std::endl;
@@ -45,6 +46,22 @@ double SortTheta() {
     } else {
         cout<<"Not Inverse"<<endl;
     }
+}
+
+/**
+ * @brief Test std::atan2 function usage
+ */ 
+void TestAtan()
+{
+  std::vector<double> points_x = {10, 6, -1, -0.4, -10};
+  std::vector<double> points_y = {0, 2, 8, -3, -0.5};
+
+  for (int i = 0; i < points_y.size(); ++i) {
+      auto x = points_x[i];
+      auto y = points_y[i];
+      auto tempb = (std::atan2(y, x)) * 180.0 / M_PI;
+      printf("angle is %.3f\n", tempb);
+  }
 }
 
 int main() {
