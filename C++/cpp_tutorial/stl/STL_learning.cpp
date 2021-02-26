@@ -19,25 +19,10 @@
 #include <algorithm>
 #include <Eigen/Dense>
 
+#include "stl_util.h"
+
 using namespace Eigen;
 using namespace std;
-
-/**
- * http://www.java2s.com/Tutorial/Cpp/0260__template/templatefunctiontoprintelementsofanSTLcontainer.htm
- * @brief This print function is valid for std::set, std::vector, std::list
- *                it not worked for std::map
- **/
-template <typename T>
-void PrintSTLContainer(T const &container)
-{
-  typename T::const_iterator pos;                  // iterator to iterate over coll
-  typename T::const_iterator end(container.end()); // end position
-
-  for (pos = container.begin(); pos != end; ++pos) {
-    std::cout << *pos << ' ';
-  }
-  std::cout << std::endl;
-}
 
 /**
  * @brief Learn how to use std::set
@@ -64,7 +49,7 @@ void test_set()
   cout << "Test find(), erase(), clear(), empty() functions:" << endl;
   it = Myset.find(5);
   Myset.erase(it, Myset.end()); //删除Myset的it到end之间的元素
-  PrintSTLContainer(Myset);
+  stl_util::PrintSTLContainer(Myset);
 
   cout << "Use find or count function to check the element existence:" << endl;
   if (Myset.find(5) == Myset.end()) {
@@ -98,7 +83,7 @@ void test_set_delete()
       ++i;
     }
   }
-  PrintSTLContainer(SetCase1);
+  stl_util::PrintSTLContainer(SetCase1);
 
   // Note: this method may incorrect,
   //       but I don't know why the result is right!
@@ -109,7 +94,7 @@ void test_set_delete()
       SetCase2.erase(it);
     }
   }
-  PrintSTLContainer(SetCase2);
+  stl_util::PrintSTLContainer(SetCase2);
 
   // https://stackoverflow.com/questions/2874441/deleting-elements-from-stl-set-while-iterating
   cout << "Method 3:" << endl;
@@ -121,7 +106,7 @@ void test_set_delete()
       SetCase3.erase(curr_it);
     }
   }
-  PrintSTLContainer(SetCase2);
+  stl_util::PrintSTLContainer(SetCase2);
 }
 
 void test_map()
