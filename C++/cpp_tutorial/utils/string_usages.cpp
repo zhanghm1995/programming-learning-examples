@@ -64,12 +64,17 @@ void CompareString() {
   auto it = std::find_if(person.begin(), person.end(), [&](std::string& obj) {
     return !strcasecmp(obj.c_str(), input.c_str());
   });
-  if (it != person.end())
+
+  if (it != person.end()) {
    std:: cout << "is person" << std::endl;
-  else
+  } else {
     std::cout << "not person" << std::endl;
+  }
 }
 
+/**
+ * @brief Convert "10" to "00010" format
+ */ 
 template <typename DataType>
 std::string FillFrontZero(const DataType input, const int num)
 {
@@ -114,18 +119,18 @@ std::string ConcatStrVec(const std::vector<std::string>& v, const std::string& d
 }
 
 int main() {
-  std::cout<<"=================="<<std::endl;
-  std::vector<std::string> result;
-  SplitString("zhang hai ming", ' ', &result);
-  for (auto o : result) {
-      std::cout<<o<<std::endl;
-  }
-
-  std::cout<<"=================="<<std::endl;
-  if (EndWith("image.jpg", ".jpg")) {
-    std::cout<<"Yes"<<std::endl;
+  std::cout<<"======EndWith============"<<std::endl;
+  if (EndWith("image.jpg", "jpg")) {
+    std::cout<<"Yes, End with jpg"<<std::endl;
   } else {
     std::cout<<"No"<<std::endl;
+  }
+
+  std::vector<std::string> img_pats({"jpg", "bmp", "png"});
+  if (EndWith("image.bmp",  img_pats)) {
+    std::cout<<"Yes, End with image suffix"<<std::endl;
+  } else {
+    std::cout<<"No, Not End with image suffix"<<std::endl;
   }
 
   std::cout<<"========ConvertStrCase=========="<<std::endl;
@@ -150,9 +155,31 @@ int main() {
   out = FillFrontZero("100", 4);
   std::cout<<out<<std::endl;
 
-  cout<<"===================ConcatStrVec===================="<<endl;
+  cout<<"===================Join string vector===================="<<endl;
   std::vector<std::string> str_vec = {"zhang", "hai", "ming"};
   std::string str_joined = ConcatStrVec(str_vec, "_");
   cout<<str_joined<<endl;
+
+  std::cout<<"========Split string=========="<<std::endl;
+  std::vector<std::string> result;
+  SplitString("zhang hai ming", ' ', &result);
+  std::copy(result.begin(), result.end(), std::ostream_iterator<std::string>(std::cout, ","));
+  std::cout<<std::endl;
+  /// 分割数字字符串
+  std::string line_str("49.011212804408 8.4228850417969 112.83492279053 0.022447 1e-05 -1.2219096732051 -3.3256321640686 "
+                                         "1.1384311814592 3.5147680214713 0.037625160413037 -0.03878884255623");
+  result.clear();
+  Split(line_str, result, " ");
+
+  std::copy(result.begin(), result.end(), std::ostream_iterator<std::string>(std::cout, ","));
+  std::cout<<std::endl;
+
+  // 转为数字vector
+  std::vector<double> result_double(result.size()); // 需要先分配存储空间
+  std::transform(result.begin(), result.end(), result_double.begin(), [](const std::string& val) { return std::stod(val); });
+
+  std::copy(result_double.begin(), result_double.end(), std::ostream_iterator<double>(std::cout, ","));
+  std::cout<<std::endl;
+
   return 0;
 }

@@ -83,3 +83,8 @@ inline bool StartWith(const std::string& ori, const std::string& pat) {
 inline bool EndWith(const std::string& ori, const std::string& pat) {
   return std::equal(pat.rbegin(), pat.rend(), ori.rbegin());
 }
+
+inline bool EndWith(const std::string& ori, const std::vector<std::string>& pat_vec )
+{
+  return std::any_of(pat_vec.begin(), pat_vec.end(), [&](const std::string& pat){ return EndWith(ori, pat); });
+}
