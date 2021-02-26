@@ -279,7 +279,6 @@ void TestProcessContainerFunction() {
   cout << "=========Begin test TestProcessContainerFunction=========" << endl;
   Object obj1(10, "zhang san"), obj2(27, "li si"), obj3(8, "wang wu");
   std::vector<Object> obj_vec = {obj1, obj2, obj3};
-  std::list<Object> obj_list = {obj1, obj2, obj3};
 
   ProcessContainer(obj_vec.begin(), obj_vec.end());
   cout<<"obj_vec is "<<endl;
@@ -288,6 +287,8 @@ void TestProcessContainerFunction() {
   }
 
   cout<<endl;
+
+  std::list<Object> obj_list = {obj1, obj2, obj3};
   ProcessContainer(obj_list.begin(), obj_list.end());
   cout<<"obj_list is "<<endl;
   for (const auto& obj : obj_list) {
@@ -333,7 +334,7 @@ void TestContainerCondition() {
   // 所有元素都不满足指定条件为真
   // http://www.cplusplus.com/reference/algorithm/none_of/
   std::array<int, 8> foo = {1,2,4,8,16,32,64,128};
-  if (std::none_of(foo.begin(), foo.end(), [](int i){return i<0;})) {
+  if (std::none_of(foo.begin(), foo.end(), [](int i){ return i<0; })) {
     std::cout << "There are no negative elements in the range.\n";
   }
 
@@ -341,7 +342,7 @@ void TestContainerCondition() {
   // 只要有一个元素满足指定条件为真
   // http://www.cplusplus.com/reference/algorithm/any_of/
   std::array<int,7> foo2 = {0,1,-1,3,-3,5,-5};
-  if ( std::any_of(foo2.begin(), foo2.end(), [](int i){return i<0;}) ) {
+  if (std::any_of(foo2.begin(), foo2.end(), [](int i){ return i<0; })) {
     std::cout << "There are negative elements in the range.\n";
   }
 

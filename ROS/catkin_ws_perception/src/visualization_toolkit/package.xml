@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+
+<package format="2">
+  <name>visualization_toolkit</name>
+  <version>0.2.0</version>
+  <description>
+    ROS for the visualization_toolkit package.
+  </description>
+  <maintainer email="zhanghm1995@gmail.com">
+    Zhang Haiming
+  </maintainer>
+  <license>Apache 2.0</license>
+
+  <url>https://github.com/zhanghming/programming-learning-examples/tree/master/ROS</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>roslib</depend>
+
+  <depend>iv_object_msgs</depend>
+  
+</package>

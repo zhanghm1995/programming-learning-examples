@@ -15,6 +15,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <iterator>
 
 /**
  * @brief split string by one character
@@ -44,6 +45,27 @@ inline void Split(const std::string& input_str, std::vector<std::string>& output
     pos = npos + regexlen;
   }
   output.push_back(input_str.substr(pos, input_str.length() - pos));
+}
+
+/**
+ * @brief Join elements in stl::Container with delimiter
+ * ! note: delimiter cannot contain NUL characters! note: delimiter cannot contain NUL characters* ! note: delimiter cannot contain NUL characters
+ * https://stackoverflow.com/questions/5288396/c-ostream-out-manipulation/5289170#5289170
+ */
+template <typename Range, typename Value = typename Range::value_type>
+inline std::string JoinStr(const Range& elements, const char *const delimiter) {
+    std::ostringstream os;
+    auto b = begin(elements), e = end(elements);
+
+    if (b != e) {
+        std::copy(b, prev(e), std::ostream_iterator<Value>(os, delimiter));
+        b = prev(e);
+    }
+    if (b != e) {
+        os << *b;
+    }
+
+    return os.str();
 }
 
 /**
@@ -82,4 +104,9 @@ inline bool StartWith(const std::string& ori, const std::string& pat) {
  */
 inline bool EndWith(const std::string& ori, const std::string& pat) {
   return std::equal(pat.rbegin(), pat.rend(), ori.rbegin());
+}
+
+inline bool EndWith(const std::string& ori, const std::vector<std::string>& pat_vec )
+{
+  return std::any_of(pat_vec.begin(), pat_vec.end(), [&](const std::string& pat){ return EndWith(ori, pat); });
 }
