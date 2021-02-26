@@ -31,7 +31,10 @@ void CloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg)
 {
     pcl::PointCloud<pcl::PointXYZI>::Ptr temp_cloud(new pcl::PointCloud<pcl::PointXYZI>);
     pcl::fromROSMsg(*msg, *temp_cloud);
-    ROS_INFO("CloudCallback size is %d", temp_cloud->size());
+    ROS_INFO("CloudCallback size is %d, timestamp:%.9f timestamp_ns:%lu", 
+                            temp_cloud->size(), 
+                            msg->header.stamp.toSec(),
+                            msg->header.stamp.toNSec());
 }
 
 int main(int argc, char** argv)
