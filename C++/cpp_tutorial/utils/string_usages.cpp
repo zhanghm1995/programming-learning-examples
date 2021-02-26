@@ -6,6 +6,7 @@
 * Descriptoin  : Learn all about the usages of string in CPP, including 
                                std::string or the char[] and char*.
 * References   : https://www.geeksforgeeks.org/program-generate-random-alphabets/
+                               https://ykj373998035.gitbooks.io/c-string-/content/2stringde_fen_ge_3001_ti_636228_lei_si_string__spli.html
 ======================================================================*/
 
 #include <iostream>
@@ -85,6 +86,7 @@ std::string FillFrontZero(const DataType input, const int num)
 
 /**
  * @brief Convert string to other data and vice versa
+ * @ref https://en.cppreference.com/w/cpp/string/basic_string/stof
  */ 
 void ConvertStringData()
 {
