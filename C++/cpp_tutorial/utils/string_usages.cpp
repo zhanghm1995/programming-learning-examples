@@ -91,26 +91,7 @@ void ConvertStringData()
   
 }
 
-/*! note: delimiter cannot contain NUL characters
-  * https://stackoverflow.com/questions/5288396/c-ostream-out-manipulation/5289170#5289170
-  */
-template <typename Range, typename Value = typename Range::value_type>
-std::string JoinStr(Range const& elements, const char *const delimiter) {
-    std::ostringstream os;
-    auto b = begin(elements), e = end(elements);
-
-    if (b != e) {
-        std::copy(b, prev(e), std::ostream_iterator<Value>(os, delimiter));
-        b = prev(e);
-    }
-    if (b != e) {
-        os << *b;
-    }
-
-    return os.str();
-}
-
-std::string ConcatStrVec(const std::vector<std::string>& v, const std::string& delim)
+std::string TestConcatStrVec(const std::vector<std::string>& v, const std::string& delim)
 {
   std::string s = JoinStr(v, delim.c_str());
   // std::string s;
@@ -142,7 +123,7 @@ int main() {
   std::cout<<"========CompareString=========="<<std::endl;
   CompareString();
 
-  std::cout<<"=================="<<std::endl;
+  std::cout<<"========Trim string=========="<<std::endl;
   std::string str = "    zhanghai ming \n";
   std::string str_trim = ltrim(str);
   std::cout<<str_trim<<std::endl;
@@ -157,7 +138,7 @@ int main() {
 
   cout<<"===================Join string vector===================="<<endl;
   std::vector<std::string> str_vec = {"zhang", "hai", "ming"};
-  std::string str_joined = ConcatStrVec(str_vec, "_");
+  std::string str_joined = TestConcatStrVec(str_vec, "_");
   cout<<str_joined<<endl;
 
   std::cout<<"========Split string=========="<<std::endl;
