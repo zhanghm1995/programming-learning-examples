@@ -33,8 +33,8 @@ using namespace std;
 ros::Time lidar_time;
 ros::Publisher cloud_pub;
 bool flag = true;
-geometry_msgs::TransformStamped getStaticTransform(string target_frame_id, string source_frame_id,
-                      const Eigen::MatrixXf& transform)
+geometry_msgs::TransformStamped getStaticTransform(
+    string target_frame_id, string source_frame_id, const Eigen::MatrixXf& transform)
 {
   geometry_msgs::TransformStamped static_transformStamped;
   static_transformStamped.header.stamp = ros::Time::now();
@@ -123,6 +123,110 @@ int main(int argc, char** argv)
 }
 #endif
 
+const double ARC_TO_DEG = 57.29577951308238;
+const double DEG_TO_ARC = 0.0174532925199433;
+
+/**
+ * @ref https://zhuanlan.zhihu.com/p/55790406
+ */ 
+static void toEulerAngle(const Eigen::Quaterniond& q, double& roll, double& pitch, double& yaw)
+{
+  // roll (x-axis rotation)
+  double sinr_cosp = +2.0 * (q.w() * q.x() + q.y() * q.z());
+  double cosr_cosp = +1.0 - 2.0 * (q.x() * q.x() + q.y() * q.y());
+  roll = atan2(sinr_cosp, cosr_cosp);
+
+  // pitch (y-axis rotation)
+  double sinp = +2.0 * (q.w() * q.y() - q.z() * q.x());
+  if (fabs(sinp) >= 1)
+    pitch = copysign(M_PI / 2, sinp); // use 90 degrees if out of range
+  else
+    pitch = asin(sinp);
+
+  // yaw (z-axis rotation)
+  double siny_cosp = +2.0 * (q.w() * q.z() + q.x() * q.y());
+  double cosy_cosp = +1.0 - 2.0 * (q.y() * q.y() + q.z() * q.z());
+  yaw = atan2(siny_cosp, cosy_cosp);
+}
+
+/**
+ * @brief 生成不同组的RPY角度值,用来进行不同情况的测试验证
+ *                修改number值来修改
+ *                角度单位: radian
+ */ 
+void GenerateRPY(double& roll, double& pitch, double& yaw)
+{
+  const int number = 3;
+
+  if (number == 1) {
+    // 这一组会在Eigen::Quaterniond转为Euler角时出现歧义
+    roll = 0.22857;
+    pitch = 0.004342;
+    yaw = -1.20607667;
+  } else if (number == 2) {
+   double roll_deg = 0.5;      // 绕X轴
+   double pitch_deg = 0.8;     // 绕Y轴
+   double yaw_deg = 108.5;     // 绕Z轴
+
+   // 转化为弧度
+   roll = roll_deg * DEG_TO_ARC;    // 绕X轴
+   pitch = pitch_deg * DEG_TO_ARC;  // 绕Y轴
+   yaw = yaw_deg * DEG_TO_ARC;      // 绕Z轴
+  } else if (number == 3) {
+    roll = 0.0;
+    pitch = 0.0;
+    yaw = 0.7853981633974483; // PI / 4
+  } else {
+    cout<<"Not implemented"<<endl;
+  }
+}
+
+void TransformInROS(const double roll, const double pitch, const double yaw)
+{
+  cout<<"===============Begin TransformInROS======================="<<endl;
+  // 从欧拉角转四元数
+  tf::Quaternion q = tf::createQuaternionFromRPY(roll, pitch, yaw);
+  // 或者用
+  q.setRPY(roll, pitch, yaw);
+  cout<< "tf QUaternion "<<endl<<q.getX()<<" "<<q.getY()<<" "<<q.getZ()<<" "<<q.getW()<<endl;
+  cout<<"tf yaw "<<endl<<tf::getYaw(q)<<endl;
+  cout<<"===============End TransformInROS======================="<<endl;
+}
+
+void TransformInEigen(const double roll, const double pitch, const double yaw)
+{
+  cout<<"===============Begin TransformInEigen======================="<<endl;
+  // 从欧拉角转四元数
+  Eigen::Quaterniond q_eigen;
+  q_eigen =  Eigen::AngleAxisd(yaw, Eigen::Vector3d::UnitZ()) *  
+                        Eigen::AngleAxisd(pitch, Eigen::Vector3d::UnitY()) * 
+                        Eigen::AngleAxisd(roll, Eigen::Vector3d::UnitX());
+  std::cout << "Eigen Quaternion" << std::endl << q_eigen.coeffs() << std::endl; // 打印Eigen::Quaternion内容
+
+  // Note: 从四元数到欧拉角, 有可能存在角度的歧义性, 用toEulerAngle函数可以解决
+  Eigen::Vector3d euler_angles = q_eigen.matrix().eulerAngles(2, 1, 0); // ZYX顺序, 得到yaw, pitch, roll
+  cout<<"Eigen yaw pitch roll from Quaternion:"<<endl<<euler_angles<<endl;
+  double roll_tmp, pitch_tmp, yaw_tmp;
+  toEulerAngle(q_eigen, roll_tmp, pitch_tmp, yaw_tmp);
+  cout<<"经过转换后的RPY: "<<roll_tmp<<" "<<pitch_tmp<<" "<<yaw_tmp<<" "<<endl;
+
+  cout<<"==========欧拉角转四元数是唯一的========"<<endl;
+  q_eigen = Eigen::AngleAxisd(yaw, Eigen::Vector3d::UnitZ()) *  
+                       Eigen::AngleAxisd(pitch, Eigen::Vector3d::UnitY()) * 
+                       Eigen::AngleAxisd(roll, Eigen::Vector3d::UnitX());
+  std::cout << "Eigen Quaternion" << std::endl << q_eigen.coeffs() << std::endl;
+
+  // 四元数转旋转矩阵
+  Eigen::Matrix3d rot = q_eigen.matrix();
+  cout<<"Eigen rotation matrix"<<endl<<rot<<endl;
+  cout<<"roation matrix inverse is its transpose: "<<endl<<rot.inverse()<<endl;
+
+  // 旋转矩阵到四元数
+  Eigen::Quaterniond qq_eign(rot);
+  std::cout << "Eigen Quaternion from rotation matrix: " << std::endl << qq_eign.coeffs() << std::endl;
+
+  cout<<"===============End TransformInEigen======================="<<endl;
+}
 
 int main(int argc, char **argv)
 {
@@ -130,38 +234,17 @@ int main(int argc, char **argv)
   ros::NodeHandle nh;
 
   // 测试ROS tf中从roll, pitch, yaw到旋转矩阵的转换和Eigen的转换的区别
-  float roll,pitch,yaw;
-  roll = 0.22857;
-  pitch = 0.004342;
-  yaw = -1.20607667;
-  tf::Quaternion q = tf::createQuaternionFromRPY(roll, pitch, yaw);
-  cout<< "tf QUaternion "<<endl<<q.getX()<<" "<<q.getY()<<" "<<q.getZ()<<" "<<q.getW()<<endl;
-  cout<<"tf yaw "<<endl<<tf::getYaw(q)<<endl;
+  cout<<"*********************************欧拉角与tf四元数和Eigen四元数*********************************************"<<endl;
+  double roll, pitch, yaw;
+  GenerateRPY(roll, pitch, yaw);
+  cout<<"原始的RPY: "<<roll<<" "<<pitch<<" "<<yaw<<endl;
 
-  Eigen::Quaterniond q_eigen;
-  q_eigen =   Eigen::AngleAxisd(yaw, Eigen::Vector3d::UnitZ())
-            *  Eigen::AngleAxisd(pitch, Eigen::Vector3d::UnitY())
-           * Eigen::AngleAxisd(roll, Eigen::Vector3d::UnitX());
-  std::cout << "Eigen Quaternion" << std::endl << q_eigen.coeffs() << std::endl;
+  TransformInROS(roll, pitch, yaw);
 
-  Eigen::Matrix3d rot = q_eigen.matrix();
-  cout<<"Eigen rotation matrix "<<rot.rows()<<" "<<rot.cols()<<endl<<rot<<endl;
+  TransformInEigen(roll, pitch, yaw);
+  
 
-  Eigen::Quaterniond qq_eign(rot);
-  std::cout << "Eigen Quaternion" << std::endl << qq_eign.coeffs() << std::endl;
-
-  Eigen::Vector3d euler_angles = q_eigen.toRotationMatrix().eulerAngles ( 2,1,0 ); // ZYX顺序
-  cout<<"yaw pitch roll = "<<euler_angles.transpose()<<endl;
-  yaw = euler_angles[0];
-  pitch = euler_angles[1];
-  roll = euler_angles[2];
-  cout<<"=================="<<endl;
-  q_eigen =   Eigen::AngleAxisd(yaw, Eigen::Vector3d::UnitZ())
-              *  Eigen::AngleAxisd(pitch, Eigen::Vector3d::UnitY())
-             * Eigen::AngleAxisd(roll, Eigen::Vector3d::UnitX());
-    std::cout << "Eigen Quaternion" << std::endl << q_eigen.coeffs() << std::endl;
-
-  cout<<"---------------"<<endl;
+  cout<<"-------测试ROS tf中的坐标变换--------"<<endl;
   // Begin publish static tf
   Eigen::Matrix4f RT_velo_to_cam, RT_imu_to_velo, RT_velo_to_base;
   RT_velo_to_cam<<7.533745e-03,-9.999714e-01,-6.166020e-04,-4.069766e-03,
@@ -193,13 +276,23 @@ int main(int argc, char **argv)
   tf::StampedTransform transform;
   listener.waitForTransform("/camera_color_left", "velo_link", ros::Time(0),ros::Duration(1.0));
   listener.lookupTransform("/camera_color_left", "/velo_link", ros::Time(0), transform);
-  cout<<transform.getOrigin().getX()<<" "<<transform.getOrigin().getY()<<" "<<
-      transform.getOrigin().getZ()<<endl;
+  cout<<"获得velo_link相对camera_color_left坐标系的变换关系"<<endl;
+  cout<<transform.getOrigin().getX()<<" "
+           <<transform.getOrigin().getY()<<" "
+           <<transform.getOrigin().getZ()<<endl;
+
+  // 打印旋转矩阵
+  auto T =  transform;
+  printf("[ %f %f %f \n %f %f %f \n %f %f %f ]\n", 
+                T.getBasis()[0][0], T.getBasis()[0][1], T.getBasis()[0][2],
+                T.getBasis()[1][0], T.getBasis()[1][1], T.getBasis()[1][2],
+                T.getBasis()[2][0], T.getBasis()[2][1], T.getBasis()[2][2]);
+
   Eigen::Quaterniond qq(transform.getRotation().getW(), transform.getRotation().getX(),
-      transform.getRotation().getY(),transform.getRotation().getZ());
-  cout<<"rotation "<<endl<<qq.matrix()<<endl;
+                                                  transform.getRotation().getY(),transform.getRotation().getZ());
+  cout<<"从四元数得到的rotation "<<endl<<qq.matrix()<<endl;
 
   ros::spin();
+
   return 0;
 }
-

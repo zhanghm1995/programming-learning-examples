@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <initializer_list>
+#include <typeinfo>
 
 using std::cout;
 using std::endl;
