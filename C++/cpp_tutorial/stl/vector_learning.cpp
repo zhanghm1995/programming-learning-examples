@@ -16,6 +16,42 @@ using std::cout;
 using std::endl;
 
 /**
+ * @brief 
+ * @ref https://blog.csdn.net/qq_38149046/article/details/81181248
+ */
+void TestInsert()
+{
+    cout << "=========Begin TestInsert=========" << endl;
+    /// 用法一: 在Vector的指定位置插入值
+    std::vector<int> v = {1, 2, 3};
+    v.insert(v.begin(),8);//在最前面插入新元素。  
+    v.insert(v.begin()+2,1);//在迭代器中第二个元素前插入新元素  
+    v.insert(v.end(),3);//在向量末尾追加新元素。
+
+    v.insert(v.end(),4,1);//在尾部插入4个1
+ 
+	int a[] = {1,2,3,4};
+	v.insert(v.end(),a[1],a[3]);//在尾部插入a[1]个a[3]
+ 
+    std::vector<int>::iterator it;  
+    for(it=v.begin(); it!=v.end();it++)   { 
+        cout<<*it<<" ";  
+    } 
+    cout<<endl;
+
+    /// 用法二: 可将两个vector相连接
+    std::vector<int> int_vec1 = {3, 4, 5};
+    std::vector<int> int_vec2 = {7, 8, 9};
+    int_vec1.insert(int_vec1.begin(), int_vec2.begin(), int_vec2.end());
+    cout<<"在vector前面插入另一个vector"<<endl;
+    stl_util::PrintSTLContainer(int_vec1);
+    int_vec1.insert(int_vec1.end(), int_vec2.begin(), int_vec2.end());
+    cout<<"在vector后面插入另一个vector"<<endl;
+    stl_util::PrintSTLContainer(int_vec1);
+
+    cout << "=========End TestInsert=========" << endl;
+}
+/**
  * @brief vector片段截取操作
  */ 
 void ProcessPartVector()
@@ -42,4 +78,6 @@ void ProcessPartVector()
 int main(int argc, char** argv)
 {
     ProcessPartVector();
+
+    TestInsert();
 }
