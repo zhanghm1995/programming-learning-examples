@@ -21,6 +21,12 @@
 
 namespace file_util {
 
+/**
+ * @brief Join the file path like /a/b and c/d.txt to /a/b/c/d.txt
+ * @param path1 
+ * @param path2 
+ * @return std::string 
+ */
 std::string JoinPath(const std::string& path1, const std::string& path2);
 
 /**
