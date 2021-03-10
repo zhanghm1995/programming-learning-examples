@@ -20,10 +20,17 @@ using std::endl;
 void TransformRigidCoordinate() {
   Eigen::Translation3d translation(1.2, 3.4, 5.7);
   Eigen::Quaterniond rotation(1.0, 0, 0, 0);
+
+  /// 一个刚体变换矩阵可以拆分为一个平移矩阵乘以一个旋转矩阵
   Eigen::Affine3d trans = translation * rotation;
 
    Eigen::Matrix4d pose = trans.matrix();
   cout<<pose<<endl;
+
+  /// 对某个点进行刚体变换
+  Eigen::Vector3d pt(1.0, 2.0, 3.0);
+  auto pt_trans = trans * pt;
+  cout<<pt_trans<<endl;
 }
 
 int main()

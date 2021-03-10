@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
-project(test)
+project(cpp_library)
 
 set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
+
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -O0 -g")
 set(CMAKE_BUILD_TYPE "Release")
 include(CheckCXXCompilerFlag)

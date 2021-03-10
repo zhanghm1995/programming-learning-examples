@@ -17,7 +17,7 @@ using std::endl;
 int main() {
     int a = 1;
     int b = 0;
-    int c;
+    int c = 100;
 
     try {
         // c = a / b;
@@ -28,5 +28,5 @@ int main() {
 
     assert(a == 10);
     
-    // cout<<c<<endl;
+    cout<<c<<endl;
 }
