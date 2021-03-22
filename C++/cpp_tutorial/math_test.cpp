@@ -64,10 +64,65 @@ void TestAtan()
   }
 }
 
+/**
+ * @brief Get the Rainbow Color RGB value form a scalar value
+ *                 refer to the sensor_msgs::PointCloud2 visualization scheme in Rviz software
+ * @param value Should be in [0, 1]
+ * @param color 
+ */
+static void getRainbowColor(float value, float* color)
+{
+  value = std::min(value, 1.0f);
+  value = std::max(value, 0.0f);
+
+  float h = value * 5.0f + 1.0f;
+  int i = floor(h);
+  float f = h - i;
+  if ( !(i&1) ) f = 1 - f; // if i is even
+  float n = 1 - f;
+
+  if      (i <= 1) color[0] = n, color[1] = 0, color[2] = 1;
+  else if (i == 2) color[0] = 0, color[1] = n, color[2] = 1;
+  else if (i == 3) color[0] = 0, color[1] = 1, color[2] = n;
+  else if (i == 4) color[0] = n, color[1] = 1, color[2] = 0;
+  else if (i >= 5) color[0] = 1, color[1] = n, color[2] = 0;
+}
+
+void Range2Color(float min, float max, float val)
+{
+    auto diff = max - min;
+    auto value = 1.0 - (val - min) / diff;
+
+    float color[3];
+    getRainbowColor(value, color);
+    printf("rgb:[%f,%f,%f]\n", color[0], color[1], color[2]);
+}
+
+void TestColor()
+{
+    cout<<"-=============Begin TestColor==============="<<endl;
+    std::vector<float> value_vec;
+    value_vec.reserve(1000);
+    for (float i = 0; i <= 96;) {
+        value_vec.push_back(i);
+        i += 0.5;
+    }
+
+    for (const auto& val : value_vec) {
+        printf("val:%f ", val);
+        Range2Color(0, 96, val);
+    }
+    cout<<"-=============End TestColor==============="<<endl;
+}
+
 int main() {
     SortTheta();
 
     double angle = 90.0;
     double angle_rad = deg2rad(angle);
     cout<<"angle_rad "<<angle_rad<<endl;
+
+    TestColor();
+
+    return 0;
 }
