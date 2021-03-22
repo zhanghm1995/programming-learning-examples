@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
-project(test)
+project(cpp_tutorial)
 
 set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
+
 set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O0 -g")
 set(CMAKE_BUILD_TYPE "Release")
 include(CheckCXXCompilerFlag)
@@ -42,9 +43,6 @@ add_subdirectory(logging)
 #############
 add_executable(base_conversion base_conversion.cpp)
 
-# add_executable(c_test c_test.cpp )  
-# target_link_libraries(c_test ${OpenCV_LIBS})
-
 add_executable(anonymous_namespace_test include_test/anonymous_namespace_test.cpp
                                                                                                  include_test/test.cpp
                                                                                                  include_test/test1.cpp)
@@ -55,7 +53,6 @@ target_link_libraries(boost_signal ${Boost_LIBRARIES})
 add_executable(function_test function_test.cpp)
 
 add_executable(shared_ptr_test shared_ptr_test.cpp)
-set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
 
 add_executable(time_utils_test time_utils_test.cpp)
 

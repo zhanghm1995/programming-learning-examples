@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 project(eigen_learning)
 
 set(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -O0 -g")
+set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O0 -g")
 set(CMAKE_BUILD_TYPE "Release")
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
