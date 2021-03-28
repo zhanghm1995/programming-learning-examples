@@ -56,5 +56,6 @@ int main()
     Point<double> pt_double(14.0, 18.8);
     ProcDiffType(pt_float, pt_float);
     ProcDiffType(pt_float, pt_double);
+    
     return 0;
 }
