@@ -177,7 +177,9 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "cloud_subsriber_publisher_node");
   ros::NodeHandle nh;
+
   ros::Subscriber sub_pointcloud = nh.subscribe<sensor_msgs::PointCloud2>("/kitti/velo/point_cloud", 10, CloudCallback);
+  
   g_pub_cloud = nh.advertise<sensor_msgs::PointCloud2>("/velody_cloud", 2);
 
   ros::spin();

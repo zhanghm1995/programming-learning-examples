@@ -23,5 +23,5 @@ struct ObjectDisplayOptions {
     bool is_show_polygon = false;
 };
 
-}
+} // end visualization
 #endif //PROJECT_TYPE_DEFINE_H

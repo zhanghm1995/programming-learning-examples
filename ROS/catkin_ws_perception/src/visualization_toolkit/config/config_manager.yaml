@@ -3,7 +3,7 @@ Root:
   is_show_frame_num: true # whether show the frame number in rviz for debugging
 
 Object_Display_Node:
-  - sub_object_array_topic: /kitti/ground_truth/object_array
+  - sub_object_array_topic: /pub_dataset/ground_truth/object_array
     is_display: true
     pub_vis_marker_topic: /viz/object_array_1
     is_show_hollow_bbox: true

@@ -74,6 +74,7 @@ int main(int argc, char** argv) {
 
     TestRosTime();
     TestRosTime2();
+    
     ros::spin();
     return 0;
 }

@@ -22,7 +22,7 @@ using VObjectArray = iv_object_msgs::ObjectArray;
 using VObjectArrayConstPtr = VObjectArray::ConstPtr;
 
 /**
- * @brief To visualize fusion results in Rviz
+ * @brief To visualize 3D ObjectArray results in Rviz
  */
 class Rviz3dObjectVisualizer {
 public:

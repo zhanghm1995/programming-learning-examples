@@ -29,3 +29,6 @@ geometry_msgs/Vector3 absolute_velocity
 
 # polygon points
 geometry_msgs/Polygon polygon
+
+# cloud points [optional]
+geometry_msgs/Polygon cloud_points

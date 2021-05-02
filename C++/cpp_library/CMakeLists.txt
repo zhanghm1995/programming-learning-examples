@@ -26,10 +26,14 @@ endif()
 
 # set(OpenCV_DIR "/usr/local/opencv3/share/OpenCV")
 find_package(Eigen3 REQUIRED)
+find_package (glog REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem thread system program_options)
 include_directories(${PROJECT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})
+
 
 #############
 ####Build####
 #############
 add_subdirectory(dst_function)
+
+add_subdirectory(geometry)

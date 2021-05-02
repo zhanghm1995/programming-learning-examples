@@ -8,6 +8,7 @@
 ======================================================================*/
 
 #include <iostream>
+#include <thread>
 
 #include <ros/ros.h>
 #include <std_msgs/Int32.h>
@@ -35,6 +36,37 @@ public:
   }
 };
 
+/**
+ * @brief 如何使用在类中开启新的线程处理任务
+ * 
+ */
+class ObjectProcess {
+public:
+  void Process()
+  {
+    process_thread_ =   std::thread(&ObjectProcess::ProcessThread, this);
+  }
+
+  static void ProcessThread(void *const args)
+  {
+    auto * const _impl = reinterpret_cast<ObjectProcess *>(args);
+    while (_impl->workable) {
+      // Do something
+
+    }
+  }
+
+  ~ObjectProcess()
+  {
+    workable = false;
+    process_thread_.join();
+  }
+
+private:
+  bool workable = true;
+  std::thread process_thread_;
+};
+
 int main(int argc, char** argv) {
   ros::init(argc, argv, "topic_callback_test");
   ros::NodeHandle nh;
@@ -46,6 +78,7 @@ int main(int argc, char** argv) {
   ros::Subscriber sub = nh.subscribe("/Int32_msg", 2, &Example::MsgCallback, &ex);
 
   ros::Subscriber sub2 = nh.subscribe("/Int32_msg2", 2, &Singleton::MsgCallback, instance);
+
   ros::spin();
 
   return 1;
