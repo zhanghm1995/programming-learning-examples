@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(visualization_toolkit)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -O1 -std=gnu++0x")
+set(CMAKE_CXX_FLAGS "-W -O1 -std=gnu++0x")
 set(CMAKE_BUILD_TYPE "Release")
 
 set(PACKAGE_DEPENDENCIES
