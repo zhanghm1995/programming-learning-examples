@@ -1,0 +1,46 @@
+#If in ARM framework, set ON
+set(ARM "OFF") # ON | OFF
+
+if(${ARM} STREQUAL "ON")
+    message(STATUS "start to build ARM platform.")
+    set(INCLUDE_ROOT /usr/include)
+
+    set(OPENCV_DIR   /usr/lib/aarch64-linux-gnu)
+
+    include_directories(
+            src
+            ${catkin_INCLUDE_DIRS}
+            ${INCLUDE_ROOT}
+    )
+
+    link_directories(
+            ${OPENCV_DIR}/lib
+            lib/arm/
+    )
+elseif(${ARM} STREQUAL "OFF")
+    message(STATUS "start to build x86 platform.")
+
+    set(OPENCV_DIR   ${third_party_SOURCE_DIR}/ubuntu1604/opencv-3.3.1)
+
+    include_directories(
+            src
+            ${catkin_INCLUDE_DIRS}
+            ${OPENCV_DIR}/include
+    )
+
+    link_directories(
+            ${OPENCV_DIR}/lib
+            lib/x86/
+    )
+
+endif(${ARM} STREQUAL "ON")
+
+# set the linked libraries
+set(THIRD_PARTY_LIB
+        opencv_core
+        opencv_imgcodecs
+        opencv_highgui
+        opencv_imgproc
+        opencv_videoio
+        opencv_calib3d
+)
