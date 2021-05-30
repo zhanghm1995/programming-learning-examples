@@ -164,5 +164,9 @@ int main() {
   std::copy(result_double.begin(), result_double.end(), std::ostream_iterator<double>(std::cout, ","));
   std::cout<<std::endl;
 
+  // 清空stringstream内容 https://stackoverflow.com/questions/20731/how-do-you-clear-a-stringstream-variable
+  std::stringstream ss;
+  ss.str("");
+
   return 0;
 }

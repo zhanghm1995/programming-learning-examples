@@ -50,7 +50,8 @@ inline void Split(const std::string& input_str, std::vector<std::string>& output
 /**
  * @brief Join elements in stl::Container with delimiter
  * ! note: delimiter cannot contain NUL characters! note: delimiter cannot contain NUL characters* ! note: delimiter cannot contain NUL characters
- * https://stackoverflow.com/questions/5288396/c-ostream-out-manipulation/5289170#5289170
+ * @ref https://stackoverflow.com/questions/5288396/c-ostream-out-manipulation/5289170#5289170
+ *           https://stackoverflow.com/questions/15347123/how-to-construct-a-stdstring-from-a-stdvectorstring/18703743
  */
 template <typename Range, typename Value = typename Range::value_type>
 inline std::string JoinStr(const Range& elements, const char *const delimiter) {
