@@ -75,6 +75,15 @@ int main(int argc, char** argv) {
     TestRosTime();
     TestRosTime2();
     
-    ros::spin();
+
+    // 程序耗时统计
+      ros::Time lasttime=ros::Time::now();
+      ros::Duration(3).sleep();
+      ros::Time currtime=ros::Time::now();
+      ros::Duration diff=currtime-lasttime;
+
+      std::cout<<"time elapsed: "<<diff<<std::endl;
+
+      ros::spin();
     return 0;
 }
