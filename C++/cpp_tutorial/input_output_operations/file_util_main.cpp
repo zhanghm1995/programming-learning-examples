@@ -74,6 +74,13 @@ void TestListSubPaths()
     }
 
     /// 如果需要对文件名进行排序
+    std::cout<<"------------------------如果文件名本身位数相同,直接sort排序即可-------------------------"<<std::endl;
+    auto file_vec = file_util::ListSubPaths(dir_path);
+    std::sort(file_vec.begin(), file_vec.end());
+    for (const auto& name : file_vec) {
+        std::cout<<name<<std::endl;
+    }
+
     std::cout<<"-------------------------只对不带后缀的数字文件名排序-------------------------"<<std::endl;
     const auto file_name_str_vec = file_util::ListSubPaths(dir_path, true);
     std::vector<int64_t> file_name_vec;

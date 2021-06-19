@@ -96,6 +96,10 @@ void OperateBlock() {
                1, 2, 3;
   temp2.topLeftCorner(3, 3) = M1;
   cout<<temp2<<endl;
+
+  /// 2) 操作感兴趣部分
+  Eigen::Vector3d vec;
+  vec.tail(2) = Eigen::Vector2d::Zero();
 }
 
 /**

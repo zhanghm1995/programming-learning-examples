@@ -39,6 +39,13 @@ bool PathExists(const std::string &path);
  */
 bool DirectoryExists(const std::string &directory_path);
 
+/**
+ * @brief List all files in specified directory path
+ * 
+ * @param directory_path 
+ * @param remove_extension 
+ * @return std::vector<std::string> A std::vector of string format to represent the files name
+ */
 std::vector<std::string> ListSubPaths(const std::string &directory_path,
                                                                                 const bool remove_extension = false);
 
