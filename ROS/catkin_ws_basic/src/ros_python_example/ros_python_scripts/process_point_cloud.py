@@ -119,6 +119,24 @@ def publish_point_cloud():
         print(pc_data.shape)
 
 
+def publish_point_cloud_v2(pt_numpy):
+    """Publish points in numpy matrix format to show the points location in Rviz
+    pt_numpy: [N, 3]
+    """
+    field_properties = [
+            ('x', np.float32),
+            ('y', np.float32),
+            ('z', np.float32)]
+    
+    rate = rospy.Rate(10)
+    while(True):
+        if rospy.is_shutdown():
+            break
+        msg = convert_pc_numpy_to_msg(pt_numpy, field_properties)
+        g_pub_pc.publish(msg)
+        rate.sleep()
+
+
 def init_ros():
     """Init the ROS node and publishers and subscribers
     """
@@ -130,5 +148,12 @@ def init_ros():
 if __name__ == "__main__":
     init_ros()
 
-    publish_point_cloud()
+    # publish_point_cloud()
+
+    from generate_object import generate_data
+    pt_numpy = generate_data(10)
+    z = np.zeros(pt_numpy.shape[0])
+    pt_numpy = np.c_[pt_numpy, z]
+    print(pt_numpy)
+    publish_point_cloud_v2(pt_numpy)
     
