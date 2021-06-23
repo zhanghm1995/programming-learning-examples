@@ -2,7 +2,7 @@ import numpy as np
 
 def use_as_matrix():
     A = np.array([[1,2,3], [4,5,6],[7,8,9]])
-    print('A=\n', A, A.shape)
+    print('A=\n', type(A), A, A.shape)
     print(A[1,1])
 
     ## define column vector

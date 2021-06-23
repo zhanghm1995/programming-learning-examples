@@ -60,42 +60,86 @@ def read_point_cloud(lidar_bin_file_dir):
     return file_list
 
 
-def convert_pc_numpy_to_msg(pc_data):
-    cloud_arr = np.zeros(len(pc_data), dtype=([
+def convert_pc_numpy_to_msg(pc_data, field_properties):
+    """
+    Args:
+        field_properties is a tuple list to define the Fields name and DataType in PointCloud2
+        field_properties = [
             ('x', np.float32),
             ('y', np.float32),
             ('z', np.float32),
-            ('intensity', np.float32)]))
-         
-    cloud_arr['x'] = pc_data[:, 0]
-    cloud_arr['y'] = pc_data[:, 1]
-    cloud_arr['z'] = pc_data[:, 2]
-    cloud_arr['intensity'] = pc_data[:, 3]
+            ('intensity', np.float32),
+            ('ring', np.int32)]
+    """
+    assert pc_data.shape[1] == len(field_properties),  \
+        f'The size of PointCloud is {pc_data.shape(1)} is not equal to Field Properties size!'
+    
+    cloud_arr = np.zeros(len(pc_data), dtype=(field_properties))
+    for i, name in enumerate(cloud_arr.dtype.names):
+        cloud_arr[name] = pc_data[:, i]
 
     timestamp = rospy.Time.now()
 
     msg = ros_numpy.point_cloud2.array_to_pointcloud2(cloud_arr, timestamp, 'base_link')
     return msg
 
+
+def publish_one_pc(ros_pub, file_path, load_dim=3, use_dim=3):
+    if isinstance(use_dim, int):
+        use_dim = list(range(use_dim))
+
+    pc_data = np.fromfile(file_path, dtype=np.float32).reshape(-1, load_dim)
+    pc_data = pc_data[:, use_dim]
+
+    msg = convert_pc_numpy_to_msg(pc_data)
+    ros_pub.publish(msg)
+
+
 def publish_point_cloud():
     lidar_bin_file_dir = '/media/zhanghm/Data/Datasets/KITTI/tracking/training/velodyne/0000'
     file_list = read_point_cloud(lidar_bin_file_dir)
 
     rate = rospy.Rate(10)
+    field_properties = [
+            ('x', np.float32),
+            ('y', np.float32),
+            ('z', np.float32),
+            ('intensity', np.float32)]
+
     for file in file_list:
         if rospy.is_shutdown():
             break
         
         file_path = os.path.join(lidar_bin_file_dir, file)
         pc_data = np.fromfile(file_path, dtype=np.float32).reshape(-1, 4)
- 
-        msg = convert_pc_numpy_to_msg(pc_data)
+
+        msg = convert_pc_numpy_to_msg(pc_data, field_properties)
         g_pub_pc.publish(msg)
         rate.sleep()
         print(pc_data.shape)
 
 
+def publish_point_cloud_v2(pt_numpy):
+    """Publish points in numpy matrix format to show the points location in Rviz
+    pt_numpy: [N, 3]
+    """
+    field_properties = [
+            ('x', np.float32),
+            ('y', np.float32),
+            ('z', np.float32)]
+    
+    rate = rospy.Rate(10)
+    while(True):
+        if rospy.is_shutdown():
+            break
+        msg = convert_pc_numpy_to_msg(pt_numpy, field_properties)
+        g_pub_pc.publish(msg)
+        rate.sleep()
+
+
 def init_ros():
+    """Init the ROS node and publishers and subscribers
+    """
     global g_pub_pc
     g_pub_pc = rospy.Publisher('/kitti/point_cloud', PointCloud2, queue_size=10)
     rospy.init_node('ros_process_point_cloud')
@@ -104,9 +148,12 @@ def init_ros():
 if __name__ == "__main__":
     init_ros()
 
-    publish_point_cloud()
+    # publish_point_cloud()
 
-    rospy.spin()
-
-
+    from generate_object import generate_data
+    pt_numpy = generate_data(10)
+    z = np.zeros(pt_numpy.shape[0])
+    pt_numpy = np.c_[pt_numpy, z]
+    print(pt_numpy)
+    publish_point_cloud_v2(pt_numpy)
     
