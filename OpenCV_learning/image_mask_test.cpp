@@ -12,6 +12,7 @@
 
 using namespace std;
 using namespace cv;
+
 int main(int argc, char** argv)
 {
   cv::Mat img_src(501, 401, CV_8UC1, cv::Scalar(0));
