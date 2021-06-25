@@ -89,3 +89,9 @@ target_link_libraries(point_cloud_reader ${catkin_LIBRARIES})
 
 add_executable(point_cloud_subscriber src/point_cloud_subscriber.cpp)
 target_link_libraries(point_cloud_subscriber ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
+add_executable(srv_server src/srv_server.cpp)
+target_link_libraries(srv_server ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(srv_client src/srv_client.cpp)
+target_link_libraries(srv_client ${catkin_LIBRARIES} ${Boost_LIBRARIES})
