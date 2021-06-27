@@ -14,6 +14,7 @@ def read_kitti_oxts(dataset_root, sequence_num):
     with open(oxts_file, 'r') as f:
         lines = f.readlines()
     
+    print(len(lines))
     oxts_dict = {}
     for i, line in enumerate(lines):
         oxt = line.strip().split(' ')
