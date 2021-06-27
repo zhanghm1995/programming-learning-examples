@@ -1,5 +1,7 @@
 # -*- coding:utf8 -*-
 
+# Learn how to process the file path in Python
+
 import os
 import numpy as np
 

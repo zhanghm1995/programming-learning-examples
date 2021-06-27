@@ -1,4 +1,8 @@
 
+# Learn how to split and slice the sub string in shell scripts
+# ref: https://blog.csdn.net/seulzz/article/details/86512843
+# ref: https://www.w3cschool.cn/bashshell/bashshell-h19y37lm.html
+
 config_file_name="pointpillars/hv_pointpillars_secfpn.py"
 
 if [ $# -gt 0 ]; then

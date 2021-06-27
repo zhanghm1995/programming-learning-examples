@@ -24,16 +24,15 @@ def init_ros():
     rospy.init_node('process_image')
 
 def convert_img2msg(imgdata):
-    """
-    Publish the image message to ROS in Python2 environment.
+    """Publish the image message to ROS in Python2 environment.
     """
     _bridge = CvBridge()
     ros_msg_image = _bridge.cv2_to_imgmsg(imgdata, "bgr8")
     pub_img.publish(ros_msg_image)
 
 def publish_image(imgdata):
-    """ https://blog.csdn.net/lucky__ing/article/details/79949294
-    Publish the image message to ROS in Python3 environment.
+    """ Publish the image message to ROS in Python3 environment. 
+    Ref: https://blog.csdn.net/lucky__ing/article/details/79949294
     """
     IMAGE_HEIGHT = imgdata.shape[0]
     IMAGE_WIDTH = imgdata.shape[1]
