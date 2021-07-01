@@ -13,6 +13,26 @@
 using std::cout;
 using std::endl;
 
+
+void CreateMat()
+{
+    /// Create a single-channel gray image
+    cv::Mat img1(600, 400, CV_8UC1, cv::Scalar(0));
+    auto img1_mask = img1(cv::Rect(100, 100, 100, 100));
+    img1_mask.setTo(125);
+
+    uchar* data = img1.ptr<uchar>(100);
+    uchar value = data[99];
+    cout<<int(value)<<endl;
+
+    uchar value1 = 255;
+    uchar ret = value & value1; // and operation
+
+    cv::imshow("img1", img1);
+    cv::waitKey(0);
+}
+
+
 /**
  * @brief Learn use CV_Assert and learn how to convert the data type in cv::Mat
  */ 

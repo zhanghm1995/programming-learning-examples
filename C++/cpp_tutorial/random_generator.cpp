@@ -2,7 +2,7 @@
  * @Author: Haiming Zhang
  * @Email: zhanghm_1995@qq.com
  * @Date: 2020-08-23 22:42:37
- * @References: 
+ * @References: https://rextester.com/discussion/CAMZJ34875/Random-values-and-probability-distribution
  * @Description: Learn how to use random number in C++
  */
 
@@ -65,6 +65,34 @@ void TestDistribution() {
     cout<<"================End TestDistribution===================="<<endl;
 }
 
+void TestDiscreteDistribution() {
+    const int nrolls = 100000; // number of experiments
+    const int nstars = 100; //maximum number of stars to distribute
+    std::random_device rd;
+    std::default_random_engine generator(rd());
+    
+    /// 分配相同权重情形
+    // std::vector<int> weights(10, 1);
+
+    /// 分配不同权重情形
+    std::vector<int> weights = {2, 2, 1, 1, 2, 2, 1, 1, 2, 2};
+
+    std::discrete_distribution<int> distributions{std::begin(weights), std::end(weights)};
+
+
+    int p[10] = {};
+
+    for (int i = 0; i < nrolls; ++i) {
+        int number = distributions(generator);
+        ++p[number];
+    }
+
+    std::cout<<"a discrete_distribution:"<<std::endl;
+    for (int i = 0; i < 10; ++i) {
+        std::cout<<i<<": "<<std::string(p[i]*nstars/nrolls, '*')<<std::endl;
+    }
+}
+
 /**
  * @brief 产生指定int范围内的随机数,不包括b
  */ 
@@ -80,6 +108,21 @@ void GenerateIntRand(int a, int b) {
     cout<<"================End GenerateIntRand===================="<<endl;
 }
 
+/**
+ * @brief Generate a random real type value between a and b.
+ * 
+ * @param a 
+ * @param b 
+ * @return double 
+ */
+double GenerateRandomValue(double a, double b) {
+    std::random_device rd;
+    std::default_random_engine rng{rd()};
+
+    std::uniform_real_distribution<> real_dist{a, b};
+    return real_dist(rng);
+}
+
 int main() {
     GenerateIntRand(8, 20);
 
@@ -88,6 +131,8 @@ int main() {
     TestRandomGenerator();
 
     NormalDistribution();
+
+    TestDiscreteDistribution();
 
     return 0;
 }
