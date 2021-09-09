@@ -57,8 +57,9 @@ def pcoess_path_utils():
     print(path_norm, os.sep)
     path_split = path_norm.split(os.sep) # 得到字符串列表
     print(path_split)
+
     path_name = path_split[-1].replace(".bin", ".label")
-    print(path_name)
+    print(path_name) # 2.label
 
 def process_file_path():
     print("process_file_path")
@@ -79,6 +80,6 @@ def process_misc():
 
 if __name__=='__main__':
     pcoess_path_utils()
-    process_dir()
+    # process_dir()
     exit()
     process_file_path()

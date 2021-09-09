@@ -27,9 +27,25 @@ def permute_matrix():
     matrix_permute = matrix_input[:, [0,2,1]]
     print(matrix_permute)
 
+def combine_arrays():
+    a = np.random.rand(3, 96, 96)
+    b = np.random.rand(3, 96, 96)
+    c = np.random.rand(3, 96, 96)
+    d = np.random.rand(3, 96, 96)
+    window = [a, b, c, d]
+
+    window_np = np.asarray(window)
+    window_np2 = window_np.copy()
+    print(window_np.shape)
+
+    x = np.concatenate([window_np, window_np2], axis=0)
+    print(x.shape)
+
 if __name__ == "__main__":
     use_as_matrix()
     print("================")
     use_as_array()
     print("================")
     permute_matrix()
+    print("==============")
+    combine_arrays()
