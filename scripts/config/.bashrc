@@ -26,4 +26,6 @@ alias df='df -hl'
 ## alias for change path quickly
 alias cdd='cd /data/data0/zhanghm' ## Change this path if neccessary
 
-
+## -----------------Some other initialization-----------------
+# export CUDA_DEVICE_ORDER=PCI_BUS_ID
+# conda activate cv
