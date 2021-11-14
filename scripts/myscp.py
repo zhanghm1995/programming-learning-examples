@@ -1,7 +1,10 @@
+#!/usr/bin/env python
 import os
 import sys
 
 """Usages:
+Place this file into /usr/bin or ~/.local/bin etc. path which was in your $PATH environment paths
+
 myscp -r Amax:<path> <path>
 myscp <path> A100:<path>
 """
@@ -14,16 +17,13 @@ user_name_dict = {'Amax': 'zhanghm',
                   'V100': 'haimingzhang', 
                   'A100': 'dgxadmin'}
 
-CURR_HOST_NAME = 'V100'
-
 
 def build_remote_host_info():
     assert len(remote_ip_dict) == len(user_name_dict)
 
     remote_host_info_dict = dict()
     for key, value in user_name_dict.items():
-        if key != CURR_HOST_NAME:
-            remote_host_info_dict[key] = f"{value}@{remote_ip_dict[key]}"
+        remote_host_info_dict[key] = f"{value}@{remote_ip_dict[key]}"
     return remote_host_info_dict
 
 
