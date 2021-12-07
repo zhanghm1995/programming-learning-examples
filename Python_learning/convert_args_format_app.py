@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 # -*- coding:utf8 -*-
 # 将常用命令行参数格式转换成VSCode需要的launch.json调试模式下的格式
+
+"""
+Usages: Put this file in your PATH path, and in any place you can execute the command:
+convert_args_format_app.py "--data_root /home"
+
+Note: You must specify your arguments with the quotation mark
+"""
+
 import sys
 
 
