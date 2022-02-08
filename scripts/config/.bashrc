@@ -5,6 +5,9 @@ alias t='tmux'
 alias tn='tmux new -s'
 alias ta='tmux a -t'
 
+## -----------For Python--------------
+alias pl='pip list | grep '
+
 ## alias for edit file quickly
 alias sbrc="source ~/.bashrc"
 alias vbrc="vim ~/.bashrc"

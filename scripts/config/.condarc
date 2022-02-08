@@ -5,6 +5,9 @@ pkgs_dirs:
 channels:
   - defaults
 show_channel_urls: true
+auto_activate_base: false
+ssl_verify: false
+
 default_channels:
   - https://mirrors.sustech.edu.cn/anaconda/pkgs/main
   - https://mirrors.sustech.edu.cn/anaconda/pkgs/free
