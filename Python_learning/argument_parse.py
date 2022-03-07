@@ -16,7 +16,7 @@ def parse_normal():
 
 def parse_action():
     """
-    命令行中只要出现--viz,--compute_median_size等参数则为true,否则为false，只为bool类型
+    命令行中只要出现--viz,--compute_median_size等参数则为true,否则为false, 只为bool类型
     Example:
         python argument_parser.py --viz
     """
