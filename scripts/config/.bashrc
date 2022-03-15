@@ -2,6 +2,7 @@
 ## ----------------------------------Usesful Alias--------------------------------------
 ## -----------For tmux----------------
 alias t='tmux'
+alias tls='tmux ls'
 alias tn='tmux new -s'
 alias ta='tmux a -t'
 
@@ -17,11 +18,18 @@ alias g='gpustat -i'
 alias n="nvidia-smi"
 alias wn="watch -n 0.5 nvidia-smi"
 
+# for gcc and g++
+export CC=`which gcc`
+export CXX=`which g++`
+
+## For Slurm
+alias s='squeue | grep haiming'
+
 ## alias for execute command quickly
 alias aptu="sudo apt-get update"
 alias aptg="sudo apt-get upgrade"
 alias apti="sudo apt-get install"
-alias r="reset"
+alias r='reset'
 alias p='pwd'
 alias 'o'='nautilus'
 alias opwd='nautilus $(pwd)'
