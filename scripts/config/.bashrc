@@ -8,6 +8,9 @@ alias ta='tmux a -t'
 
 ## -----------For Python--------------
 alias pl='pip list | grep '
+alias cl='conda list | grep '
+alias pi='pip install '
+alias ci='conda install '
 
 ## alias for edit file quickly
 alias sbrc="source ~/.bashrc"
