@@ -31,6 +31,35 @@ def parse_action():
     print(type(args.viz))
 
 
+def modify_commandline_options(parser):
+    # net structure and parameters
+    parser.add_argument('--net_recon', type=str, default='resnet50', choices=['resnet18', 'resnet34', 'resnet50'], 
+                        help='network structure')
+    parser.add_argument('--init_path', type=str, default='checkpoints/init_model/resnet50-0676ba61.pth')
+    parser.add_argument('--bfm_folder', type=str, default='BFM')
+    parser.add_argument('--bfm_model', type=str, default='BFM_model_front.mat', help='bfm model')
+    return parser
+
+
+def parse_commandline_options():
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = modify_commandline_options(parser)
+    opt, _ = parser.parse_known_args()  # parse again with new defaults
+
+    message = ''
+    message += '----------------- Options ---------------\n'
+    for k, v in sorted(vars(opt).items()):
+        comment = ''
+        default = parser.get_default(k)
+        if v != default:
+            comment = '\t[default: %s]' % str(default)
+        message += '{:>25}: {:<30}{}\n'.format(str(k), str(v), comment)
+    message += '----------------- End -------------------'
+    print(message)
+
+
 if __name__=='__main__':
-    parse_normal()
+    # parse_normal()
     # parse_action()
+
+    parse_commandline_options()
