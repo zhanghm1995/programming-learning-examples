@@ -2,6 +2,7 @@
 
 import argparse
 
+
 def parse_normal():
     """
     Example:
@@ -13,6 +14,7 @@ def parse_normal():
     FLAGS = parser.parse_args()
     print(FLAGS)
     print(type(FLAGS.dataset), type(FLAGS.num_point))
+
 
 def parse_action():
     """
@@ -38,6 +40,8 @@ def modify_commandline_options(parser):
     parser.add_argument('--init_path', type=str, default='checkpoints/init_model/resnet50-0676ba61.pth')
     parser.add_argument('--bfm_folder', type=str, default='BFM')
     parser.add_argument('--bfm_model', type=str, default='BFM_model_front.mat', help='bfm model')
+    parser.add_argument('--pin_mem', action='store_true',
+                        help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
     return parser
 
 
@@ -58,8 +62,17 @@ def parse_commandline_options():
     print(message)
 
 
+def get_args():
+    parser = argparse.ArgumentParser('VideoMAE pre-training script', add_help=False) # add_help=False means no help str
+    parser.add_argument('--batch_size', default=64, type=int)
+    parser.add_argument('--epochs', default=800, type=int)
+    return parser.parse_args()
+
+
 if __name__=='__main__':
+    get_args()
+
     # parse_normal()
     # parse_action()
 
-    parse_commandline_options()
+    # parse_commandline_options()
