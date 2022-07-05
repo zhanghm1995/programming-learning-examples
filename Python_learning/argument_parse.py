@@ -1,6 +1,7 @@
 # -*- coding:utf8 -*-
 
 import argparse
+from icecream import ic as print
 
 
 def parse_normal():
@@ -9,11 +10,23 @@ def parse_normal():
         python argument_parser.py --dataset=sunrgbd --num_point=10000
     """
     parser = argparse.ArgumentParser()
+    # parser.add_argument('data_root', type=str, help='path of data root') # this is a required positional argument
+    parser.add_argument('--name', help='name of this experiment') # no default value, will set to None
+    
+    # no default value, will set to None
+    parser.add_argument('--num_memory', type=int, help='number of memory')
+
+    # will set to str type if not explicitly specify the data type
     parser.add_argument('--dataset', default='sunrgbd', help='Dataset: sunrgbd or scannet [default: sunrgbd]')
     parser.add_argument('--num_point', type=int, default=20000, help='Point Number [default: 20000]')
+
+    # we can run the script with python argument_parse.py --gpu 0 1 2 3
+    parser.add_argument('--gpu', type=int, nargs='+', default=(0, 1), help='specify gpu devices')
     FLAGS = parser.parse_args()
     print(FLAGS)
-    print(type(FLAGS.dataset), type(FLAGS.num_point))
+    
+    for k, v in vars(FLAGS).items():
+        print(k, v, type(v))
 
 
 def parse_action():
@@ -70,9 +83,10 @@ def get_args():
 
 
 if __name__=='__main__':
-    get_args()
+    parse_normal()
 
-    # parse_normal()
+    # get_args()
+
     # parse_action()
 
     # parse_commandline_options()
