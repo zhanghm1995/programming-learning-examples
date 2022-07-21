@@ -83,5 +83,27 @@ def count_unprocessed_files():
         fd.writelines([i + '\n' for i in unprocessed_data_list])
 
 
+def stat_needed_folders():
+    """Statistic the needed folders that you specified
+    """
+    data_root = "/home/zhanghm/Research/V100/TalkingFaceFormer/HDTF_preprocessed"
+    folder_list = get_folder_list(data_root)
+
+    print(len(folder_list), folder_list[:3])
+
+    needed_folders_list = []
+    
+    for folder in tqdm(folder_list):
+        mask_fg_path = osp.join(folder, "deep3dface_512")
+        
+        if not osp.exists(mask_fg_path):
+            needed_folders_list.append(osp.basename(folder))
+    
+    print(len(needed_folders_list), needed_folders_list[:3])
+    with open("needed_folders_list.txt", 'w') as fd:
+        fd.writelines([i + '\n' for i in needed_folders_list])
+
+
 if __name__ == "__main__":
-    count_unprocessed_files()
+    import fire
+    fire.Fire()
