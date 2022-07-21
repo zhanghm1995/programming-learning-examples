@@ -9,12 +9,20 @@ Description: Use the time string in Python
 
 import time
 
-
 def print_time_format():
     time_str = time.strftime("%Y-%m-%d %H:%M:%S")
     print(time_str)
 
 
+def stat_elasped_time():
+    start_time = time.time()
+    print("Start time: ", start_time)
+    time.sleep(1)
+    end_time = time.time()
+    print("End time: ", end_time)
+    print("Elapsed time: ", end_time - start_time)
+
 
 if __name__ == "__main__":
-    print_time_format()
+    import fire
+    fire.Fire()
