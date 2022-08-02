@@ -20,7 +20,7 @@ def stat_elasped_time():
     time.sleep(1)
     end_time = time.time()
     print("End time: ", end_time)
-    print("Elapsed time: ", end_time - start_time)
+    print(f"Elapsed time: {end_time - start_time} seconds")
 
 
 if __name__ == "__main__":
