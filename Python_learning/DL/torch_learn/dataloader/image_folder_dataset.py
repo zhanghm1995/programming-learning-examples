@@ -7,15 +7,6 @@ Email: haimingzhang@link.cuhk.edu.cn
 Description: The dataset class to read images from folders.
 '''
 
-'''
-Copyright (c) 2022 by Haiming Zhang. All Rights Reserved.
-
-Author: Haiming Zhang
-Date: 2022-07-14 09:18:44
-Email: haimingzhang@link.cuhk.edu.cn
-Description: The dataset class to load image folder
-'''
-
 import os
 import os.path as osp
 import numpy as np
@@ -62,14 +53,14 @@ class ImageFolderDataset(Dataset):
         img_path = osp.join(self.folder_path, img_name)
         
         img = Image.open(img_path).convert('RGB')
-        img = img.resize(self.img_size, Image.BILINEAR)
+        img = img.resize(self.img_size, Image.Resampling.BILINEAR)
 
         img_tensor = self.to_tensor(img)
         
         data_dict = {}
         data_dict['image_tensor'] = img_tensor
         data_dict['image_name'] = img_name
-        data_dict['image_origin'] = img
+        data_dict['image_origin'] = None
 
         return data_dict
 
@@ -81,30 +72,34 @@ class ImageFolderDataset(Dataset):
 
 
 def collate_batch_fn(batch):
-    data_list = []
-    image_name_list = []
-    image_origin_list = []
-    for data in batch:
-        data_list.append(data['image_tensor'])
-        image_name_list.append(data['image_name'])
-        image_origin_list.append(data['image_origin'])
-    
-    data_tensor = torch.stack(data_list)
+    elem = batch[0]
 
     res_dict = {}
-    res_dict['image_tensor'] = data_tensor
-    res_dict['image_name'] = image_name_list
-    res_dict['image_origin'] = image_origin_list
+    for key in elem:
+        value_list = [d[key] for d in batch]
+
+        value = value_list[0]
+        value_type = type(value)
+        
+        if value is None:
+            res_dict[key] = None
+        elif isinstance(value, torch.Tensor):
+            res_dict[key] = torch.stack(value_list, 0)
+        elif isinstance(value, str):
+            res_dict[key] = value_list
+        else:
+            print("Error", key, value_type)
+
     return res_dict
 
 
 if __name__ == "__main__":
-    dataset = ImageFolderDataset('/221019051/Datasets/Face/HDTF_preprocessed/RD_Radio34_007/face_image')
+    image_folder = "/data/data0/zhanghm/Datasets/HDTF_face3dmmformer/train/WDA_BarackObama_000/face_image"
+    
+    dataset = ImageFolderDataset(image_folder)
     print(len(dataset))
 
-    data = dataset[0]
-    print(data['image_name'])
-
+    ## Create dataloader
     data_loader = DataLoader(
         dataset,
         batch_size=10,
@@ -118,3 +113,5 @@ if __name__ == "__main__":
     for i, data in enumerate(data_loader):
         print(i, type(data), data['image_tensor'].shape)
         print(data['image_name'])
+        print(data['image_origin'])
+        break
