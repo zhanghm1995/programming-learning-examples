@@ -12,12 +12,33 @@ Note: You must specify your arguments with the quotation mark
 import sys
 
 
-def convert_arguments(input_argurments):
-    # input_argurments = "--name M003 --dataroot datasets/face/ --dataset_mode face --input_nc 15 --loadSize 512 --use_real_img --mode _M003_pose"
-    args_list = input_argurments.split()
-    args_list = [f"\"{arg}\"" for arg in args_list]
+def chunks(xs, n):
+    n = max(1, n)
+    return [xs[i:i+n] for i in range(0, len(xs), n)]
 
-    args_formated = ", ".join(args_list)
+
+def convert_arguments(input_argurments, need_multiple_lines=False, line_length=6):
+    # input_argurments = "--name M003 --dataroot datasets/face/ --dataset_mode face --input_nc 15 --loadSize 512 --use_real_img --mode _M003_pose"
+    origin_args_list = input_argurments.split()
+    
+    def join_args(args_list):
+        args_str_list = [f"\"{arg}\"" for arg in args_list]
+
+        args_formated = ", ".join(args_str_list)
+        return args_formated
+
+    if not need_multiple_lines:
+        args_formated = join_args(origin_args_list)
+    else:
+        multi_args_list = chunks(origin_args_list, line_length)
+        args_formated = []
+        
+        for sub_args_list in multi_args_list:
+            sub_args_formated = join_args(sub_args_list)
+            args_formated.append(sub_args_formated)
+        
+        args_formated = ",\n".join(args_formated)
+        
     return args_formated
     
 
@@ -27,7 +48,7 @@ if __name__ == "__main__":
         exit(0)
     input_argument_str = sys.argv[1]
     print(f"You have input the arguments needed to convert: \n{input_argument_str}")
-    result = convert_arguments(input_argument_str)
+    result = convert_arguments(input_argument_str, need_multiple_lines=True, line_length=8)
     
-    print("\nThe converted results is")
+    print("\nThe converted results is:")
     print(result)

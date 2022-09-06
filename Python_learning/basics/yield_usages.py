@@ -10,6 +10,16 @@ Description:
 import numpy as np
 
 
+def sample_data(loader, sampler=None):
+    epoch = -1
+    while True:
+        epoch += 1
+        if sampler is not None:
+            sampler.set_epoch(epoch)
+        for batch in loader:
+            yield batch
+
+
 class MyDataset(object):
     def __init__(self) -> None:
         super().__init__()
@@ -23,3 +33,9 @@ class MyDataset(object):
 dataset = MyDataset()
 for i, data in dataset:
     print(i, data)
+
+
+dl_iter = sample_data(dataset)
+for j in range(20):
+    i, data = next(dl_iter)
+    print(j, i)

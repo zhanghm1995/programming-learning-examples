@@ -1,7 +1,25 @@
 # -*- coding:utf8 -*-
 
 import argparse
-from icecream import ic as print
+# from icecream import ic as print
+
+
+def print_args(args, save_path=None):
+    print(f"{'=' * 20} Options {'=' * 20}")
+
+    args_str = []
+    for arg in vars(args):
+        formated_str = arg.rjust(15) + " : " + str(getattr(args, arg))
+        print(formated_str)
+        args_str.append(formated_str)
+    
+    if save_path is not None and save_path.endswith('.txt'):
+        fp = open(save_path, 'w')
+        for line in args_str:
+            fp.write(line + '\n')
+        fp.close()
+    
+    print(f"{'=' * 20} Options {'=' * 20}")
 
 
 def parse_normal():
@@ -22,11 +40,13 @@ def parse_normal():
 
     # we can run the script with python argument_parse.py --gpu 0 1 2 3
     parser.add_argument('--gpu', type=int, nargs='+', default=(0, 1), help='specify gpu devices')
-    FLAGS = parser.parse_args()
-    print(FLAGS)
+    args = parser.parse_args()
+    print(args)
     
-    for k, v in vars(FLAGS).items():
+    for k, v in vars(args).items():
         print(k, v, type(v))
+
+    print_args(args)
 
 
 def parse_action():
