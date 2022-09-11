@@ -18,6 +18,14 @@ def get_num_of_cpus():
     return num_cpus
 
 
+def get_start_methods():
+    """
+    Reference: https://stackoverflow.com/questions/43818519/what-is-the-meaning-of-context-argument-in-multiprocessing-pool-pool
+    """
+    all_start_methods = mp.get_all_start_methods()
+    print(all_start_methods)
+
+
 def dummy_func(input):
     print("Hello world", input)
     return input + 100
@@ -43,7 +51,11 @@ def imap_unordered_multiprocess(num_used_cpus):
         print(i)
 
 
+
 if __name__ == "__main__":
+    get_start_methods()
+    exit()
+
     num_cpus = mp.cpu_count()
     num_used_cpus = int(num_cpus * 0.25)
 
