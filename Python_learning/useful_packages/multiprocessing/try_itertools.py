@@ -25,7 +25,7 @@ for i in tqdm(cycle_list):
 
     print(i)
     # time.sleep(1)
-    if count >= 100:
+    if count >= 10:
         break
 
 ## Use the repeat function
@@ -36,7 +36,7 @@ for i in tqdm(repeated_list):
 
     print(i)
     # time.sleep(1)
-    if count >= 100:
+    if count >= 10:
         break
 
 print("Done")
