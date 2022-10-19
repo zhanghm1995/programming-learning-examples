@@ -81,7 +81,9 @@ def modify_commandline_options(parser):
 def parse_commandline_options():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser = modify_commandline_options(parser)
-    opt, _ = parser.parse_known_args()  # parse again with new defaults
+    opt, unknown = parser.parse_known_args()  # parse again with new defaults
+    
+    print(unknown, type(unknown))
 
     message = ''
     message += '----------------- Options ---------------\n'
@@ -103,6 +105,9 @@ def get_args():
 
 
 if __name__=='__main__':
+    parse_commandline_options()
+    exit(0)
+
     parse_normal()
 
     # get_args()
