@@ -9,7 +9,8 @@ Reference: https://www.cnblogs.com/marsggbo/p/11308889.html
 '''
 
 import torch
-from torch.utils.data import Dataset, DataLoader, SequentialSampler, RandomSampler
+from torch.utils.data import (Dataset, DataLoader, TensorDataset, Subset,
+                              SequentialSampler, RandomSampler)
 
 
 def test_sampler():
@@ -26,7 +27,20 @@ def test_sampler():
         print(i)
 
 
+def test_collate_fn():
+    def collate_fn(batch):
+        print(batch)
+        return batch
+
+    dataset = torch.utils.data.TensorDataset(torch.randn(10, 3), torch.arange(0, 10))
+    item = dataset[5]
+    print("item: ", item, len(dataset))
+
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=3, shuffle=False, collate_fn=None)
+    for i, data in enumerate(dataloader):
+        print(i, data)
+
 
 if __name__ == "__main__":
-    test_sampler()
+    test_collate_fn()
 
