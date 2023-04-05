@@ -5,6 +5,7 @@ Author: Haiming Zhang
 Date: 2022-07-14 11:52:28
 Email: haimingzhang@link.cuhk.edu.cn
 Description: The dataset class to read images from folders.
+https://www.daimajiaoliu.com/daima/4ede05ecd1003fc
 '''
 
 import os
