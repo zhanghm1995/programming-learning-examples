@@ -3,6 +3,8 @@ ref: https://www.runoob.com/python3/python3-class.html
 Reference: https://realpython.com/python-super/#super-in-multiple-inheritance
 """
 
+from easydict import EasyDict
+
 
 class BaseExample(object):
     def __init__(self) -> None:
@@ -43,7 +45,22 @@ class DerivedExample2(DerivedExample):
         print("This is in DerivedExample class")
 
 
+class MemberExample(object):
+    def __init__(self):
+        self.config = EasyDict(lr_scheduler="gamm")
+
+    def test(self):
+        if hasattr(self.config, "lr_scheduler"):
+            print("has defined lr_scheduler")
+        else:
+            print("not defined lr_scheduler")
+
+
 if __name__ == "__main__":
+    member_example = MemberExample()
+    member_example.test()
+    exit(0)
+
     derived_example = DerivedExample()
 
     derived_example.forward()
