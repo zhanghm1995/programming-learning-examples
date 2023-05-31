@@ -1,4 +1,6 @@
 
+################### Updated on 2023.05.31
+
 ## ----------------------------------Usesful Alias--------------------------------------
 ## -----------For tmux----------------
 alias t='tmux'
@@ -41,10 +43,11 @@ alias lsdn='ls -l|grep "^d"| wc -l' # count folder number
 alias lsfn='ls -l|grep "^-"| wc -l'  # count files number
 alias lsd='ls -d */' # only list directory in current path
 alias df='df -hl'
+alias dux='du -sh * | sort -h'  # compute the occupied space for each file/folder and list them in order
 
 ## alias for switch path quickly
 alias cdd='cd /data/data0/zhanghm' ## Change this path if neccessary
 
 ## -----------------Some other initialization-----------------
-# export CUDA_DEVICE_ORDER=PCI_BUS_ID
-# conda activate cv
+export CUDA_DEVICE_ORDER=PCI_BUS_ID
+conda activate cv
