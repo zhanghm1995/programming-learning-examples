@@ -56,7 +56,26 @@ class MemberExample(object):
             print("not defined lr_scheduler")
 
 
-if __name__ == "__main__":
+class BaseDataset(object):
+
+    def __init__(self):
+        print("__init__: This is in BaseDataset class")
+
+    def evaluate(self, pred, gt):
+        print("This is in BaseDataset class evaluate")
+
+
+class DerivedDataset(BaseDataset):
+
+    def __init__(self):
+        super().__init__()
+        print("__init__: This is in DerivedDataset class")
+    
+    def evaluate(self, pred):
+        print("This is in DerivedDataset class evaluate")
+
+
+def main1():
     member_example = MemberExample()
     member_example.test()
     exit(0)
@@ -64,3 +83,15 @@ if __name__ == "__main__":
     derived_example = DerivedExample()
 
     derived_example.forward()
+
+
+def main2():
+    """
+    Validate the same name function overloading in Python class.
+    """
+    dataset = DerivedDataset()
+    dataset.evaluate(1)
+
+
+if __name__ == "__main__":
+    main2()    
