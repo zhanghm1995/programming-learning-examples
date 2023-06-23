@@ -61,6 +61,13 @@ alias cdd='cd /data/data0/zhanghm' ## Change this path if neccessary
 ## -----------------Some other initialization-----------------
 export PATH=~/.local/bin:$PATH
 export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+cuda () {
+    local devs=$1
+    shift
+    CUDA_VISIBLE_DEVICES="$devs" "$@"
+}
 
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
 conda activate cv
