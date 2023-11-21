@@ -10,7 +10,7 @@ Description:
 import os
 
 
-num_imgs = 10
+num_imgs = 8
 
 # for i in range(num_imgs - 1):
 #     for j in range(i + 1, num_imgs):
@@ -22,7 +22,7 @@ num_imgs = 10
 #         print(i, j)
 
 print('------------------')
-neighbor_length = 5
+neighbor_length = 3
 for i in range(num_imgs - 1):
     for j in range(i + 1, min(i + 1 + neighbor_length, num_imgs)):
         print(i, j)
