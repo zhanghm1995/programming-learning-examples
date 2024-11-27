@@ -22,5 +22,41 @@ class Dummy(object):
         print(self.dataset, self.num_points)
 
 
+from typing import Literal
+
+def process_data(type: Literal['semantic'], data: str) -> str:
+    if type == 'semantic':
+        processed_data = f"Processing {type} data: {data}"
+        return processed_data
+    else:
+        return "Invalid type specified."
+
+
+def test_func():
+    import numpy as np
+
+    multi_adj_frame_id_cfg = (1, 2, 1)
+    adj_id_list = list(range(*multi_adj_frame_id_cfg))
+    print(adj_id_list)
+
+    num_adj=len(range(*multi_adj_frame_id_cfg))
+    print(num_adj)
+
+    import torch
+    input = torch.tensor([1, 2, 3, 4, 5, 6])
+    input_a = input.view((3, 2))
+    print(input_a)
+
+    input_b = torch.split(input_a, 1, 1)
+    print(input_b)
+
+
 if __name__ == "__main__":
-    dummy = Dummy()
+    test_func()
+    exit()
+
+    result = process_data('semantic', 'example data')
+    result = process_data('depth', 'example data')
+    print(result)
+
+    # dummy = Dummy()
