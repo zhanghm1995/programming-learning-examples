@@ -119,7 +119,37 @@ class ChildClass(BaseDataset, metaclass=BaseClass):
         super().forward()
 
 
+from abc import ABC, abstractmethod  
+
+class Base(ABC):  
+    @property  
+    @abstractmethod  
+    def name(self):  
+        pass
+
+    @name.setter
+    def name(self, value):  
+        print("name set to:", value)
+        self.name = value
+
+class Child(Base):  
+    @property  
+    def name(self):  
+        return "child"  
+    
+
+class BadChild(Base):  
+    pass  
+
+
+
 if __name__ == "__main__":
-    print("********************************")
-    ChildClass()
+    c = Child()        # 正常  
+    print(c.name)      # 输出：child
+    c.name = "new name"  # 正常
+    print(c.name)      # 输出：new name
+    b = BadChild()     # 报错: Can't instantiate abstract class BadChild ...  
+
+    # print("********************************")
+    # ChildClass()
     pass
