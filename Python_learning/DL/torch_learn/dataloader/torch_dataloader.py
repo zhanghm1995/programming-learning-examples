@@ -11,7 +11,7 @@ Reference: https://www.cnblogs.com/marsggbo/p/11308889.html
 import torch
 from torch.utils.data import (Dataset, DataLoader, TensorDataset, Subset,
                               SequentialSampler, RandomSampler)
-
+from mmengine.dataset.sampler import DefaultSampler
 
 def test_sampler():
     # sampler = SequentialSampler(range(10))
@@ -25,6 +25,8 @@ def test_sampler():
     print(list(batch_sampler))
     for i in batch_sampler:
         print(i)
+
+    
 
 
 def test_collate_fn():
@@ -42,5 +44,5 @@ def test_collate_fn():
 
 
 if __name__ == "__main__":
-    test_collate_fn()
+    test_sampler()
 

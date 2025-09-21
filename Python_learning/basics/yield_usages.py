@@ -8,7 +8,15 @@ Description:
 '''
 
 import numpy as np
+import itertools
 
+
+data = itertools.islice('ABCDEFG', 2, None, 2)
+
+for i in data:
+    print(i)
+
+exit()
 
 def sample_data(loader, sampler=None):
     epoch = -1

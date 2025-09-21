@@ -7,6 +7,13 @@ Usages: Put this file in your PATH path, and in any place you can execute the co
 convert_args_format_app.py "--data_root /home"
 
 Note: You must specify your arguments with the quotation mark
+
+Copyright (c) 2024 by Haiming Zhang. All Rights Reserved.
+
+Author: Haiming Zhang
+Date: 2024-07-10 11:08:49
+Email: haimingzhang@link.cuhk.edu.cn
+Description: The Pretraining head.
 """
 
 import sys

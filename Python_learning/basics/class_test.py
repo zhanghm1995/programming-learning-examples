@@ -93,5 +93,63 @@ def main2():
     dataset.evaluate(1)
 
 
+class BaseClass(type):
+    def __init__(self, *args):
+        super().__init__(*args)
+        print("This is in BaseClass=====================")
+        print(*args)
+    
+    def __new__(cls, name, bases, dct): 
+        print(f"Creating class: {name}")  
+        print(f"Bases: {bases}")
+        print(f"Attributes: {dct}")
+        return super().__new__(cls, name, bases, dct) 
+
+
+class ChildClass(BaseDataset, metaclass=BaseClass):
+    number = 10
+    def __init__(self, name='ChildClass2'):
+        # super().__init__()
+        self.infos = "Child class infos"
+        print("Creating ChildClass instance")
+        print(self.number)
+
+    def forward(self):
+        print("This is in ChildClass")
+        super().forward()
+
+
+from abc import ABC, abstractmethod  
+
+class Base(ABC):  
+    @property  
+    @abstractmethod  
+    def name(self):  
+        pass
+
+    @name.setter
+    def name(self, value):  
+        print("name set to:", value)
+        self.name = value
+
+class Child(Base):  
+    @property  
+    def name(self):  
+        return "child"  
+    
+
+class BadChild(Base):  
+    pass  
+
+
+
 if __name__ == "__main__":
-    main2()    
+    c = Child()        # 正常  
+    print(c.name)      # 输出：child
+    c.name = "new name"  # 正常
+    print(c.name)      # 输出：new name
+    b = BadChild()     # 报错: Can't instantiate abstract class BadChild ...  
+
+    # print("********************************")
+    # ChildClass()
+    pass

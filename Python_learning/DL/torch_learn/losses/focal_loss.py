@@ -53,14 +53,14 @@ from torch.utils.data import DataLoader, TensorDataset
 # Assume you have two classes (0 and 1)
 
 # Class 0 data (randomly generated)
-class_0_data = np.random.normal(loc=5, scale=2, size=(100, 20))
+class_0_data = np.random.normal(loc=5, scale=2, size=(1000, 20))
 
 # Class 1 data (randomly generated)
-class_1_data = np.random.normal(loc=10, scale=2, size=(100, 20))
+class_1_data = np.random.normal(loc=10, scale=2, size=(1000, 20))
 
 # Labels for the data
-class_0_labels = np.zeros((100, 1))  # Class 0 is labeled as 0
-class_1_labels = np.ones((100, 1))   # Class 1 is labeled as 1
+class_0_labels = np.zeros((1000, 1))  # Class 0 is labeled as 0
+class_1_labels = np.ones((1000, 1))   # Class 1 is labeled as 1
 
 # Concatenate the data and labels for both classes
 X = np.vstack((class_0_data, class_1_data))
@@ -92,13 +92,13 @@ print("y_test:", y_test, y_test.shape)
 
 # Instantiate the model and FocalLoss
 model = BinaryClassificationModel()
-focal_loss = FocalLoss(alpha=1, gamma=2)
+focal_loss = FocalLoss(alpha=0.25, gamma=2)
 
 # Define optimizer
-optimizer = optim.Adam(model.parameters(), lr=0.01)
+optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 # Training loop
-num_epochs = 20
+num_epochs = 100
 for epoch in range(num_epochs):
     model.train()
     total_loss = 0.0
